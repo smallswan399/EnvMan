@@ -57,9 +57,6 @@
     <Compile Include="Handlers\DgvMoveUpCommand.cs" />
     <Compile Include="Handlers\EditVarNameCommand.cs" />
     <Compile Include="Handlers\ICommand.cs" />
-    <Compile Include="ImportExport\EnvironmentVariable.cs" />
-    <Compile Include="ImportExport\ImportExportManager.cs" />
-    <Compile Include="Handlers\VarImportCommand.cs" />
     <Compile Include="Handlers\UndoRedoCommandList.cs" />
     <Compile Include="Properties\EnvManagerSettings.Designer.cs">
       <DependentUpon>EnvManagerSettings.settings</DependentUpon>
@@ -103,12 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\Cancel.gif" />
-    <None Include="Diagrams\ImportExport.cd" />
-    <None Include="res\ValType\ValTypeNumberAdd.png" />
-    <None Include="res\ValType\ValTypeFolderAdd.png" />
-    <None Include="res\ValType\ValTypeFileAdd.png" />
-    <None Include="res\ValType\ValTypeErrorAdd.png" />
-    <None Include="res\ValType\ValTypeStringAdd.png" />
     <None Include="Diagrams\EnvManager.cd" />
     <None Include="Diagrams\FrmEditCommandPattern.cd" />
     <None Include="res\ValType\ValTypeError.png" />

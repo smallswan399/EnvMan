@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 namespace EnvManager
@@ -48,15 +49,13 @@ namespace EnvManager
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( FrmEditEnvVar ) );
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtVariableName = new System.Windows.Forms.TextBox();
             this.dgvValuesList = new System.Windows.Forms.DataGridView();
             this.ValueType = new System.Windows.Forms.DataGridViewImageColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmsValuesDGV = new System.Windows.Forms.ContextMenuStrip( this.components );
-            this.tsmiLocateInWindowsExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnMoveTop = new System.Windows.Forms.Button();
             this.btnMoveBottom = new System.Windows.Forms.Button();
@@ -71,10 +70,7 @@ namespace EnvManager
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnRedo = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip( this.components );
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ( ( System.ComponentModel.ISupportInitialize ) ( this.dgvValuesList ) ).BeginInit();
-            this.cmsValuesDGV.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -86,6 +82,16 @@ namespace EnvManager
             this.label1.Size = new System.Drawing.Size( 91, 13 );
             this.label1.TabIndex = 1;
             this.label1.Text = "Variable &name:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 0 ) ) );
+            this.label2.Location = new System.Drawing.Point( 12, 31 );
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size( 92, 13 );
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Variable &value:";
             // 
             // txtVariableName
             // 
@@ -103,30 +109,20 @@ namespace EnvManager
             this.dgvValuesList.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom )
                         | System.Windows.Forms.AnchorStyles.Left )
                         | System.Windows.Forms.AnchorStyles.Right ) ) );
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 0 ) ) );
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvValuesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvValuesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvValuesList.ColumnHeadersVisible = false;
             this.dgvValuesList.Columns.AddRange( new System.Windows.Forms.DataGridViewColumn[ ] {
             this.ValueType,
             this.Value} );
-            this.dgvValuesList.ContextMenuStrip = this.cmsValuesDGV;
-            this.dgvValuesList.Location = new System.Drawing.Point( 12, 32 );
+            this.dgvValuesList.Location = new System.Drawing.Point( 12, 47 );
             this.dgvValuesList.MultiSelect = false;
             this.dgvValuesList.Name = "dgvValuesList";
             this.dgvValuesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvValuesList.Size = new System.Drawing.Size( 267, 337 );
+            this.dgvValuesList.Size = new System.Drawing.Size( 267, 322 );
             this.dgvValuesList.TabIndex = 0;
             this.dgvValuesList.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler( this.dgvValuesList_UserAddedRow );
             this.dgvValuesList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler( this.dgvValuesList_UserDeletingRow );
             this.dgvValuesList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler( this.dgvValuesList_CellBeginEdit );
-            this.dgvValuesList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler( this.dgvValuesList_CellMouseDown );
-            this.dgvValuesList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler( this.dgvValuesList_CellValidating );
             this.dgvValuesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler( this.dgvValuesList_CellEndEdit );
             this.dgvValuesList.SelectionChanged += new System.EventHandler( this.dgvValuesList_SelectionChanged );
             // 
@@ -143,29 +139,14 @@ namespace EnvManager
             // Value
             // 
             this.Value.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Value.HeaderText = "Variable value";
+            this.Value.HeaderText = "Value";
             this.Value.Name = "Value";
-            // 
-            // cmsValuesDGV
-            // 
-            this.cmsValuesDGV.Items.AddRange( new System.Windows.Forms.ToolStripItem[ ] {
-            this.tsmiLocateInWindowsExplorer} );
-            this.cmsValuesDGV.Name = "cmsValuesDGV";
-            this.cmsValuesDGV.Size = new System.Drawing.Size( 218, 26 );
-            // 
-            // tsmiLocateInWindowsExplorer
-            // 
-            this.tsmiLocateInWindowsExplorer.Image = global::EnvManager.Properties.Resources.FolderExplore;
-            this.tsmiLocateInWindowsExplorer.Name = "tsmiLocateInWindowsExplorer";
-            this.tsmiLocateInWindowsExplorer.Size = new System.Drawing.Size( 217, 22 );
-            this.tsmiLocateInWindowsExplorer.Text = "Locate in Windows Explorer";
-            this.tsmiLocateInWindowsExplorer.Click += new System.EventHandler( this.BtnClick );
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
-            this.btnBrowse.Image = global::EnvManager.Properties.Resources.ValTypeFolder;
-            this.btnBrowse.Location = new System.Drawing.Point( 285, 225 );
+            this.btnBrowse.Image = global::EnvManager.Properties.Resources.FolderExplore;
+            this.btnBrowse.Location = new System.Drawing.Point( 285, 233 );
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size( 24, 23 );
             this.btnBrowse.TabIndex = 11;
@@ -177,7 +158,7 @@ namespace EnvManager
             // 
             this.btnMoveTop.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnMoveTop.Image = global::EnvManager.Properties.Resources.MoveTop;
-            this.btnMoveTop.Location = new System.Drawing.Point( 285, 110 );
+            this.btnMoveTop.Location = new System.Drawing.Point( 285, 118 );
             this.btnMoveTop.Name = "btnMoveTop";
             this.btnMoveTop.Size = new System.Drawing.Size( 24, 23 );
             this.btnMoveTop.TabIndex = 9;
@@ -189,7 +170,7 @@ namespace EnvManager
             // 
             this.btnMoveBottom.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnMoveBottom.Image = global::EnvManager.Properties.Resources.MoveBottom;
-            this.btnMoveBottom.Location = new System.Drawing.Point( 285, 196 );
+            this.btnMoveBottom.Location = new System.Drawing.Point( 285, 204 );
             this.btnMoveBottom.Name = "btnMoveBottom";
             this.btnMoveBottom.Size = new System.Drawing.Size( 24, 23 );
             this.btnMoveBottom.TabIndex = 8;
@@ -201,7 +182,7 @@ namespace EnvManager
             // 
             this.btnMoveDown.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnMoveDown.Image = global::EnvManager.Properties.Resources.MoveDown;
-            this.btnMoveDown.Location = new System.Drawing.Point( 285, 168 );
+            this.btnMoveDown.Location = new System.Drawing.Point( 285, 176 );
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size( 24, 23 );
             this.btnMoveDown.TabIndex = 7;
@@ -214,7 +195,7 @@ namespace EnvManager
             // 
             this.btnMoveUp.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnMoveUp.Image = global::EnvManager.Properties.Resources.MoveUp;
-            this.btnMoveUp.Location = new System.Drawing.Point( 285, 139 );
+            this.btnMoveUp.Location = new System.Drawing.Point( 285, 147 );
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size( 24, 23 );
             this.btnMoveUp.TabIndex = 6;
@@ -233,7 +214,6 @@ namespace EnvManager
             this.btnCancel.Size = new System.Drawing.Size( 83, 23 );
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "&Cancel";
-            this.toolTip.SetToolTip( this.btnCancel, "Cancel Changes (Alt+F4)" );
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler( this.BtnClick );
             // 
@@ -248,7 +228,6 @@ namespace EnvManager
             this.btnSave.Size = new System.Drawing.Size( 83, 23 );
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
-            this.toolTip.SetToolTip( this.btnSave, "Save Changes" );
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler( this.BtnClick );
             // 
@@ -256,7 +235,7 @@ namespace EnvManager
             // 
             this.btnDelete.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnDelete.Image = global::EnvManager.Properties.Resources.delete;
-            this.btnDelete.Location = new System.Drawing.Point( 285, 254 );
+            this.btnDelete.Location = new System.Drawing.Point( 285, 262 );
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size( 24, 23 );
             this.btnDelete.TabIndex = 12;
@@ -268,31 +247,31 @@ namespace EnvManager
             // 
             this.btnImport.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnImport.Image = global::EnvManager.Properties.Resources.Import;
-            this.btnImport.Location = new System.Drawing.Point( 285, 39 );
+            this.btnImport.Location = new System.Drawing.Point( 285, 47 );
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size( 24, 23 );
             this.btnImport.TabIndex = 14;
             this.toolTip.SetToolTip( this.btnImport, "Import" );
             this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler( this.BtnClick );
+            this.btnImport.Visible = false;
             // 
             // btnExport
             // 
             this.btnExport.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnExport.Image = global::EnvManager.Properties.Resources.Export;
-            this.btnExport.Location = new System.Drawing.Point( 285, 68 );
+            this.btnExport.Location = new System.Drawing.Point( 285, 76 );
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size( 24, 23 );
             this.btnExport.TabIndex = 13;
             this.toolTip.SetToolTip( this.btnExport, "Export" );
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler( this.BtnClick );
+            this.btnExport.Visible = false;
             // 
             // btnUndo
             // 
             this.btnUndo.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnUndo.Image = global::EnvManager.Properties.Resources.Undo;
-            this.btnUndo.Location = new System.Drawing.Point( 285, 297 );
+            this.btnUndo.Location = new System.Drawing.Point( 285, 305 );
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size( 24, 23 );
             this.btnUndo.TabIndex = 16;
@@ -304,7 +283,7 @@ namespace EnvManager
             // 
             this.btnRedo.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.btnRedo.Image = global::EnvManager.Properties.Resources.Redo;
-            this.btnRedo.Location = new System.Drawing.Point( 285, 326 );
+            this.btnRedo.Location = new System.Drawing.Point( 285, 334 );
             this.btnRedo.Name = "btnRedo";
             this.btnRedo.Size = new System.Drawing.Size( 24, 23 );
             this.btnRedo.TabIndex = 15;
@@ -312,35 +291,26 @@ namespace EnvManager
             this.btnRedo.UseVisualStyleBackColor = true;
             this.btnRedo.Click += new System.EventHandler( this.BtnClick );
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.DefaultExt = "*.env";
-            this.openFileDialog.Filter = "Env Files|*.env";
-            // 
-            // saveFileDialog
-            // 
-            this.saveFileDialog.DefaultExt = "*.env";
-            this.saveFileDialog.Filter = "Env Files|*.env";
-            // 
             // FrmEditEnvVar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 319, 405 );
-            this.Controls.Add( this.btnRedo );
             this.Controls.Add( this.btnUndo );
-            this.Controls.Add( this.dgvValuesList );
+            this.Controls.Add( this.btnRedo );
             this.Controls.Add( this.btnImport );
             this.Controls.Add( this.btnExport );
             this.Controls.Add( this.btnDelete );
             this.Controls.Add( this.btnBrowse );
-            this.Controls.Add( this.btnCancel );
+            this.Controls.Add( this.dgvValuesList );
             this.Controls.Add( this.btnMoveTop );
             this.Controls.Add( this.btnMoveBottom );
             this.Controls.Add( this.btnMoveDown );
             this.Controls.Add( this.btnMoveUp );
+            this.Controls.Add( this.btnCancel );
             this.Controls.Add( this.btnSave );
             this.Controls.Add( this.txtVariableName );
+            this.Controls.Add( this.label2 );
             this.Controls.Add( this.label1 );
             this.Icon = ( ( System.Drawing.Icon ) ( resources.GetObject( "$this.Icon" ) ) );
             this.Location = new System.Drawing.Point( 10, 10 );
@@ -348,9 +318,7 @@ namespace EnvManager
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Edit System Variable";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler( this.FrmEditEnvVar_FormClosed );
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEditEnvVar_FormClosing);
             ( ( System.ComponentModel.ISupportInitialize ) ( this.dgvValuesList ) ).EndInit();
-            this.cmsValuesDGV.ResumeLayout( false );
             this.ResumeLayout( false );
             this.PerformLayout();
 
@@ -359,6 +327,7 @@ namespace EnvManager
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtVariableName;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
@@ -370,16 +339,12 @@ namespace EnvManager
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.DataGridViewImageColumn ValueType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnRedo;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.ContextMenuStrip cmsValuesDGV;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLocateInWindowsExplorer;
-        private System.Windows.Forms.DataGridViewImageColumn ValueType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
     }
 }

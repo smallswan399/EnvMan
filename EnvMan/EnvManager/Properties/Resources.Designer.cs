@@ -210,13 +210,6 @@ namespace EnvManager.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ValTypeErrorAdd {
-            get {
-                object obj = ResourceManager.GetObject("ValTypeErrorAdd", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap ValTypeFile {
             get {
                 object obj = ResourceManager.GetObject("ValTypeFile", resourceCulture);
@@ -224,23 +217,9 @@ namespace EnvManager.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ValTypeFileAdd {
-            get {
-                object obj = ResourceManager.GetObject("ValTypeFileAdd", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap ValTypeFolder {
             get {
                 object obj = ResourceManager.GetObject("ValTypeFolder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ValTypeFolderAdd {
-            get {
-                object obj = ResourceManager.GetObject("ValTypeFolderAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -259,23 +238,9 @@ namespace EnvManager.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ValTypeNumberAdd {
-            get {
-                object obj = ResourceManager.GetObject("ValTypeNumberAdd", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap ValTypeString {
             get {
                 object obj = ResourceManager.GetObject("ValTypeString", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ValTypeStringAdd {
-            get {
-                object obj = ResourceManager.GetObject("ValTypeStringAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

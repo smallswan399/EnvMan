@@ -118,11 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtxtCredits.Text" xml:space="preserve">
-    <value>EnvMan 1.2
-==========
-PRANKENST!EN - Implementation of "Locate in Windows Explorer" Edit Form Grid context menu
-
-External Libraries and Contributors
+    <value>External Libraries and Contributors
 ============================
 Code Projects Users - Feedback, bug reports, and new features requests
 
