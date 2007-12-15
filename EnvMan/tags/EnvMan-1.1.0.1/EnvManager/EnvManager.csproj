@@ -1,0 +1,118 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EnvManager</RootNamespace>
+    <AssemblyName>EnvManager</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EnvManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnvManager.Designer.cs">
+      <DependentUpon>EnvManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\EnvManagerSettings.Designer.cs">
+      <DependentUpon>EnvManagerSettings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="EnvVarManager.cs" />
+    <Compile Include="FrmEditEnvVar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditEnvVar.Designer.cs">
+      <DependentUpon>FrmEditEnvVar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EnvManager.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EnvManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditEnvVar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmEditEnvVar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\Cancel.gif" />
+    <None Include="Properties\EnvManagerSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>EnvManagerSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="res\ValType\ValTypeNull.png" />
+    <None Include="res\ValType\ValTypeNumber.png" />
+    <None Include="res\ValType\ValTypeFolder.png" />
+    <None Include="res\ValType\ValTypeFile.png" />
+    <None Include="res\ValType\ValTypeString.png" />
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="res\FolderExplore.png" />
+    <None Include="res\Edit.png" />
+    <None Include="res\Save.png" />
+    <None Include="res\MoveDown.png" />
+    <None Include="res\MoveBottom.png" />
+    <None Include="res\MoveUp.png" />
+    <None Include="res\MoveTop.png" />
+    <None Include="res\delete.png" />
+    <None Include="res\new.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
