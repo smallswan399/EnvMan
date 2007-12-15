@@ -6,41 +6,6 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
-07/10/2007	Release 1.3
-	* BT1828033 Escape to Close 
-        - Added Ctrl+X Shortcut on Main Form Exit File Menu
-	* BT843838 Program does not check for changes on Cancel in Edit Form 
-        - Added checking for user changes and prompt to save it on Cancel.
-    * Added Release version display in Main Form Title bar
-    * Added colour change for rows with invalid value paths in Main Form
-    * Minor GUI Improvements
-15/10/2007	Release 1.2.2
-	* Fixed problem with Delete button on Edit Form
-	* Removed Setup project. It will be replaced by WiX setup.
-04/10/2007	Release 1.2.1
-	* BT1767453 On value edit Undo Redo not recording
-		Fixed problems when user does not enter text into value cell
-	* BT1792173 Incorrectly detected Value type
-		Checking that path string is starts with "<drive>:\"
-	* BT1806716 Grid Cell accepts semi colon
-		Added validation DataGridView in Edit form
-11/09/2007	Release 1.2
-	* Implementation of Import/Export variable values functionality (BT1709867)
-	* Implementation of Locate/Open in Windows Explorer Edit Form Grid context menu 
-	  (BT1729869 - Implemented by PRANKENST!EN)
-	* Upgraded license to GPL Version 3
-11/06/2007	Release 1.1.2
-	* Added Help new menu entries.
-	* Added credits box in About box 
-	* modified CleanAll.bat to work with new projects
-	* Added build of Setup project
-	* Fixed reloading of Main Form on Row double click
-	* Added remembering current row and setting it visible after reloading
-	* Now SetBtnState happens on Dgv current selection change
-	* Fixed row deletion when user hits delete key on keyboard
-30/05/2007	Release 1.1.1.0
-	* Implementation of Undo/Redo functionality (Bug Tracker ID: 1705000)
-	* Added Tool Tip info for icons in Edit Form
 25/05/2007	Release 1.1.0.2
 	* Made single selection in the Edit form grid
 	* Set minimum sizes for main and edit forms

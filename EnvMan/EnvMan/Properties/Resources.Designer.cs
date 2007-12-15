@@ -60,13 +60,6 @@ namespace EnvMan.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Donate {
-            get {
-                object obj = ResourceManager.GetObject("Donate", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap EnvMan {
             get {
                 object obj = ResourceManager.GetObject("EnvMan", resourceCulture);
@@ -74,51 +67,9 @@ namespace EnvMan.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap EnvManAbout {
-            get {
-                object obj = ResourceManager.GetObject("EnvManAbout", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Language {
-            get {
-                object obj = ResourceManager.GetObject("Language", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap News {
-            get {
-                object obj = ResourceManager.GetObject("News", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SendFeedback {
-            get {
-                object obj = ResourceManager.GetObject("SendFeedback", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap ShutDown {
             get {
                 object obj = ResourceManager.GetObject("ShutDown", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Updates {
-            get {
-                object obj = ResourceManager.GetObject("Updates", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Website {
-            get {
-                object obj = ResourceManager.GetObject("Website", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 using System;
@@ -37,8 +38,7 @@ namespace EnvManager
             //  - AssemblyInfo.cs
             this.Text = String.Format( "About {0}", AssemblyTitle );
             this.lblProductName.Text = AssemblyProduct;
-            this.lblVersion.Text = String.Format("Version {0} (Build {1})", 
-                AssemblyFileVersion, AssemblyVersion);
+            this.lblVersion.Text = String.Format( "Version {0}", AssemblyVersion );
             this.lblCopyright.Text = AssemblyCopyright;
             this.txtDescription.Text = AssemblyDescription;
         }
@@ -64,6 +64,7 @@ namespace EnvManager
                 return System.IO.Path.GetFileNameWithoutExtension( Assembly.GetExecutingAssembly().CodeBase );
             }
         }
+
         public string AssemblyVersion
         {
             get
@@ -85,40 +86,7 @@ namespace EnvManager
                 return ( ( AssemblyDescriptionAttribute ) attributes[ 0 ] ).Description;
             }
         }
-        /// <summary>
-        /// Gets the assembly file version.
-        /// </summary>
-        /// <value>The assembly file version.</value>
-        public string AssemblyFileVersion
-        {
-            get
-            {
-                // Get all Description attributes on this assembly
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
-                // If there aren't any Description attributes, return an empty string
-                if (attributes.Length == 0)
-                    return "";
-                // If there is a Description attribute, return its value
-                return ((AssemblyFileVersionAttribute)attributes[0]).Version;
-            }
-        }
-        /// <summary>
-        /// Gets the assembly informational version.
-        /// </summary>
-        /// <value>The assembly informational version.</value>
-        public string AssemblyInformationalVersion
-        {
-            get
-            {
-                // Get all Description attributes on this assembly
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
-                // If there aren't any Description attributes, return an empty string
-                if (attributes.Length == 0)
-                    return "";
-                // If there is a Description attribute, return its value
-                return ((AssemblyInformationalVersionAttribute)attributes[0]).InformationalVersion;
-            }
-        }
+
         public string AssemblyProduct
         {
             get
@@ -161,5 +129,19 @@ namespace EnvManager
             }
         }
         #endregion
+
+        private void LblLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(sender.Equals(lblProjectHomePage))
+            {
+                System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/" );
+                lblProjectHomePage.LinkVisited = true;
+            }
+            else if(sender.Equals(lblSourceForge))
+            {
+                System.Diagnostics.Process.Start( @"http://sourceforge.net/projects/env-man" );
+                lblSourceForge.LinkVisited = true;
+            }
+        }
     }
 }

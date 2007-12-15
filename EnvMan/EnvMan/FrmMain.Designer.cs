@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 namespace EnvMan
@@ -51,14 +52,6 @@ namespace EnvMan
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiWebsite = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewsWebsite = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDonate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiPostFeedbackOrBugReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiLanguage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain = new System.Windows.Forms.StatusStrip();
             this.envManager = new EnvManager.EnvManager();
@@ -88,8 +81,7 @@ namespace EnvMan
             // 
             this.tsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.ShortcutKeys = ( ( System.Windows.Forms.Keys ) ( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X ) ) );
-            this.tsmiExit.Size = new System.Drawing.Size( 152, 22 );
+            this.tsmiExit.Size = new System.Drawing.Size( 103, 22 );
             this.tsmiExit.Text = "E&xit";
             this.tsmiExit.ToolTipText = "Close Application";
             this.tsmiExit.Click += new System.EventHandler( this.TsmiClick );
@@ -97,86 +89,15 @@ namespace EnvMan
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[ ] {
-            this.tsmiWebsite,
-            this.tsmiNewsWebsite,
-            this.tsmiDonate,
-            this.tsmiPostFeedbackOrBugReport,
-            this.toolStripMenuItem2,
-            this.tsmiLanguage,
-            this.tsmiCheckForUpdates,
-            this.toolStripMenuItem1,
             this.tsmiAbout} );
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size( 40, 20 );
             this.helpToolStripMenuItem.Text = "&Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // tsmiWebsite
-            // 
-            this.tsmiWebsite.Image = global::EnvMan.Properties.Resources.Website;
-            this.tsmiWebsite.Name = "tsmiWebsite";
-            this.tsmiWebsite.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiWebsite.Text = "EnvMan &Project Website...";
-            this.tsmiWebsite.Visible = false;
-            this.tsmiWebsite.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // tsmiNewsWebsite
-            // 
-            this.tsmiNewsWebsite.Image = global::EnvMan.Properties.Resources.News;
-            this.tsmiNewsWebsite.Name = "tsmiNewsWebsite";
-            this.tsmiNewsWebsite.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiNewsWebsite.Text = "EnvMan &News Website...";
-            this.tsmiNewsWebsite.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // tsmiDonate
-            // 
-            this.tsmiDonate.Image = global::EnvMan.Properties.Resources.Donate;
-            this.tsmiDonate.Name = "tsmiDonate";
-            this.tsmiDonate.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiDonate.Text = "&Donate...";
-            this.tsmiDonate.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // tsmiPostFeedbackOrBugReport
-            // 
-            this.tsmiPostFeedbackOrBugReport.Image = global::EnvMan.Properties.Resources.SendFeedback;
-            this.tsmiPostFeedbackOrBugReport.Name = "tsmiPostFeedbackOrBugReport";
-            this.tsmiPostFeedbackOrBugReport.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiPostFeedbackOrBugReport.Text = "Post feedback or bug report ...";
-            this.tsmiPostFeedbackOrBugReport.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size( 232, 6 );
-            // 
-            // tsmiLanguage
-            // 
-            this.tsmiLanguage.Image = global::EnvMan.Properties.Resources.Language;
-            this.tsmiLanguage.Name = "tsmiLanguage";
-            this.tsmiLanguage.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiLanguage.Text = "&Language";
-            this.tsmiLanguage.Visible = false;
-            // 
-            // tsmiCheckForUpdates
-            // 
-            this.tsmiCheckForUpdates.Image = global::EnvMan.Properties.Resources.Updates;
-            this.tsmiCheckForUpdates.Name = "tsmiCheckForUpdates";
-            this.tsmiCheckForUpdates.Size = new System.Drawing.Size( 235, 22 );
-            this.tsmiCheckForUpdates.Text = "Check for &Updates...";
-            this.tsmiCheckForUpdates.Visible = false;
-            this.tsmiCheckForUpdates.Click += new System.EventHandler( this.TsmiClick );
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size( 232, 6 );
-            this.toolStripMenuItem1.Visible = false;
             // 
             // tsmiAbout
             // 
-            this.tsmiAbout.Image = global::EnvMan.Properties.Resources.EnvManAbout;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size( 235, 22 );
+            this.tsmiAbout.Size = new System.Drawing.Size( 114, 22 );
             this.tsmiAbout.Text = "&About";
             this.tsmiAbout.Click += new System.EventHandler( this.TsmiClick );
             // 
@@ -230,14 +151,6 @@ namespace EnvMan
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
         private System.Windows.Forms.StatusStrip tsMain;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewsWebsite;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLanguage;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCheckForUpdates;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmiPostFeedbackOrBugReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDonate;
-        private System.Windows.Forms.ToolStripMenuItem tsmiWebsite;
     }
 }
 

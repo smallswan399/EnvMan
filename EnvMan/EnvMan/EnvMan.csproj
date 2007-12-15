@@ -89,13 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Options.ico" />
-    <None Include="Resources\Website.png" />
-    <None Include="Resources\EnvManAbout.png" />
-    <None Include="Resources\Updates.png" />
-    <None Include="Resources\News.png" />
-    <None Include="Resources\Language.png" />
-    <None Include="Resources\SendFeedback.png" />
-    <None Include="Resources\Donate.png" />
     <None Include="Resources\EnvMan.png" />
   </ItemGroup>
   <ItemGroup>

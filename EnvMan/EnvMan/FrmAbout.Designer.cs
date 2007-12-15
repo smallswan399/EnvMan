@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 namespace EnvManager
@@ -51,9 +52,9 @@ namespace EnvManager
             this.lblCopyright = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
+            this.lblProjectHomePage = new System.Windows.Forms.LinkLabel();
+            this.lblSourceForge = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.rtxtCredits = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ( ( System.ComponentModel.ISupportInitialize ) ( this.pictureBox1 ) ).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@ namespace EnvManager
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font( "Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
             this.lblProductName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblProductName.Location = new System.Drawing.Point( 110, 12 );
+            this.lblProductName.Location = new System.Drawing.Point( 110, 21 );
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size( 122, 20 );
             this.lblProductName.TabIndex = 39;
@@ -72,7 +73,7 @@ namespace EnvManager
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
-            this.lblVersion.Location = new System.Drawing.Point( 114, 35 );
+            this.lblVersion.Location = new System.Drawing.Point( 111, 58 );
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size( 49, 13 );
             this.lblVersion.TabIndex = 40;
@@ -82,7 +83,7 @@ namespace EnvManager
             // 
             this.lblCopyright.AutoSize = true;
             this.lblCopyright.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
-            this.lblCopyright.Location = new System.Drawing.Point( 114, 54 );
+            this.lblCopyright.Location = new System.Drawing.Point( 111, 81 );
             this.lblCopyright.Name = "lblCopyright";
             this.lblCopyright.Size = new System.Drawing.Size( 60, 13 );
             this.lblCopyright.TabIndex = 41;
@@ -92,11 +93,11 @@ namespace EnvManager
             // 
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescription.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
-            this.txtDescription.Location = new System.Drawing.Point( 117, 74 );
+            this.txtDescription.Location = new System.Drawing.Point( 12, 124 );
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ReadOnly = true;
-            this.txtDescription.Size = new System.Drawing.Size( 342, 37 );
+            this.txtDescription.Size = new System.Drawing.Size( 396, 37 );
             this.txtDescription.TabIndex = 42;
             this.txtDescription.TabStop = false;
             this.txtDescription.Text = "This program is distributed under the terms of the GNU General Public License v2 " +
@@ -106,12 +107,33 @@ namespace EnvManager
             // 
             this.okButton.Anchor = ( ( System.Windows.Forms.AnchorStyles ) ( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
-            this.okButton.Location = new System.Drawing.Point( 384, 315 );
+            this.okButton.Location = new System.Drawing.Point( 384, 179 );
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size( 75, 23 );
             this.okButton.TabIndex = 43;
             this.okButton.Text = "&OK";
+            // 
+            // lblProjectHomePage
+            // 
+            this.lblProjectHomePage.AutoSize = true;
+            this.lblProjectHomePage.Location = new System.Drawing.Point( 12, 164 );
+            this.lblProjectHomePage.Name = "lblProjectHomePage";
+            this.lblProjectHomePage.Size = new System.Drawing.Size( 117, 13 );
+            this.lblProjectHomePage.TabIndex = 44;
+            this.lblProjectHomePage.TabStop = true;
+            this.lblProjectHomePage.Text = "Visit Project Homepage";
+            this.lblProjectHomePage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.LblLinkClicked );
+            // 
+            // lblSourceForge
+            // 
+            this.lblSourceForge.AutoSize = true;
+            this.lblSourceForge.Location = new System.Drawing.Point( 12, 189 );
+            this.lblSourceForge.Name = "lblSourceForge";
+            this.lblSourceForge.Size = new System.Drawing.Size( 143, 13 );
+            this.lblSourceForge.TabIndex = 45;
+            this.lblSourceForge.TabStop = true;
+            this.lblSourceForge.Text = "Project at SourceForge page";
+            this.lblSourceForge.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler( this.LblLinkClicked );
             // 
             // pictureBox1
             // 
@@ -123,39 +145,19 @@ namespace EnvManager
             this.pictureBox1.TabIndex = 46;
             this.pictureBox1.TabStop = false;
             // 
-            // rtxtCredits
-            // 
-            this.rtxtCredits.BackColor = System.Drawing.Color.White;
-            this.rtxtCredits.Location = new System.Drawing.Point( 8, 147 );
-            this.rtxtCredits.Name = "rtxtCredits";
-            this.rtxtCredits.ReadOnly = true;
-            this.rtxtCredits.Size = new System.Drawing.Size( 451, 153 );
-            this.rtxtCredits.TabIndex = 47;
-            this.rtxtCredits.Text = resources.GetString( "rtxtCredits.Text" );
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ( ( byte ) ( 204 ) ) );
-            this.label1.Location = new System.Drawing.Point( 5, 127 );
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size( 50, 13 );
-            this.label1.TabIndex = 48;
-            this.label1.Text = "Credits:";
-            // 
             // FrmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size( 471, 350 );
-            this.Controls.Add( this.label1 );
-            this.Controls.Add( this.rtxtCredits );
+            this.ClientSize = new System.Drawing.Size( 471, 214 );
             this.Controls.Add( this.pictureBox1 );
+            this.Controls.Add( this.lblSourceForge );
             this.Controls.Add( this.lblProductName );
             this.Controls.Add( this.lblVersion );
             this.Controls.Add( this.lblCopyright );
             this.Controls.Add( this.txtDescription );
             this.Controls.Add( this.okButton );
+            this.Controls.Add( this.lblProjectHomePage );
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ( ( System.Drawing.Icon ) ( resources.GetObject( "$this.Icon" ) ) );
             this.MaximizeBox = false;
@@ -178,9 +180,9 @@ namespace EnvManager
         private System.Windows.Forms.Label lblCopyright;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.LinkLabel lblProjectHomePage;
+        private System.Windows.Forms.LinkLabel lblSourceForge;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.RichTextBox rtxtCredits;
-        private System.Windows.Forms.Label label1;
 
 
     }
