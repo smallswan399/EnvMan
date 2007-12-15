@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EnvManSetup", "EnvManSetup.vdproj", "{BA1CAC1C-3CFB-4B55-975A-C6C4D5F43980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvMan", "..\EnvMan\EnvMan\EnvMan.csproj", "{2704D52D-4FE5-49C1-8FCE-9619155B01F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvManager", "..\EnvMan\EnvManager\EnvManager.csproj", "{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA1CAC1C-3CFB-4B55-975A-C6C4D5F43980}.Debug|Any CPU.ActiveCfg = Debug
+		{BA1CAC1C-3CFB-4B55-975A-C6C4D5F43980}.Debug|Any CPU.Build.0 = Debug
+		{BA1CAC1C-3CFB-4B55-975A-C6C4D5F43980}.Release|Any CPU.ActiveCfg = Release
+		{BA1CAC1C-3CFB-4B55-975A-C6C4D5F43980}.Release|Any CPU.Build.0 = Release
+		{2704D52D-4FE5-49C1-8FCE-9619155B01F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2704D52D-4FE5-49C1-8FCE-9619155B01F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2704D52D-4FE5-49C1-8FCE-9619155B01F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2704D52D-4FE5-49C1-8FCE-9619155B01F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A8FFFE-31F3-405B-92A7-3BF9DAB60EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

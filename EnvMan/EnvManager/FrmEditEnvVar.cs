@@ -257,28 +257,6 @@ namespace EnvManager
         {
             SaveSettings();
         }
-        private void FrmEditEnvVar_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (btnUndo.Enabled || txtVariableName.Text != variableName )
-            {
-                DialogResult result = MessageBox.Show("Would you like to save your changes?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
-                switch (result)
-                {
-                    case DialogResult.Cancel:   // Don't save or close a form
-                        {
-                            e.Cancel = true;
-                        }
-                        break;
-                    case DialogResult.Yes:  // Save changes and close
-                        {
-                            SaveEnvironmentVariable();
-                        }
-                        break;
-                    default:    // No - just close a form                        
-                        break;
-                }
-            }
-        }
         private void txtVariableName_Validated ( object sender, EventArgs e )
         {
             if ( isVarNameChanged )
@@ -369,11 +347,7 @@ namespace EnvManager
                     variableManager.DeleteEnvironmentVariable(variableName, variableType);
                 }
                 variableManager.SetEnvironmentVariable(txtVariableName.Text, envVarValue.ToString(), variableType);
-                // Set initial program state
-                commandsList.Clear();
-                variableName = txtVariableName.Text;
-                SetBtnState();
-                this.Close();
+                BtnClick(btnCancel, new EventArgs());
             }
             catch (Exception ex)
             {
@@ -467,6 +441,76 @@ namespace EnvManager
         #endregion Environment Variables
 
         #region Data Grid View
+        /*/// <summary>
+        /// Returns Icon corresponding the type of the variable
+        /// Added by Mariusz Ficek
+        /// </summary>
+        /// <param name="varValue">The variable value.</param>
+        /// <returns>Icon Bitmap</returns>
+        private Bitmap IconValueType(string varValue, ref string toolTipMsg)
+        {
+            Bitmap icon;
+
+            switch (validator.ValueType(varValue))
+                {
+                case EnvironmentValueType.Number:
+                    icon = Properties.Resources.ValTypeNumber;
+                    toolTipMsg = "Number";
+                    break;
+                case EnvironmentValueType.String:
+                    icon = Properties.Resources.ValTypeString;
+                    toolTipMsg = "Word";
+                    break;
+                case EnvironmentValueType.Folder:
+                    icon = Properties.Resources.ValTypeFolder;
+                    toolTipMsg = "Folder";
+                    break;
+                case EnvironmentValueType.File:
+                    icon = Properties.Resources.ValTypeFile;
+                    toolTipMsg = "File";
+                    break;
+                default:  // Error 
+                    icon = Properties.Resources.ValTypeError;
+                    toolTipMsg = "No File or Folder found";
+                    break;
+                }
+            
+            return icon;
+        }
+        /// <summary>
+        /// Sets the icon to the row.
+        /// Added by Mariusz Ficek
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        private void SetRowIcon(int rowIndex, string varValue)
+        {
+            string toolTipMsg = "";
+            dgvValuesList.Rows[rowIndex].Cells[0].Value 
+                = IconValueType(varValue, ref toolTipMsg);
+            dgvValuesList.Rows[rowIndex].Cells[0].ToolTipText = toolTipMsg;
+        }
+        /// <summary>
+        /// Sets the string value to row.
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        /// <param name="varValue">The variable value.</param>
+        private void SetRowValue(int rowIndex, string varValue)
+        {
+            dgvValuesList.Rows[rowIndex].Cells[1].Value = varValue;
+        }
+        /// <summary>
+        /// Adds a new row to grid.
+        /// </summary>
+        /// <param name="varValue">The variable value.</param>
+        private int AddRow ( string varValue )
+        {
+            int rowIndex = dgvValuesList.Rows.Add();
+
+            SetRowValue( rowIndex, varValue );
+            SetRowIcon( rowIndex, varValue );
+
+            return rowIndex;
+        }*/
         private void dgvValuesList_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             dgvValuesList.Rows[dgvValuesList.Rows.Count - 1].Cells[0].Value = Properties.Resources.ValTypeNull;
@@ -520,27 +564,23 @@ namespace EnvManager
         }
         private void dgvValuesList_UserDeletingRow ( object sender, DataGridViewRowCancelEventArgs e )
         {
-            DialogResult dialogResult = DialogResult.No;
-
-            if (e == null || !e.Row.IsNewRow)
-            {   // Don't show on deletion of new rows
-                dialogResult = MessageBox.Show("Are you sure to delete value?", "Delete Confirmation",
-                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
-
-            if (dialogResult == DialogResult.Yes)
+            if ( !e.Row.IsNewRow )
             {
-                ICommand command = null;
-                if (e == null)
-                {   // Deleted using delete button on form
-                    command = new DgvDeleteCommand(dgvHandler);
-                }
-                else
-                {   // Deleted using keyboard Delete key
-                    command = new DgvDeleteCommand(dgvHandler, e.Row);
-                }
+                if ( MessageBox.Show( "Are you sure to delete value?", "Delete Confirmation",
+                         MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
+                {
+                    ICommand command = null;
+                    if ( e == null )
+                    {   // Deleted using delete button on form
+                        command = new DgvDeleteCommand( dgvHandler );
+                    }
+                    else
+                    {   // Deleted using keyboard Delete key
+                        command = new DgvDeleteCommand( dgvHandler, e.Row );
+                    }
 
-                AddCommand(command); 
+                    AddCommand( command );
+                } 
             }
         }
         #endregion Data Grid View

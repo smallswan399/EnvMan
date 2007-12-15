@@ -25,7 +25,7 @@ using EnvManager;
 using NUnit.Framework;
 using NUnit.Extensions.Forms;
 
-namespace EnvManager.Tests.GUI
+namespace EnvManager.Tests
 {
     [TestFixture]
     public class FrmEditEnvVarsTest

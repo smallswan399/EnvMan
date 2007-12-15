@@ -233,7 +233,6 @@ namespace EnvManager
             this.btnCancel.Size = new System.Drawing.Size( 83, 23 );
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "&Cancel";
-            this.toolTip.SetToolTip( this.btnCancel, "Cancel Changes (Alt+F4)" );
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler( this.BtnClick );
             // 
@@ -248,7 +247,6 @@ namespace EnvManager
             this.btnSave.Size = new System.Drawing.Size( 83, 23 );
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
-            this.toolTip.SetToolTip( this.btnSave, "Save Changes" );
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler( this.BtnClick );
             // 
@@ -348,7 +346,6 @@ namespace EnvManager
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Edit System Variable";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler( this.FrmEditEnvVar_FormClosed );
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEditEnvVar_FormClosing);
             ( ( System.ComponentModel.ISupportInitialize ) ( this.dgvValuesList ) ).EndInit();
             this.cmsValuesDGV.ResumeLayout( false );
             this.ResumeLayout( false );
