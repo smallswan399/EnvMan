@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 using System;
@@ -54,24 +55,15 @@ namespace EnvManager
         }
         private void LoadEnvironmentVariables ( DataGridView dgv, EnvironmentVariableTarget target )
         {
-            EnvVarValueValidator validator = new EnvVarValueValidator();
             int currentRowIndex = (dgv.CurrentRow != null ? dgv.CurrentRow.Index : 0);
             dgv.Rows.Clear();
-            int rowIndex = 0;
 
             IDictionary environmentVariables = variableManger.GetEnvVariables( target );
             foreach ( DictionaryEntry de in environmentVariables )
             {
                 string[ ] row = { de.Key.ToString(), de.Value.ToString() };
 
-                rowIndex = dgv.Rows.Add( row );
-
-                // validate variable value and show row in red if invalid
-                if (!validator.Validate(de.Value.ToString()))
-                {
-                    dgv.Rows[rowIndex].Cells[0].Style.ForeColor = Color.Red;
-                    dgv.Rows[rowIndex].Cells[1].Style.ForeColor = Color.Red;
-                }
+                dgv.Rows.Add( row );
             }
 
             dgv.Sort( dgv.Columns[ 0 ], ListSortDirection.Ascending );
