@@ -28,7 +28,7 @@ namespace EnvManager.Handlers
     public class DgvHandler
     {
         bool markAsAdded = false;
-        public const char SEPARATOR = ';';
+        private const char SEPARATOR = ';';
         private EnvVarValueValidator validator = new EnvVarValueValidator();
         private DataGridView dgv = null;
         
