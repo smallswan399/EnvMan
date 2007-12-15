@@ -1,5 +1,5 @@
 /*
-  EnvMan - The Open-Source Windows Environment Variables Manager
+  EnvMan Tests - The Open-Source Windows Environment Variables Manager
   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
   This program is free software; you can redistribute it and/or modify
@@ -20,28 +20,33 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.IO;
-using System.Windows.Forms;
 
-namespace EnvManager.Handlers
+using EnvManager.Handlers;
+
+namespace EnvManager.Tests.Handlers
 {
-    public class DgvBrowseFolderCommand : DgvModifyValueCommand
+    public class MockCommand : ICommand
     {
-        public DgvBrowseFolderCommand(DgvHandler dgvHandler)
-            : base(dgvHandler)
+        private string commandName;
+
+        public string CommandName
         {
-            Init();
+            get { return commandName; }
+            set { commandName = value; }
         }
-        public DgvBrowseFolderCommand(DgvHandler dgvHandler, DataGridViewRow row)
-            : base(dgvHandler)
+
+        public void Execute()
         {
-            Init();
-            currentRow = CloneRow(row);
-            currentRowIndex = row.Index;
+
         }
-        private void Init()
+        public void Undo()
         {
-            commandName = "Browse Folder";
+
+        }
+        public void Redo()
+        {
+            // To be 100% in code coverage
+            Execute();
         }
     }
 }

@@ -1,19 +1,20 @@
 /*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+  EnvMan - The Open-Source Windows Environment Variables Manager
+  Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 using System;
@@ -191,28 +192,20 @@ namespace EnvManager
             {
                 DgvBrowseFolderCommand browseFolderCommand = null;
                 int rowIndex = 0;
-                string selectedPath = folderBrowserDialog.SelectedPath;
+                string value = folderBrowserDialog.SelectedPath;
 
                 if (isBottomRow)
                 {
-                    rowIndex = dgvHandler.AddRow(selectedPath);
+                    rowIndex = dgvHandler.AddRow(value);
                     browseFolderCommand = new DgvBrowseFolderCommand(dgvHandler);
                 }
                 else
                 {
                     rowIndex = dgvValuesList.CurrentCell.RowIndex;
-                    object value = dgvValuesList.Rows[ rowIndex ].Cells[ 1 ].Value;
-                    if ( value != null )
-                    {
-                        browseFolderCommand
-                            = new DgvBrowseFolderCommand( dgvHandler, dgvValuesList.Rows[ rowIndex ] ); 
-                    }
-                    else
-                    {
-                        browseFolderCommand = new DgvBrowseFolderCommand( dgvHandler );
-                    }
-                    dgvHandler.SetRowValue(rowIndex, selectedPath);
-                    dgvHandler.SetRowIcon( rowIndex, selectedPath );
+                    browseFolderCommand
+                        = new DgvBrowseFolderCommand( dgvHandler, dgvValuesList.Rows[ rowIndex ] );
+                    dgvHandler.SetRowValue(rowIndex, value);
+                    dgvHandler.SetRowIcon( rowIndex, value );
                 }
                 browseFolderCommand.NewRow = dgvValuesList.Rows[ rowIndex ];
                 AddCommand(browseFolderCommand);
@@ -256,28 +249,6 @@ namespace EnvManager
         private void FrmEditEnvVar_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSettings();
-        }
-        private void FrmEditEnvVar_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (btnUndo.Enabled || txtVariableName.Text != variableName )
-            {
-                DialogResult result = MessageBox.Show("Would you like to save your changes?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
-                switch (result)
-                {
-                    case DialogResult.Cancel:   // Don't save or close a form
-                        {
-                            e.Cancel = true;
-                        }
-                        break;
-                    case DialogResult.Yes:  // Save changes and close
-                        {
-                            SaveEnvironmentVariable();
-                        }
-                        break;
-                    default:    // No - just close a form                        
-                        break;
-                }
-            }
         }
         private void txtVariableName_Validated ( object sender, EventArgs e )
         {
@@ -369,11 +340,7 @@ namespace EnvManager
                     variableManager.DeleteEnvironmentVariable(variableName, variableType);
                 }
                 variableManager.SetEnvironmentVariable(txtVariableName.Text, envVarValue.ToString(), variableType);
-                // Set initial program state
-                commandsList.Clear();
-                variableName = txtVariableName.Text;
-                SetBtnState();
-                this.Close();
+                BtnClick(btnCancel, new EventArgs());
             }
             catch (Exception ex)
             {
@@ -467,39 +434,93 @@ namespace EnvManager
         #endregion Environment Variables
 
         #region Data Grid View
+        /*/// <summary>
+        /// Returns Icon corresponding the type of the variable
+        /// Added by Mariusz Ficek
+        /// </summary>
+        /// <param name="varValue">The variable value.</param>
+        /// <returns>Icon Bitmap</returns>
+        private Bitmap IconValueType(string varValue, ref string toolTipMsg)
+        {
+            Bitmap icon;
+
+            switch (validator.ValueType(varValue))
+                {
+                case EnvironmentValueType.Number:
+                    icon = Properties.Resources.ValTypeNumber;
+                    toolTipMsg = "Number";
+                    break;
+                case EnvironmentValueType.String:
+                    icon = Properties.Resources.ValTypeString;
+                    toolTipMsg = "Word";
+                    break;
+                case EnvironmentValueType.Folder:
+                    icon = Properties.Resources.ValTypeFolder;
+                    toolTipMsg = "Folder";
+                    break;
+                case EnvironmentValueType.File:
+                    icon = Properties.Resources.ValTypeFile;
+                    toolTipMsg = "File";
+                    break;
+                default:  // Error 
+                    icon = Properties.Resources.ValTypeError;
+                    toolTipMsg = "No File or Folder found";
+                    break;
+                }
+            
+            return icon;
+        }
+        /// <summary>
+        /// Sets the icon to the row.
+        /// Added by Mariusz Ficek
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        private void SetRowIcon(int rowIndex, string varValue)
+        {
+            string toolTipMsg = "";
+            dgvValuesList.Rows[rowIndex].Cells[0].Value 
+                = IconValueType(varValue, ref toolTipMsg);
+            dgvValuesList.Rows[rowIndex].Cells[0].ToolTipText = toolTipMsg;
+        }
+        /// <summary>
+        /// Sets the string value to row.
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        /// <param name="varValue">The variable value.</param>
+        private void SetRowValue(int rowIndex, string varValue)
+        {
+            dgvValuesList.Rows[rowIndex].Cells[1].Value = varValue;
+        }
+        /// <summary>
+        /// Adds a new row to grid.
+        /// </summary>
+        /// <param name="varValue">The variable value.</param>
+        private int AddRow ( string varValue )
+        {
+            int rowIndex = dgvValuesList.Rows.Add();
+
+            SetRowValue( rowIndex, varValue );
+            SetRowIcon( rowIndex, varValue );
+
+            return rowIndex;
+        }*/
         private void dgvValuesList_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             dgvValuesList.Rows[dgvValuesList.Rows.Count - 1].Cells[0].Value = Properties.Resources.ValTypeNull;
         }
-        private void dgvValuesList_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.FormattedValue.ToString().Contains(";"))
-            {
-                dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot contain ';'";
-                //errorProvider.SetError(lblError, dgvValuesList.Rows[e.RowIndex].ErrorText);
-                e.Cancel = true;
-            }
-        }
         private void dgvValuesList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            dgvValuesList.Rows[e.RowIndex].ErrorText = string.Empty;
-            object dgvValue = dgvValuesList.Rows[e.RowIndex].Cells[1].Value;
-            object editRowCommandValue 
-                = (editRowCommand.CurrentRow == null ? null : editRowCommand.CurrentRow.Cells[ 1 ].Value );
-            if (dgvValue != null
-                && ( editRowCommandValue == null 
-                || editRowCommandValue.ToString() != dgvValue.ToString()))
+            object value = dgvValuesList.Rows[e.RowIndex].Cells[1].Value;
+            if (value != null
+                && (editRowCommand.CurrentRow == null 
+                || editRowCommand.CurrentRow.Cells[1].Value.ToString() != value.ToString()))
             {
-                dgvHandler.SetRowIcon(e.RowIndex, dgvValue.ToString());
+                dgvHandler.SetRowIcon(e.RowIndex, value.ToString());
                 editRowCommand.NewRow = dgvValuesList.Rows[ e.RowIndex ];
                 AddCommand(editRowCommand);
             }
             else
             {
-                if ( editRowCommandValue != null )
-                {   // New Value is null, restore the old value
-                    dgvValuesList.Rows[ e.RowIndex ].Cells[ 1 ].Value = editRowCommandValue;
-                }
                 SetBtnState();
             }
         }
@@ -520,27 +541,20 @@ namespace EnvManager
         }
         private void dgvValuesList_UserDeletingRow ( object sender, DataGridViewRowCancelEventArgs e )
         {
-            DialogResult dialogResult = DialogResult.No;
-
-            if (e == null || !e.Row.IsNewRow)
-            {   // Don't show on deletion of new rows
-                dialogResult = MessageBox.Show("Are you sure to delete value?", "Delete Confirmation",
-                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
-
-            if (dialogResult == DialogResult.Yes)
+            if ( MessageBox.Show( "Are you sure to delete value?", "Delete Confirmation",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
             {
                 ICommand command = null;
-                if (e == null)
+                if(e == null)
                 {   // Deleted using delete button on form
-                    command = new DgvDeleteCommand(dgvHandler);
+                    command = new DgvDeleteCommand( dgvHandler );
                 }
                 else
                 {   // Deleted using keyboard Delete key
-                    command = new DgvDeleteCommand(dgvHandler, e.Row);
+                    command = new DgvDeleteCommand( dgvHandler, e.Row );
                 }
 
-                AddCommand(command); 
+                AddCommand( command );
             }
         }
         #endregion Data Grid View
