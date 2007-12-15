@@ -18,35 +18,30 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Text;
-
 using System.Windows.Forms;
-using EnvManager.Commands;
 
-namespace EnvManager.Tests.Commands
+using NUnit.Framework;
+using EnvManager;
+
+namespace EnvManager.Tests
 {
-    public class DgvTestDataHandler
+    [TestFixture]
+    public partial class FrmEditEnvVarTest : FrmEditEnvVar
     {
-        DataGridView dgv = null;
-        private DgvHandler dgvHandler = null;
-        private DataGridViewImageColumn ValueType = null;
-        private DataGridViewTextBoxColumn Value = null;
-
-        public DgvTestDataHandler(ref DataGridView dgv)
+        public FrmEditEnvVarTest ( string variableName, EnvironmentVariableTarget variableType ) 
+            : base(variableName, variableType)
         {
-            this.ValueType = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
-            this.dgv = dgv;
-            dgv.Columns.AddRange( new System.Windows.Forms.DataGridViewColumn[ ] {
-            this.ValueType,
-            this.Value} );
-            dgvHandler = new DgvHandler( ref dgv );
+            InitializeComponent();
         }
 
-        public DgvHandler DgvHanlderData
+        [Test]
+        public void Test1()
         {
-            get { return dgvHandler; }
+
         }
     }
 }
