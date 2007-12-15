@@ -20,19 +20,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
-    public class DgvMoveToBottomCommand : DgvCommand
+    public class DgvMoveToTopCommand : DgvCommand
     {
-        public DgvMoveToBottomCommand(DgvHandler dgvHandler) : base(dgvHandler)
+        public DgvMoveToTopCommand(DgvHandler dgvHandler)
+            : base(dgvHandler)
         {
-            commandName = "Move Value to Bottom";
+            commandName = "Move Value to Top";
         }
 
         public override void Execute()
         {
-            currentRowIndex = dgvHandler.CurrentRowIndex;
-            newRowIndex = dgvHandler.BottomRowIndex;
+            // TODO: implement multiple move
+            //currentRowIndex = dgvHandler.CurrentRowIndex;
+            //newRowIndex = 0;
             Redo();
         }
     }

@@ -20,23 +20,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
-    public class DgvMoveDownCommand : DgvCommand
+    public interface ICommand
     {
-        public DgvMoveDownCommand(DgvHandler dgvHandler) 
-            : base(dgvHandler)
+        string CommandName
         {
-            commandName = "Move Value Down";
+            get;
         }
-
-        #region Actions
-        public override void Execute()
-        {
-            currentRowIndex = dgvHandler.CurrentRowIndex;
-            newRowIndex = currentRowIndex + 1;
-            Redo();
-        }
-        #endregion Actions
+    
+        void Execute();
+        void Undo();
+        void Redo();
     }
 }

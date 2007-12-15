@@ -40,10 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DgvDeleteCommandTest.cs" />
+    <Compile Include="Commands\DgvTestDataHelper.cs" />
+    <Compile Include="Commands\MockCommand.cs" />
+    <Compile Include="Commands\UndoRedoCommandListTest.cs" />
     <Compile Include="EditVarNameCommandTest.cs" />
     <Compile Include="EnvVarValueValidatorTest.cs" />
-    <Compile Include="Handlers\MockCommand.cs" />
-    <Compile Include="Handlers\UndoRedoCommandListTest.cs" />
     <Compile Include="ImportExport\EnvironmentVariableTest.cs" />
     <Compile Include="ImportExport\ImportExportManagerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

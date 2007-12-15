@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-using EnvManager.Handlers;
+using EnvManager.Commands;
 using NUnit.Framework;
 
 namespace EnvManager.Tests

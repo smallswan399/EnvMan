@@ -20,10 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using EnvManager.Handlers;
+using EnvManager.Commands;
 using NUnit.Framework;
 
-namespace EnvManager.Tests.Handlers
+namespace EnvManager.Tests.Commands
 {
     [TestFixture]
     public class UndoRedoCommandListTest

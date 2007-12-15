@@ -23,7 +23,7 @@ using System.Windows.Forms;
 
 using EnvManager.ImportExport;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
     /// <summary>
     /// Variable Import Command class

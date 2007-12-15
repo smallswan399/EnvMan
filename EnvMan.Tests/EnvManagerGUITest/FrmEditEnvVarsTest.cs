@@ -33,8 +33,8 @@ namespace EnvManager.Tests.GUI
         #region Controls
         DataGridView dgv = null;
         FrmEditEnvVar frmEdit = null;
-        ButtonTester btnTestUp = null;
-        ButtonTester btnTestDown = null;
+        ButtonTester btnTestMoveUp = null;
+        ButtonTester btnTestMoveDown = null;
         ButtonTester btnTestMoveBottom = null;
         ButtonTester btnTestMoveTop = null;
         ButtonTester btnTestSave = null;
@@ -54,11 +54,13 @@ namespace EnvManager.Tests.GUI
         public FrmEditEnvVarsTest()
         {
             varManager = new EnvVarManager();
-            varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, EnvironmentVariableTarget.Machine);
-            frmEdit = new FrmEditEnvVar(SYS_VAR_NAME, EnvironmentVariableTarget.Machine);
+            varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, 
+                EnvironmentVariableTarget.Machine);
+            frmEdit = new FrmEditEnvVar(SYS_VAR_NAME, 
+                EnvironmentVariableTarget.Machine);
             dgv = frmEdit.DgView;
-            btnTestDown = new ButtonTester( "btnMoveDown", frmEdit.Name );
-            btnTestUp = new ButtonTester("btnMoveUp", frmEdit.Name);
+            btnTestMoveDown = new ButtonTester( "btnMoveDown", frmEdit.Name );
+            btnTestMoveUp = new ButtonTester("btnMoveUp", frmEdit.Name);
             btnTestSave = new ButtonTester( "btnSave", frmEdit.Name );
             btnTestMoveBottom = new ButtonTester("btnMoveBottom", frmEdit.Name);
             btnTestMoveTop = new ButtonTester("btnMoveTop", frmEdit.Name);
@@ -71,128 +73,257 @@ namespace EnvManager.Tests.GUI
         ~FrmEditEnvVarsTest()
         {
             frmEdit.Dispose();
-            varManager.DeleteEnvironmentVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine);
+            varManager.DeleteEnvironmentVariable(SYS_VAR_NAME, 
+                EnvironmentVariableTarget.Machine);
         }
 
         #region Tests
         [SetUp]
         public void SetUp()
         {
-            frmEdit.LoadEnvironmentVariableValues(SYS_VAR_NAME, EnvironmentVariableTarget.Machine);
+            frmEdit.LoadEnvironmentVariableValues(SYS_VAR_NAME, 
+                EnvironmentVariableTarget.Machine);
             dgv.CurrentCell = dgv.Rows[2].Cells[1];
         }
         [Test]
         public void TestSaveValue()
         {
-            btnTestDown.Click();
-            btnTestDown.Click();
+            btnTestMoveDown.Click();
+            btnTestMoveDown.Click();
             btnTestSave.Click();
             Assert.AreEqual("Val1;Val2;Val4;Val5;Val3;Val6;Val7",
                 varManager.GetEnvVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine));
-            varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, EnvironmentVariableTarget.Machine);
+            varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, 
+                EnvironmentVariableTarget.Machine);
         }
+        #region Move Commands
         [Test]
-        public void TestMoveRowDown2UndoRedo()
+        public void TestMoveRowDown2UndoRedo ( )
         {
             // Move value down
-            btnTestDown.Click();
-            btnTestDown.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val3;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            btnTestMoveDown.Click();
+            btnTestMoveDown.Click();
+            Assert.AreEqual( "Val1;Val2;Val4;Val5;Val3;Val6;Val7",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
             // Undo last move
             btnTestUndo.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val3;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
+            Assert.AreEqual( "Val1;Val2;Val4;Val3;Val5;Val6;Val7",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
             // Redo last move
             btnTestRedo.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val3;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val1;Val2;Val4;Val5;Val3;Val6;Val7",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
         }
         [Test]
-        public void TestMoveRowUp2Undo2Redo()
+        public void TestMove135RowsDownUndoRedo ( )
+        {
+            #region Select rows
+            // select row 1
+            dgv.Rows[ 0 ].Selected = true;
+            // select row 3
+            dgv.Rows[ 2 ].Selected = true;
+            // select row 5
+            dgv.Rows[ 4 ].Selected = true;
+            #endregion Select rows
+
+            #region Perform Move, Undo, Redo
+            btnTestMoveDown.Click();
+            Assert.AreEqual( "Val2;Val1;Val4;Val3;Val6;Val5;Val7",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestUndo.Click();
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestRedo.Click();
+            Assert.AreEqual( "Val2;Val1;Val4;Val3;Val6;Val5;Val7",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            #endregion Perform Move, Undo, Redo
+        }
+        [Test]
+        public void TestMove357RowsDownUndoRedo ( )
+        {
+            #region Select rows
+            // select row 3
+            dgv.Rows[ 2 ].Selected = true;
+            // select row 5
+            dgv.Rows[ 4 ].Selected = true;
+            // select row 7
+            dgv.Rows[ 6 ].Selected = true;
+            #endregion Select rows
+
+            #region Perform Move, Undo, Redo
+            btnTestMoveDown.Click();
+            string expectedValue = "Val1;Val2;Val4;Val3;Val6;Val5;Val7";
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestUndo.Click();
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestRedo.Click();
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            #endregion Perform Move, Undo, Redo
+        }
+        [Test]
+        public void TestMoveRowUp2Undo2Redo ( )
         {
             // move up twice
-            btnTestUp.Click();
-            btnTestUp.Click();
-            Assert.AreEqual("Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            btnTestMoveUp.Click();
+            btnTestMoveUp.Click();
+            Assert.AreEqual( "Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
             // undo move row up
             btnTestUndo.Click();
             btnTestUndo.Click();
-            Assert.AreEqual(VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsFalse(btnTestUndo.Properties.Enabled);
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsFalse( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
             // redo move row up
             btnTestRedo.Click();
-            Assert.AreEqual("Val1;Val3;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val1;Val3;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
         }
         [Test]
-        public void TestMoveRowBottomUndoRedo()
+        public void TestMoveRows357UpUndoRedo ( )
+        {
+            #region Select Rows
+            // select row 3
+            dgv.Rows[ 2 ].Selected = true;
+            // select row 5
+            dgv.Rows[ 4 ].Selected = true;
+            // select row 7
+            dgv.Rows[ 6 ].Selected = true;
+            #endregion
+            #region Perform Move, Undo, Redo
+            btnTestMoveUp.Click();
+            string expectedValue = "Val1;Val3;Val2;Val5;Val4;Val7;Val6";
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestUndo.Click();
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            btnTestRedo.Click();
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            #endregion Perform Move, Undo, Redo
+        }
+        [Test]
+        public void TestMoveRows123Up ( )
+        {
+            #region Select Rows
+            // select row 1
+            dgv.Rows[ 0 ].Selected = true;
+            // select row 2
+            dgv.Rows[ 1 ].Selected = true;
+            // select row 3
+            dgv.Rows[ 2 ].Selected = true;
+            #endregion
+            #region Perform Move, Undo, Redo
+            btnTestMoveUp.Click();
+            // TODO: Expected Exception
+            //string expectedValue = "Val1;Val3;Val2;Val5;Val4;Val7;Val6";
+            //Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            #endregion Perform Move, Undo, Redo
+        }
+        [Test]
+        public void TestMoveRowBottomUndoRedo ( )
         {
             btnTestMoveBottom.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val6;Val7;Val3", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            string expectedValue = "Val1;Val2;Val4;Val5;Val6;Val7;Val3";
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
             // Undo move row top
             btnTestUndo.Click();
-            Assert.AreEqual(VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsFalse(btnTestUndo.Properties.Enabled);
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsFalse( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
             // Redo move row top
             btnTestRedo.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val6;Val7;Val3", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( expectedValue, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
         }
         [Test]
-        public void TestMoveRowTopUndoRedo()
+        public void TestMoveRowTopUndoRedo ( )
         {
             // Move row top
             btnTestMoveTop.Click();
-            Assert.AreEqual("Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
             // Undo move row top
             btnTestUndo.Click();
-            Assert.AreEqual(VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsFalse(btnTestUndo.Properties.Enabled);
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsFalse( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
             // Redo move row top
             btnTestRedo.Click();
-            Assert.AreEqual("Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val3;Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
         }
+        #endregion Move Commands
+        #region Delete Commands
         [Test]
-        public void TestDeleteRowUndoRedo()
+        public void TestDeleteRowUndoRedo ( )
         {
             // delete row
             btnTestDelete.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
             // undo delete
             btnTestUndo.Click();
-            Assert.AreEqual(VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsFalse(btnTestUndo.Properties.Enabled);
-            Assert.IsTrue(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsFalse( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
             // redo delete
             btnTestRedo.Click();
-            Assert.AreEqual("Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
-            Assert.IsTrue(btnTestUndo.Properties.Enabled);
-            Assert.IsFalse(btnTestRedo.Properties.Enabled);
+            Assert.AreEqual( "Val1;Val2;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
         }
         [Test]
+        public void TestDelete3RowsUndoRedo ( )
+        {
+            #region Select rows
+            // select row 1
+            dgv.Rows[ 0 ].Selected = true;
+            // select row 3
+            dgv.Rows[ 2 ].Selected = true;
+            // select row 7
+            dgv.Rows[ 6 ].Selected = true;
+            #endregion Select rows
+
+            #region Perform Delete, Undo, Redo
+            // delete row
+            btnTestDelete.Click();
+            Assert.AreEqual( "Val2;Val4;Val5;Val6;",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
+            // undo delete
+            btnTestUndo.Click();
+            Assert.AreEqual( VAR_VALUE, frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsFalse( btnTestUndo.Properties.Enabled );
+            Assert.IsTrue( btnTestRedo.Properties.Enabled );
+            // redo delete
+            btnTestRedo.Click();
+            Assert.AreEqual( "Val2;Val4;Val5;Val6;",
+                frmEdit.EnvironmentVariableValue().ToString() );
+            Assert.IsTrue( btnTestUndo.Properties.Enabled );
+            Assert.IsFalse( btnTestRedo.Properties.Enabled );
+            #endregion Perform Delete, Undo, Redo
+        }
+        #endregion Delete Commands
+        [Test]
+        [Ignore("Need Look at NUnitForms with Open Folder Dialog")]
         public void TestBrowseFolderNewRow()
         {
             btnTestBrowse.Click();
-            Assert.AreEqual(@"Val1;Val2;C:\;Val4;Val5;Val6;Val7", frmEdit.EnvironmentVariableValue().ToString());
+            Assert.AreEqual(@"Val1;Val2;C:\;Val4;Val5;Val6;Val7", 
+                frmEdit.EnvironmentVariableValue().ToString());
             Assert.IsTrue(btnTestUndo.Properties.Enabled);
             Assert.IsFalse(btnTestRedo.Properties.Enabled);
         }

@@ -22,7 +22,7 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
     public class DgvEditCommand : DgvModifyValueCommand
     {

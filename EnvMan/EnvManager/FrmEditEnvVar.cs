@@ -25,7 +25,7 @@ using System.Drawing;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
-using EnvManager.Handlers;
+using EnvManager.Commands;
 using EnvManager.ImportExport;
 
 namespace EnvManager
@@ -165,12 +165,25 @@ namespace EnvManager
 
         private void AddCommand(ICommand command)
         {
-            if (command != null)
+            try
             {
-                command.Execute();
-                commandsList.Add(command);
+                if (command != null)
+                {
+                    command.Execute();
+                    commandsList.Add(command);
+                }
+                SetBtnState();
             }
-            SetBtnState();
+            catch (CommandException ex)
+            {
+                SetTsLblStatus(ex.Message, Properties.Resources.ValTypeError);
+            }
+        }
+
+        private void SetTsLblStatus(string message, Image icon)
+        {
+            tslblStatus.Image = icon;
+            tslblStatus.Text = message;
         }
 
         private void BrowseFolder()
@@ -231,14 +244,6 @@ namespace EnvManager
                 rowIndex = dgvValuesList.CurrentRow.Index;
             }
             // Enabled if no a bottom row
-            btnMoveDown.Enabled
-                = btnMoveBottom.Enabled
-                = (rowIndex < dgvValuesList.Rows.Count - 2);
-
-            // Enabled if not a top row
-            btnMoveTop.Enabled
-                = btnMoveUp.Enabled
-                = (rowIndex > 0 && rowIndex != dgvValuesList.Rows.Count - 1);
 
             // disable on new row
             btnDelete.Enabled = rowIndex != dgvValuesList.Rows.Count - 1;
@@ -251,33 +256,13 @@ namespace EnvManager
             btnUndo.Enabled = commandsList.CanUndo;
             btnRedo.Enabled = commandsList.CanRedo;
             toolTip.SetToolTip(btnUndo, commandsList.UndoMsg);
-            toolTip.SetToolTip(btnRedo, commandsList.RedoMsg); 
+            toolTip.SetToolTip(btnRedo, commandsList.RedoMsg);
+
+            SetTsLblStatus("Ready", Properties.Resources.ValTypeNull);
         }
         private void FrmEditEnvVar_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveSettings();
-        }
-        private void FrmEditEnvVar_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (btnUndo.Enabled || txtVariableName.Text != variableName )
-            {
-                DialogResult result = MessageBox.Show("Would you like to save your changes?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
-                switch (result)
-                {
-                    case DialogResult.Cancel:   // Don't save or close a form
-                        {
-                            e.Cancel = true;
-                        }
-                        break;
-                    case DialogResult.Yes:  // Save changes and close
-                        {
-                            SaveEnvironmentVariable();
-                        }
-                        break;
-                    default:    // No - just close a form                        
-                        break;
-                }
-            }
         }
         private void txtVariableName_Validated ( object sender, EventArgs e )
         {
@@ -369,11 +354,7 @@ namespace EnvManager
                     variableManager.DeleteEnvironmentVariable(variableName, variableType);
                 }
                 variableManager.SetEnvironmentVariable(txtVariableName.Text, envVarValue.ToString(), variableType);
-                // Set initial program state
-                commandsList.Clear();
-                variableName = txtVariableName.Text;
-                SetBtnState();
-                this.Close();
+                BtnClick(btnCancel, new EventArgs());
             }
             catch (Exception ex)
             {
@@ -454,7 +435,8 @@ namespace EnvManager
                         
             foreach ( DataGridViewRow row in dgvValuesList.Rows )
             {
-                if ( row.Index != dgvValuesList.Rows.Count - 1 )
+                if ( row.Index != dgvValuesList.Rows.Count - 1 
+                    && row.Visible )
                 {
                     envVarValue.Append( row.Cells[ 1 ].Value.ToString()
                         + ( row.Index < dgvValuesList.Rows.Count - 2 ? ";" : "" ) );
@@ -467,6 +449,8 @@ namespace EnvManager
         #endregion Environment Variables
 
         #region Data Grid View
+        private bool deletingRows = false;  // flag for multiple row deletion
+        SortedList<int,DgvRowInfo> rowInfoList = null;
         private void dgvValuesList_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             dgvValuesList.Rows[dgvValuesList.Rows.Count - 1].Cells[0].Value = Properties.Resources.ValTypeNull;
@@ -476,7 +460,6 @@ namespace EnvManager
             if (e.FormattedValue.ToString().Contains(";"))
             {
                 dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot contain ';'";
-                //errorProvider.SetError(lblError, dgvValuesList.Rows[e.RowIndex].ErrorText);
                 e.Cancel = true;
             }
         }
@@ -520,28 +503,68 @@ namespace EnvManager
         }
         private void dgvValuesList_UserDeletingRow ( object sender, DataGridViewRowCancelEventArgs e )
         {
-            DialogResult dialogResult = DialogResult.No;
+            DialogResult result = DialogResult.No;
 
-            if (e == null || !e.Row.IsNewRow)
-            {   // Don't show on deletion of new rows
-                dialogResult = MessageBox.Show("Are you sure to delete value?", "Delete Confirmation",
-                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // force un-select on the bottom row
+            dgvValuesList.Rows[dgvValuesList.Rows.Count - 1].Selected = false;
+
+            if (!deletingRows)
+            {
+                if ( e == null || !e.Row.IsNewRow )
+                {   // Don't show on deletion of new rows
+                    result = MessageBox.Show( "Are you sure to delete value?", "Delete Confirmation",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question ); 
+                }
+
+                if (result == DialogResult.Yes)
+                {
+                    deletingRows = true;
+                    rowInfoList = new SortedList<int,DgvRowInfo>();
+                }
             }
 
-            if (dialogResult == DialogResult.Yes)
+            if (deletingRows)
             {
-                ICommand command = null;
-                if (e == null)
-                {   // Deleted using delete button on form
-                    command = new DgvDeleteCommand(dgvHandler);
+                if (e != null)
+                {   
+                    // user hit delete keyboard key
+                    DgvRowInfo rowInfo = new DgvRowInfo();
+                    rowInfo.CurrentRowIndex = e.Row.Index;
+                    rowInfoList.Add(e.Row.Index, rowInfo);
+                    e.Row.Visible = false;  // hide row
+                    e.Row.Selected = false; // un-select row
+                    
+                    if (dgvValuesList.SelectedRows.Count == 0)
+                    {
+                        DeleteRows(true);
+                    }
                 }
                 else
-                {   // Deleted using keyboard Delete key
-                    command = new DgvDeleteCommand(dgvHandler, e.Row);
+                {   
+                    // user used delete button on the form
+                    DeleteRows(false);
                 }
-
-                AddCommand(command); 
             }
+            if (e != null && !e.Row.IsNewRow)
+            {
+                e.Cancel = true;    
+            }
+        }
+        private void DeleteRows(bool useRowInfoList)
+        {
+            DgvDeleteCommand deleteCommand = null;
+            if (useRowInfoList)
+            {   
+                // user hit delete keyboard key
+                deleteCommand = new DgvDeleteCommand(dgvHandler, rowInfoList);
+            }
+            else
+            {
+                // user used delete button on the form
+                deleteCommand = new DgvDeleteCommand(dgvHandler);
+            }
+            AddCommand(deleteCommand);
+            deletingRows = false;
         }
         #endregion Data Grid View
 
@@ -577,6 +600,7 @@ namespace EnvManager
             settings.Save();
         }
         #endregion Settings
+
 #if DEBUG
         #region Testing
         /// <summary>

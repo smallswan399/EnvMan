@@ -17,18 +17,17 @@
 */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
     public class DgvCommand : ICommand
     {
         protected string commandName = "";
         protected DgvHandler dgvHandler = null;
-        protected int currentRowIndex = 0;
-        protected int newRowIndex = 0;
-
+        protected SortedList<int, DgvRowInfo> rowInfoList = null;
         public DgvCommand(DgvHandler dgvHandler)
         {
             this.dgvHandler = dgvHandler;
@@ -47,12 +46,23 @@ namespace EnvManager.Handlers
 
         public virtual void Undo()
         {
-            dgvHandler.MoveRow(newRowIndex, currentRowIndex);
+            DgvRowInfo rowInfo;
+            foreach ( KeyValuePair<int,DgvRowInfo> kvp in rowInfoList )
+            {
+                rowInfo = kvp.Value;
+                dgvHandler.MoveRow( rowInfo.NewRowIndex, rowInfo.CurrentRowIndex );    
+            }
+            
         }
 
         public virtual void Redo()
         {
-            dgvHandler.MoveRow(currentRowIndex, newRowIndex);
+            DgvRowInfo rowInfo;
+            foreach ( KeyValuePair<int,DgvRowInfo> kvp in rowInfoList )
+            {
+                rowInfo = kvp.Value;
+                dgvHandler.MoveRow( rowInfo.CurrentRowIndex, rowInfo.NewRowIndex );
+            }
         }
     }
 }

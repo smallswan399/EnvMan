@@ -38,11 +38,22 @@
     <Compile Include="..\ReleaseInfo.cs">
       <Link>Properties\ReleaseInfo.cs</Link>
     </Compile>
-    <Compile Include="Handlers\DgvBrowseFolderCommand.cs" />
-    <Compile Include="Handlers\DgvCommand.cs" />
-    <Compile Include="Handlers\DgvDeleteCommand.cs" />
-    <Compile Include="Handlers\DgvEditCommand.cs" />
-    <Compile Include="Handlers\DgvHandler.cs" />
+    <Compile Include="Commands\CommandException.cs" />
+    <Compile Include="Commands\DgvBrowseFolderCommand.cs" />
+    <Compile Include="Commands\DgvCommand.cs" />
+    <Compile Include="Commands\DgvDeleteCommand.cs" />
+    <Compile Include="Commands\DgvEditCommand.cs" />
+    <Compile Include="Commands\DgvHandler.cs" />
+    <Compile Include="Commands\DgvModifyValueCommand.cs" />
+    <Compile Include="Commands\DgvMoveDownCommand.cs" />
+    <Compile Include="Commands\DgvMoveToBottomCommand.cs" />
+    <Compile Include="Commands\DgvMoveToTopCommand.cs" />
+    <Compile Include="Commands\DgvMoveUpCommand.cs" />
+    <Compile Include="Commands\DgvRowInfo.cs" />
+    <Compile Include="Commands\EditVarNameCommand.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\UndoRedoCommandList.cs" />
+    <Compile Include="Commands\VarImportCommand.cs" />
     <Compile Include="EnvManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -50,17 +61,8 @@
       <DependentUpon>EnvManager.cs</DependentUpon>
     </Compile>
     <Compile Include="EnvVarValueValidator.cs" />
-    <Compile Include="Handlers\DgvModifyValueCommand.cs" />
-    <Compile Include="Handlers\DgvMoveDownCommand.cs" />
-    <Compile Include="Handlers\DgvMoveToBottomCommand.cs" />
-    <Compile Include="Handlers\DgvMoveToTopCommand.cs" />
-    <Compile Include="Handlers\DgvMoveUpCommand.cs" />
-    <Compile Include="Handlers\EditVarNameCommand.cs" />
-    <Compile Include="Handlers\ICommand.cs" />
     <Compile Include="ImportExport\EnvironmentVariable.cs" />
     <Compile Include="ImportExport\ImportExportManager.cs" />
-    <Compile Include="Handlers\VarImportCommand.cs" />
-    <Compile Include="Handlers\UndoRedoCommandList.cs" />
     <Compile Include="Properties\EnvManagerSettings.Designer.cs">
       <DependentUpon>EnvManagerSettings.settings</DependentUpon>
       <AutoGen>True</AutoGen>

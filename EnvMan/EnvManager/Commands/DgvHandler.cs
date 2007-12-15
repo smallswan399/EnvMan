@@ -23,12 +23,12 @@ using System.Drawing;
 
 using System.Windows.Forms;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
     public class DgvHandler
     {
         bool markAsAdded = false;
-        public const char SEPARATOR = ';';
+        private const char SEPARATOR = ';';
         private EnvVarValueValidator validator = new EnvVarValueValidator();
         private DataGridView dgv = null;
         
@@ -166,6 +166,17 @@ namespace EnvManager.Handlers
         {
             this.markAsAdded = markAsAdded;
             this.AddRows( varValues );
+        }
+        public DataGridViewSelectedRowCollection SelectedRows
+        {
+            get
+            {
+                return dgv.SelectedRows;
+            }
+        }
+        public void SetRowVisibility(int rowIndex, bool visible)
+        {
+            dgv.Rows[rowIndex].Visible = visible;
         }
     }
 }

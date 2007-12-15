@@ -19,47 +19,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
-    public class DgvDeleteCommand : DgvCommand
+    public class DgvBrowseFolderCommand : DgvModifyValueCommand
     {
-        DataGridViewRow row = null;
+        private int currentRowIndex = 0;
 
-        public DgvDeleteCommand(DgvHandler dgvHandler) 
+        public DgvBrowseFolderCommand(DgvHandler dgvHandler)
             : base(dgvHandler)
         {
             Init();
         }
-        public DgvDeleteCommand ( DgvHandler dgvHandler, DataGridViewRow row )
-            : base( dgvHandler )
+        public DgvBrowseFolderCommand(DgvHandler dgvHandler, DataGridViewRow row)
+            : base(dgvHandler)
         {
             Init();
-            this.row = row;
-            this.currentRowIndex = row.Index;
+            currentRow = CloneRow(row);
+            currentRowIndex = row.Index;
         }
         private void Init()
         {
-            this.commandName = "Delete Value";
-        }
-        public override void Execute()
-        {
-            // execute only when row is not set, i.e. not deleted
-            if ( row == null )
-            {
-                currentRowIndex = dgvHandler.CurrentRowIndex;
-                row = dgvHandler.CurrentRow( currentRowIndex );
-                Redo();
-            }
-        }
-        public override void Undo()
-        {
-            dgvHandler.InsertRow( currentRowIndex, row );
-        }
-        public override void Redo()
-        {
-            dgvHandler.DeleteRow( currentRowIndex );
+            commandName = "Browse Folder";
         }
     }
 }

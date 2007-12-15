@@ -20,17 +20,32 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EnvManager.Handlers
+using EnvManager.Commands;
+
+namespace EnvManager.Tests.Commands
 {
-    public interface ICommand
+    public class MockCommand : ICommand
     {
-        string CommandName
+        private string commandName;
+
+        public string CommandName
         {
-            get;
+            get { return commandName; }
+            set { commandName = value; }
         }
-    
-        void Execute();
-        void Undo();
-        void Redo();
+
+        public void Execute()
+        {
+
+        }
+        public void Undo()
+        {
+
+        }
+        public void Redo()
+        {
+            // To be 100% in code coverage
+            Execute();
+        }
     }
 }

@@ -22,12 +22,14 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace EnvManager.Handlers
+namespace EnvManager.Commands
 {
     public class DgvModifyValueCommand : DgvCommand
     {
         protected DataGridViewRow currentRow = null;
         protected DataGridViewRow newRow = null;
+        protected int newRowIndex = 0;
+        protected int currentRowIndex = 0;
 
         public DgvModifyValueCommand(DgvHandler dgvHandler)
             : base(dgvHandler)
