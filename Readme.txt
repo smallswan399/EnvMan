@@ -6,7 +6,7 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
-07/10/2007	Release 1.3
+18/12/2007	Release 1.3
 	* BT1828033 Escape to Close 
         - Added Ctrl+X Shortcut on Main Form Exit File Menu
 	* BT843838 Program does not check for changes on Cancel in Edit Form 
