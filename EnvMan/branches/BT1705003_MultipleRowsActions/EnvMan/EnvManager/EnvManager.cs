@@ -54,15 +54,24 @@ namespace EnvManager
         }
         private void LoadEnvironmentVariables ( DataGridView dgv, EnvironmentVariableTarget target )
         {
+            EnvVarValueValidator validator = new EnvVarValueValidator();
             int currentRowIndex = (dgv.CurrentRow != null ? dgv.CurrentRow.Index : 0);
             dgv.Rows.Clear();
+            int rowIndex = 0;
 
             IDictionary environmentVariables = variableManger.GetEnvVariables( target );
             foreach ( DictionaryEntry de in environmentVariables )
             {
                 string[ ] row = { de.Key.ToString(), de.Value.ToString() };
 
-                dgv.Rows.Add( row );
+                rowIndex = dgv.Rows.Add( row );
+
+                // validate variable value and show row in red if invalid
+                if (!validator.Validate(de.Value.ToString()))
+                {
+                    dgv.Rows[rowIndex].Cells[0].Style.ForeColor = Color.Red;
+                    dgv.Rows[rowIndex].Cells[1].Style.ForeColor = Color.Red;
+                }
             }
 
             dgv.Sort( dgv.Columns[ 0 ], ListSortDirection.Ascending );

@@ -264,6 +264,28 @@ namespace EnvManager
         {
             SaveSettings();
         }
+        private void FrmEditEnvVar_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (btnUndo.Enabled || txtVariableName.Text != variableName )
+            {
+                DialogResult result = MessageBox.Show("Would you like to save your changes?", "Save?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button3);
+                switch (result)
+                {
+                    case DialogResult.Cancel:   // Don't save or close a form
+                        {
+                            e.Cancel = true;
+                        }
+                        break;
+                    case DialogResult.Yes:  // Save changes and close
+                        {
+                            SaveEnvironmentVariable();
+                        }
+                        break;
+                    default:    // No - just close a form                        
+                        break;
+                }
+            }
+        }
         private void txtVariableName_Validated ( object sender, EventArgs e )
         {
             if ( isVarNameChanged )
@@ -354,7 +376,11 @@ namespace EnvManager
                     variableManager.DeleteEnvironmentVariable(variableName, variableType);
                 }
                 variableManager.SetEnvironmentVariable(txtVariableName.Text, envVarValue.ToString(), variableType);
-                BtnClick(btnCancel, new EventArgs());
+                // Set initial program state
+                commandsList.Clear();
+                variableName = txtVariableName.Text;
+                SetBtnState();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -437,9 +463,8 @@ namespace EnvManager
             {
                 if ( row.Index != dgvValuesList.Rows.Count - 1 
                     && row.Visible )
-                {
-                    envVarValue.Append( row.Cells[ 1 ].Value.ToString()
-                        + ( row.Index < dgvValuesList.Rows.Count - 2 ? ";" : "" ) );
+                {   
+                    envVarValue.Append( ( envVarValue.Length != 0 ? ";" : "" ) + row.Cells[ 1 ].Value.ToString());
                     System.Diagnostics.Debug.WriteLine( envVarValue.ToString() );
                 }
             }

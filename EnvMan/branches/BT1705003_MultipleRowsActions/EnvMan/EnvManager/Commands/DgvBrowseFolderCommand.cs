@@ -26,7 +26,7 @@ namespace EnvManager.Commands
 {
     public class DgvBrowseFolderCommand : DgvModifyValueCommand
     {
-        private int currentRowIndex = 0;
+        //private int currentRowIndex = 0;
 
         public DgvBrowseFolderCommand(DgvHandler dgvHandler)
             : base(dgvHandler)

@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
+using EnvManager.Commands;
+
 namespace EnvManager
 {
     public enum EnvironmentValueType
@@ -60,6 +62,13 @@ namespace EnvManager
         }
 
         // Function to test whether the string is valid number or not
+        /// <summary>
+        /// Determines whether the specified string is number.
+        /// </summary>
+        /// <param name="strNumber">The string to check.</param>
+        /// <returns>
+        /// 	<c>true</c> if the specified string is number; otherwise, <c>false</c>.
+        /// </returns>
         private bool IsNumber(string strNumber)
         {
             Regex objNotNumberPattern = new Regex("[^0-9.-]");
@@ -73,6 +82,29 @@ namespace EnvManager
                    !objTwoDotPattern.IsMatch(strNumber) &&
                    !objTwoMinusPattern.IsMatch(strNumber) &&
                    objNumberPattern.IsMatch(strNumber);
+        }
+
+        /// <summary>
+        /// Validates the specified variable value.
+        /// </summary>
+        /// <param name="varValue">The variable value.</param>
+        /// <returns>True if valid and False if not</returns>
+        public bool Validate(string varValue)
+        {
+            bool result = true;
+
+            string[] values = varValue.Split(DgvHandler.SEPARATOR);
+
+            foreach (string value in values)
+            {
+                if (ValueType(value) == EnvironmentValueType.Error )
+                {
+                    result = false;
+                    break;
+                }   
+            }
+
+            return result;
         }
     }
 }

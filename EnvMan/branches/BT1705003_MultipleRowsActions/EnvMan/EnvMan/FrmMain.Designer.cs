@@ -135,6 +135,7 @@ namespace EnvMan
             // 
             this.tsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
             this.tsmiExit.Name = "tsmiExit";
+            this.tsmiExit.ShortcutKeys = ( ( System.Windows.Forms.Keys ) ( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X ) ) );
             this.tsmiExit.Size = new System.Drawing.Size(103, 22);
             this.tsmiExit.Text = "E&xit";
             this.tsmiExit.ToolTipText = "Close Application";
