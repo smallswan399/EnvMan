@@ -123,15 +123,13 @@ namespace EnvManager.Commands
         }
         #endregion Functions
 
-#if DEBUG   // functions for testing
         /// <summary>
-        /// Clears list of commands. Use only in DEBUG.
+        /// Clears list of commands.
         /// </summary>
         public void Clear()
         {
             this.commandsList.Clear();
             this.currentCommandIndex = -1;
         }
-#endif
     }
 }

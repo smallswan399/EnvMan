@@ -30,10 +30,13 @@ namespace EnvMan
 {
     public partial class FrmMain : Form
     {
+        FrmAbout frmAbout = null;
         #region Form Functions
         public FrmMain()
         {
             InitializeComponent();
+            frmAbout = new FrmAbout();
+            this.Text += " v" + frmAbout.AssemblyFileVersion;
             this.MinimumSize = new Size(472, 504);
             LoadSettings();
         }
@@ -49,9 +52,7 @@ namespace EnvMan
             }
             else if (sender.Equals(tsmiAbout))
             {
-                FrmAbout frmAbout = new FrmAbout();
                 frmAbout.ShowDialog();
-                frmAbout.Dispose();
             }
             else if (sender.Equals(tsmiNewsWebsite))
             {
