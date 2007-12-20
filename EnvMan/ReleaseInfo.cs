@@ -21,7 +21,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Windows Environment Variables Manager")]
-[assembly: AssemblyProduct("Windows Environment Variables Manager")]
 [assembly: AssemblyDescription("This program is distributed under the terms of the GNU General Public License v3 or later.")]
 [assembly: AssemblyCompany("Anastasia Corporation")]
 [assembly: AssemblyCopyright("Copyright © Vlad Setchin 2007")]
@@ -33,6 +32,13 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.3")]
+#if PORTABLE
+[assembly: AssemblyFileVersion("1.0")]
+[assembly: AssemblyProduct("Windows Environment Variables Manager Portable")]
+#else
 [assembly: AssemblyFileVersion("1.3")]
+[assembly: AssemblyProduct("Windows Environment Variables Manager")]
+#endif
+
+[assembly: AssemblyVersion("1.3")]
 [assembly: AssemblyInformationalVersion("1.3")]

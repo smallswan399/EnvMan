@@ -35,8 +35,9 @@ namespace EnvMan
         public FrmMain()
         {
             InitializeComponent();
+            
             frmAbout = new FrmAbout();
-            this.Text += " v" + frmAbout.AssemblyFileVersion;
+            this.Text = frmAbout.AssemblyProduct + " v" + frmAbout.AssemblyFileVersion;
             this.MinimumSize = new Size(472, 504);
             LoadSettings();
         }
