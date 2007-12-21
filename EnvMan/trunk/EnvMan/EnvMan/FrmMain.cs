@@ -46,34 +46,40 @@ namespace EnvMan
         }
         private void TsmiClick(object sender, EventArgs e)
         {
-            if (sender.Equals(tsmiExit))
+            try
             {
-                Application.Exit();
+                if (sender.Equals(tsmiExit))
+                {
+                    Application.Exit();
+                }
+                else if (sender.Equals(tsmiAbout))
+                {
+                    frmAbout.ShowDialog();
+                }
+                else if (sender.Equals(tsmiNewsWebsite))
+                {
+                    System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/");
+                }
+                else if (sender.Equals(tsmiDonate))
+                {
+                    System.Diagnostics.Process.Start(@"http://sourceforge.net/donate/index.php?group_id=193626");
+                }
+                else if (sender.Equals(tsmiPostFeedbackOrBugReport))
+                {
+                    System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
+                }
+                else if (sender.Equals(tsmiWebsite))
+                {
+                    System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/2007/04/envman-user-guide.html");
+                }
+                else if (sender.Equals(tsmiCheckForUpdates))
+                {
+                    MessageBox.Show("Not Implemented!");
+                }
             }
-            else if (sender.Equals(tsmiAbout))
+            catch (Exception ex)
             {
-                frmAbout.ShowDialog();
-            }
-            else if (sender.Equals(tsmiNewsWebsite))
-            {
-                System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/");
-            }
-            else if (sender.Equals(tsmiDonate))
-            {
-                System.Diagnostics.Process.Start(@"http://sourceforge.net/donate/index.php?group_id=193626");
-            }
-            else if (sender.Equals(tsmiPostFeedbackOrBugReport))
-            {
-                System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
-            }
-            else if (sender.Equals(tsmiWebsite))
-            {
-                MessageBox.Show("Not Implemented!");
-                //System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
-            }
-            else if (sender.Equals(tsmiCheckForUpdates))
-            {
-                MessageBox.Show("Not Implemented!");
+                MessageBox.Show(ex.Message, "EnvMan ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion Form Functions
