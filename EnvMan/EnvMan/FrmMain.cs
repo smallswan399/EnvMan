@@ -62,7 +62,7 @@ namespace EnvMan
                 }
                 else if (sender.Equals(tsmiDonate))
                 {
-                    System.Diagnostics.Process.Start(@"http://sourceforge.net/donate/index.php?group_id=193626");
+                    System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/12/donate.html" );
                 }
                 else if (sender.Equals(tsmiPostFeedbackOrBugReport))
                 {
