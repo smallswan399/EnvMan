@@ -1,6 +1,6 @@
 /*
    AUM - Automated Updates Manager Tests
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2007 Vlad Setchin <auto.updates.mng@gmail.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
