@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnvMan.Properties {
+namespace AUM.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace EnvMan.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EnvMan.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AUM.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,73 +60,10 @@ namespace EnvMan.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Donate {
+        internal static System.Drawing.Icon DefaultICO {
             get {
-                object obj = ResourceManager.GetObject("Donate", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap EnvMan {
-            get {
-                object obj = ResourceManager.GetObject("EnvMan", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap EnvManAbout {
-            get {
-                object obj = ResourceManager.GetObject("EnvManAbout", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon EnvManICO {
-            get {
-                object obj = ResourceManager.GetObject("EnvManICO", resourceCulture);
+                object obj = ResourceManager.GetObject("DefaultICO", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Language {
-            get {
-                object obj = ResourceManager.GetObject("Language", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap News {
-            get {
-                object obj = ResourceManager.GetObject("News", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap SendFeedback {
-            get {
-                object obj = ResourceManager.GetObject("SendFeedback", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ShutDown {
-            get {
-                object obj = ResourceManager.GetObject("ShutDown", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Updates {
-            get {
-                object obj = ResourceManager.GetObject("Updates", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Website {
-            get {
-                object obj = ResourceManager.GetObject("Website", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

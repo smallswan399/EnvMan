@@ -25,16 +25,29 @@ using System.IO;
 
 using AUM.Properties;
 using AUM.VersionInformation;
+using AUM.UI.Tray;
+using System.Drawing;
 
 namespace AUM
 {
     public class VersionChecker
     {
+        private TrayIcon trayIcon = null;
+        private Icon programIcon = null;
         private VersionInfoManager versionInfoManager = null;
         private WebClient webClient = null;
         private AUMSettings settings = AUMSettings.Default;
 
         public VersionChecker()
+        {
+            InitVersionChecker();
+        }
+        public VersionChecker ( Icon programIcon )
+        {
+            this.programIcon = programIcon;
+            InitVersionChecker();
+        }
+        private void InitVersionChecker()
         {
             webClient = new WebClient();
             versionInfoManager = new VersionInfoManager();
@@ -152,7 +165,7 @@ namespace AUM
             //return bytes;
         }
 
-        public void CheckVersion(VersionInfo localVersionInfo)
+        public void CheckVersion(VersionInfo localVersionInfo, bool showInfo)
         {
             string localFile = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ) 
                 + settings.LocalPath + settings.VersionFile;
@@ -160,9 +173,42 @@ namespace AUM
 
             if (DownloadFile(webFile, localFile))
             {
+                string message = string.Empty;
                 versionInfoManager.Load(localFile);
-                VersionInfo currentVersionInfo = versionInfoManager.VersionInformation;
+                VersionInfo versionInfo = versionInfoManager.VersionInformation;
+                
+                if ( localVersionInfo.AssemblyVersion != versionInfo.AssemblyVersion )
+                {
+                    message = "New version " + versionInfo.AssemblyVersion + " was released.";
 
+                    if ( showInfo )
+                    {
+                        // TODO: Display dialog box with "Download now", "Remind me later" buttons
+                        MessageBox.Show( message );
+                    }
+                    else
+                    {
+                        if ( programIcon != null )
+                        {
+                            trayIcon = new TrayIcon( programIcon );
+                        }
+                        else
+                        {
+                            trayIcon = new TrayIcon();
+                        }
+
+                        trayIcon.BaloonToolTip = message;
+                    }
+                }
+                else
+                {
+                    message = "You have the latest version.";
+
+                    if ( showInfo )
+                    {
+                        MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
 
         }

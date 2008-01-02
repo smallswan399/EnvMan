@@ -34,7 +34,7 @@ namespace AUM.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"\\\\Anastasia_Corporation\\\\\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\Anastasia_Corporation\\")]
         public string LocalPath {
             get {
                 return ((string)(this["LocalPath"]));

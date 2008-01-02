@@ -32,6 +32,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="VersionCheckerTest.cs" />
     <Compile Include="VersionInformation\VersionInfoManagerTest.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
@@ -41,6 +46,16 @@
       <Project>{E2F55303-5877-40D9-BAB6-9DD1EA2C7F0A}</Project>
       <Name>AUM</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProgramICO.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
