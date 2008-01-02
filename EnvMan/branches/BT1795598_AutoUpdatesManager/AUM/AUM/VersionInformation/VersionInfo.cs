@@ -26,7 +26,7 @@ namespace AUM.VersionInformation
     [Serializable]
     public class VersionInfo
     {
-        private string assemblyVersion;
+        private string assemblyVersion = string.Empty;
         /// <summary>
         /// Gets or sets the assembly version.
         /// </summary>
@@ -37,7 +37,7 @@ namespace AUM.VersionInformation
             set { assemblyVersion = value; }
         }
 
-        private string downloadWebPageAddress;
+        private string downloadWebPageAddress = string.Empty;
         /// <summary>
         /// Gets or sets the download web page address.
         /// </summary>

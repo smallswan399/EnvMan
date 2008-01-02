@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using AUM;
+using AUM.VersionInformation;
 using NUnit.Framework;
 
 namespace AUM.Tests
@@ -32,15 +33,55 @@ namespace AUM.Tests
 
         public VersionCheckerTest()
         {
-            versionChecker = new VersionChecker();
+            versionChecker = new VersionChecker(Properties.Resources.ProgramICO);
         }
 
         [Test]
-        public void TestDownLoadFile()
+        public void TestDownloadFile()
         {
             Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmEdit.png" );
             string localFileNamePath = "EditForm.png";
             versionChecker.DownloadFile(address, localFileNamePath);
+        }
+
+        [Test]
+        public void TestCheckVersionAutoNew()
+        {
+            VersionInfo versionInfo = new VersionInfo();
+            versionInfo.AssemblyVersion = "1.2";
+            versionInfo.DownloadWebPageAddress = "";
+
+            versionChecker.CheckVersion( versionInfo, false);
+        }
+
+        [Test]
+        public void TestCheckVersionAutoLatest ( )
+        {
+            VersionInfo versionInfo = new VersionInfo();
+            versionInfo.AssemblyVersion = "1.3";
+            versionInfo.DownloadWebPageAddress = "";
+
+            versionChecker.CheckVersion( versionInfo, false );
+        }
+
+        [Test]
+        public void TestCheckVersionManualLatest()
+        {
+            VersionInfo versionInfo = new VersionInfo();
+            versionInfo.AssemblyVersion = "1.3";
+            versionInfo.DownloadWebPageAddress = "";
+
+            versionChecker.CheckVersion( versionInfo, true);
+        }
+
+        [Test]
+        public void TestCheckVersionManualNew ( )
+        {
+            VersionInfo versionInfo = new VersionInfo();
+            versionInfo.AssemblyVersion = "1.2";
+            versionInfo.DownloadWebPageAddress = "";
+
+            versionChecker.CheckVersion( versionInfo, true );
         }
     }
 }

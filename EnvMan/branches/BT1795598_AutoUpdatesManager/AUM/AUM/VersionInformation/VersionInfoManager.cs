@@ -29,7 +29,7 @@ namespace AUM.VersionInformation
     /// </summary>
     public class VersionInfoManager
     {
-        private VersionInfo versionInfo = null;
+        private VersionInfo versionInfo = new VersionInfo();
         /// <summary>
         /// Gets or sets the version information.
         /// </summary>
