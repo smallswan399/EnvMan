@@ -121,4 +121,7 @@
   <data name="DefaultICO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DefaultICO.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DialogTitle" xml:space="preserve">
+    <value>Information</value>
+  </data>
 </root>

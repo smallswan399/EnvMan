@@ -1,6 +1,6 @@
 /*
    AUM - Automated Updates Manager
-   Copyright (C) 2006-2007 Vlad Setchin <auto.updates.mng@gmail.com>
+   Copyright (C) 2006-2008 Vlad Setchin <auto.updates.mng@gmail.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -22,11 +22,12 @@ using System.Text;
 using System.Net;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 
 using AUM.Properties;
 using AUM.VersionInformation;
 using AUM.UI.Tray;
-using System.Drawing;
+using AUM.UI;
 
 namespace AUM
 {
@@ -37,21 +38,38 @@ namespace AUM
         private VersionInfoManager versionInfoManager = null;
         private WebClient webClient = null;
         private AUMSettings settings = AUMSettings.Default;
+        private VersionInfo versionInfo = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VersionChecker"/> class.
+        /// </summary>
         public VersionChecker()
         {
             InitVersionChecker();
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VersionChecker"/> class.
+        /// </summary>
+        /// <param name="programIcon">The program icon.</param>
         public VersionChecker ( Icon programIcon )
         {
             this.programIcon = programIcon;
             InitVersionChecker();
         }
+        /// <summary>
+        /// Initialises the version checker.
+        /// </summary>
         private void InitVersionChecker()
         {
             webClient = new WebClient();
             versionInfoManager = new VersionInfoManager();
         }
+        /// <summary>
+        /// Downloads the file.
+        /// </summary>
+        /// <param name="fileWebAddress">The file web address.</param>
+        /// <param name="localFilePath">The local file path.</param>
+        /// <returns></returns>
         public bool DownloadFile (Uri fileWebAddress, string localFilePath)
         {
             bool result = false;
@@ -165,6 +183,11 @@ namespace AUM
             //return bytes;
         }
 
+        /// <summary>
+        /// Checks the version.
+        /// </summary>
+        /// <param name="localVersionInfo">The local version info.</param>
+        /// <param name="showInfo">if set to <c>true</c> [show info].</param>
         public void CheckVersion(VersionInfo localVersionInfo, bool showInfo)
         {
             string localFile = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ) 
@@ -175,7 +198,7 @@ namespace AUM
             {
                 string message = string.Empty;
                 versionInfoManager.Load(localFile);
-                VersionInfo versionInfo = versionInfoManager.VersionInformation;
+                versionInfo = versionInfoManager.VersionInformation;
                 
                 if ( localVersionInfo.AssemblyVersion != versionInfo.AssemblyVersion )
                 {
@@ -184,7 +207,15 @@ namespace AUM
                     if ( showInfo )
                     {
                         // TODO: Display dialog box with "Download now", "Remind me later" buttons
-                        MessageBox.Show( message );
+                        //MessageBox.Show( message );
+                        FrmMessageDialog messageDialog = new FrmMessageDialog();
+                        messageDialog.Text = Resources.DialogTitle;
+                        messageDialog.Message = message;
+                        messageDialog.Icon = programIcon;
+                        if (messageDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            trayIcon_BalloonTipClicked(null, null);
+                        }
                     }
                     else
                     {
@@ -196,7 +227,7 @@ namespace AUM
                         {
                             trayIcon = new TrayIcon();
                         }
-
+                        trayIcon.BalloonTipClicked += new EventHandler(trayIcon_BalloonTipClicked);
                         trayIcon.BaloonToolTip = message;
                     }
                 }
@@ -206,11 +237,31 @@ namespace AUM
 
                     if ( showInfo )
                     {
-                        MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(message, Resources.DialogTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Handles the BalloonTipClicked event of the trayIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        void trayIcon_BalloonTipClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (versionInfo.DownloadWebPageAddress != string.Empty)
+                {
+                    System.Diagnostics.Process.Start(versionInfo.DownloadWebPageAddress);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
         }
     }
 }

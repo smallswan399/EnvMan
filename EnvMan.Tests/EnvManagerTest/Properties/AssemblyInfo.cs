@@ -1,6 +1,6 @@
 ﻿/*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <envmng@gmail.com>
+   Copyright (C) 2006-2008 Vlad Setchin <envmng@gmail.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("EnvManTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hansen Technologies")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EnvManTest")]
-[assembly: AssemblyCopyright("Copyright © Hansen Technologies 2007")]
+[assembly: AssemblyCopyright("Copyright © 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
