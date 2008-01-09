@@ -46,6 +46,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmMessageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMessageDialog.Designer.cs">
+      <DependentUpon>FrmMessageDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Tray\TrayIcon.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="VersionInformation\VersionInfo.cs" />
@@ -68,6 +74,10 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmMessageDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMessageDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
