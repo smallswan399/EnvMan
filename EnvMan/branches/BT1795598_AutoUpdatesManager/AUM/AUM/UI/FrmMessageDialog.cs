@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 /*
    AUM - Automated Updates Manager Tests
    Copyright (C) 2006-2008 Vlad Setchin <auto.updates.mng@gmail.com>
@@ -19,6 +16,9 @@ using System.ComponentModel;
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
@@ -47,7 +47,11 @@ namespace AUM.UI
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void BtnClick(object sender, EventArgs e)
+#if DEBUG
+        public void BtnClick ( object sender, EventArgs e )
+#else
+        private void BtnClick ( object sender, EventArgs e ) 
+#endif
         {
             if (sender.Equals(btnCancel))
             {
@@ -60,5 +64,30 @@ namespace AUM.UI
             this.Hide();
         }
 	
+#if DEBUG
+        /// <summary>
+        /// Gets the OK Button.
+        /// </summary>
+        /// <value>The OK Button.</value>
+        public Button BtnOK
+        {
+            get
+            {
+                return this.btnOK;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Cancel Button.
+        /// </summary>
+        /// <value>The Cancel Button.</value>
+        public Button BtnCancel
+        {
+            get
+            {
+                return this.btnCancel;
+            }
+        }
+#endif
     }
 }

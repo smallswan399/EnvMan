@@ -258,9 +258,10 @@ namespace AUM
                     System.Diagnostics.Process.Start(versionInfo.DownloadWebPageAddress);
                 }
             }
-            catch (Exception ex)
+            catch (Exception/* ex*/)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                // TODO: Check exception on opening a page in browser
+                //MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
     }

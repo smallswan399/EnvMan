@@ -39,9 +39,12 @@ namespace AUM.Tests
         [Test]
         public void TestDownloadFile()
         {
-            Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmEdit.png" );
-            string localFileNamePath = "EditForm.png";
-            versionChecker.DownloadFile(address, localFileNamePath);
+            //Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmEdit.png" );
+            //string localFileNamePath = "EditForm.png";
+
+            Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmMain.JPG" );
+            string localFileNamePath = "MainForm.jpg";
+            Assert.IsTrue(versionChecker.DownloadFile(address, localFileNamePath));
         }
 
         [Test]

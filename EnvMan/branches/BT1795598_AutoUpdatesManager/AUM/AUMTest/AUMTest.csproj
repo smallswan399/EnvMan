@@ -37,6 +37,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmMessageDialogTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmMessageDialogTest.Designer.cs">
+      <DependentUpon>FrmMessageDialogTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="VersionCheckerTest.cs" />
     <Compile Include="VersionInformation\VersionInfoManagerTest.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
