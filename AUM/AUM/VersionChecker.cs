@@ -40,6 +40,9 @@ namespace AUM
         private AUMSettings settings = AUMSettings.Default;
         private VersionInfo versionInfo = null;
 
+        public delegate void NewVersionReleasedHandler(VersionInfo versionInfo);
+        public event NewVersionReleasedHandler NewVersionReleased;
+        #region Contractors
         /// <summary>
         /// Initializes a new instance of the <see cref="VersionChecker"/> class.
         /// </summary>
@@ -51,7 +54,7 @@ namespace AUM
         /// Initializes a new instance of the <see cref="VersionChecker"/> class.
         /// </summary>
         /// <param name="programIcon">The program icon.</param>
-        public VersionChecker ( Icon programIcon )
+        public VersionChecker(Icon programIcon)
         {
             this.programIcon = programIcon;
             InitVersionChecker();
@@ -64,6 +67,8 @@ namespace AUM
             webClient = new WebClient();
             versionInfoManager = new VersionInfoManager();
         }
+        #endregion Contractors
+
         /// <summary>
         /// Downloads the file.
         /// </summary>
@@ -183,14 +188,24 @@ namespace AUM
             //return bytes;
         }
 
+        #region Check Version
         /// <summary>
         /// Checks the version.
         /// </summary>
         /// <param name="localVersionInfo">The local version info.</param>
-        /// <param name="showInfo">if set to <c>true</c> [show info].</param>
-        public void CheckVersion(VersionInfo localVersionInfo, bool showInfo)
+        public void CheckVersion(VersionInfo localVersionInfo)
         {
-            string localFile = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ) 
+            CheckVersion(localVersionInfo, false);
+        }
+
+        /// <summary>
+        /// Checks the version.
+        /// </summary>
+        /// <param name="localVersionInfo">The local version info.</param>
+        /// <param name="showUIInfo">if set to <c>true</c> [show Info in UI].</param>
+        public void CheckVersion(VersionInfo localVersionInfo, bool showUIInfo)
+        {
+            string localFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
                 + settings.LocalPath + settings.VersionFile;
             Uri webFile = new Uri(settings.WebPath + settings.VersionFile);
 
@@ -199,12 +214,12 @@ namespace AUM
                 string message = string.Empty;
                 versionInfoManager.Load(localFile);
                 versionInfo = versionInfoManager.VersionInformation;
-                
-                if ( localVersionInfo.AssemblyVersion != versionInfo.AssemblyVersion )
+
+                if (localVersionInfo.AssemblyVersion != versionInfo.AssemblyVersion)
                 {
                     message = "New version " + versionInfo.AssemblyVersion + " was released.";
 
-                    if ( showInfo )
+                    if (showUIInfo)
                     {
                         // TODO: Display dialog box with "Download now", "Remind me later" buttons
                         //MessageBox.Show( message );
@@ -219,9 +234,9 @@ namespace AUM
                     }
                     else
                     {
-                        if ( programIcon != null )
+                        if (programIcon != null)
                         {
-                            trayIcon = new TrayIcon( programIcon );
+                            trayIcon = new TrayIcon(programIcon);
                         }
                         else
                         {
@@ -230,19 +245,25 @@ namespace AUM
                         trayIcon.BalloonTipClicked += new EventHandler(trayIcon_BalloonTipClicked);
                         trayIcon.BaloonToolTip = message;
                     }
+
+                    if (NewVersionReleased != null)
+                    {
+                        NewVersionReleased(versionInfo);
+                    }
                 }
                 else
                 {
                     message = "You have the latest version.";
 
-                    if ( showInfo )
+                    if (showUIInfo)
                     {
                         MessageBox.Show(message, Resources.DialogTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
 
-        }
+        } 
+        #endregion Check Version
 
         /// <summary>
         /// Handles the BalloonTipClicked event of the trayIcon control.

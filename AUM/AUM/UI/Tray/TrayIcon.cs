@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace AUM.UI.Tray
 {
@@ -29,10 +30,12 @@ namespace AUM.UI.Tray
         public event EventHandler BalloonTipClicked;
 
         #region Variables
-        NotifyIcon notifyIcon = null;
+        private NotifyIcon notifyIcon = null;
 
-        Icon defaultIcon = null;
-        ContextMenu menu = null;
+        private Icon defaultIcon = null;
+        private ContextMenu menu = null;
+        private string message = string.Empty;
+        private System.ComponentModel.IContainer components;
         #endregion Variables
 
         #region Functions
@@ -67,19 +70,49 @@ namespace AUM.UI.Tray
         {
             try
             {
-                notifyIcon = new NotifyIcon();
+                this.components = new Container();
+                this.notifyIcon = new NotifyIcon(this.components);
                 if ( defaultIcon == null )
                 {
                     defaultIcon = Properties.Resources.DefaultICO;
                 }                
                 notifyIcon.Icon = defaultIcon;
                 notifyIcon.Visible = true;
-                notifyIcon.BalloonTipClicked += new EventHandler(notifyIcon_BalloonTipClicked);
+                // ????
+                notifyIcon.BalloonTipClicked += new System.EventHandler(notifyIcon_BalloonTipClicked);
+                notifyIcon.Click += new EventHandler(notifyIcon_Click);
+                notifyIcon.BalloonTipClosed += new EventHandler(notifyIcon_BalloonTipClosed);
+                notifyIcon.MouseClick += new MouseEventHandler(notifyIcon_MouseClick);
+                notifyIcon.MouseMove += new MouseEventHandler(notifyIcon_MouseMove);
+                // ????
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        void notifyIcon_BalloonTipClosed(object sender, EventArgs e)
+        {
+            Console.WriteLine("Baloon closed");
+        }
+
+        void notifyIcon_Click(object sender, EventArgs e)
+        {
+            if (BalloonTipClicked != null)
+            {
+                BalloonTipClicked(sender, e);
+            }
+        }
+
+        void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            ShowBaloonTip();
+        }
+
+        void notifyIcon_MouseMove(object sender, MouseEventArgs e)
+        {
+            ShowBaloonTip();
         }
 
         /// <summary>
@@ -94,6 +127,10 @@ namespace AUM.UI.Tray
                 BalloonTipClicked(sender, e);
             }
         }
+        private void ShowBaloonTip()
+        {
+            notifyIcon.ShowBalloonTip(0, "Information", this.message, ToolTipIcon.Info);
+        }
         #endregion Functions
 
         #region Properties
@@ -105,7 +142,8 @@ namespace AUM.UI.Tray
         {
             set
             {
-                notifyIcon.ShowBalloonTip(0, "Information", value, ToolTipIcon.Info);
+                this.message = value;
+                ShowBaloonTip();
             }
         }
         /// <summary>
