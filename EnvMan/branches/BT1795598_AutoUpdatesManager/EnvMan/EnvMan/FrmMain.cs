@@ -25,12 +25,16 @@ using System.Text;
 using System.Windows.Forms;
 
 using EnvManager;
+using AUM;
+using AUM.VersionInformation;
 
 namespace EnvMan
 {
     public partial class FrmMain : Form
     {
-        FrmAbout frmAbout = null;
+        private BackgroundWorker worker = null;
+        private VersionChecker versionChecker = null;
+        private FrmAbout frmAbout = null;
         #region Form Functions
         public FrmMain()
         {
@@ -38,7 +42,24 @@ namespace EnvMan
             frmAbout = new FrmAbout();
             this.Text += " v" + frmAbout.AssemblyFileVersion;
             this.MinimumSize = new Size(472, 504);
+            worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            versionChecker = new VersionChecker(Properties.Resources.EnvManICO);
             LoadSettings();
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            VersionInfo versionInfo = new VersionInfo();
+            versionInfo.AssemblyVersion = "1.2"; //frmAbout.AssemblyFileVersion;
+            versionChecker.NewVersionReleased += new VersionChecker.NewVersionReleasedHandler(versionChecker_NewVersionReleased);
+            versionChecker.CheckVersion(versionInfo);
+        }
+
+        void versionChecker_NewVersionReleased(VersionInfo versionInfo)
+        {
+            // TODO: Display new version info in status bar
+            Console.WriteLine("New Version");
         }
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -109,5 +130,11 @@ namespace EnvMan
             settings.Save();
         }
         #endregion Settings
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            worker.RunWorkerAsync();
+            Application.DoEvents();
+        }
     }
 }

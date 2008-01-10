@@ -54,7 +54,7 @@ namespace AUM.Tests
             versionInfo.AssemblyVersion = "1.2";
             versionInfo.DownloadWebPageAddress = "";
 
-            versionChecker.CheckVersion( versionInfo, false);
+            versionChecker.CheckVersion( versionInfo );
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace AUM.Tests
             versionInfo.AssemblyVersion = "1.3";
             versionInfo.DownloadWebPageAddress = "";
 
-            versionChecker.CheckVersion( versionInfo, false );
+            versionChecker.CheckVersion( versionInfo );
         }
 
         [Test]
