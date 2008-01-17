@@ -1,6 +1,6 @@
 ﻿/*
    AUM - Automated Updates Manager
-   Copyright (C) 2006-2008 Vlad Setchin <auto.updates.mng@gmail.com>
+   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -49,5 +49,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion( "1.0.*" )]
-[assembly: AssemblyFileVersion( "1.0.0.0" )]
+[assembly: AssemblyVersion( "1.0" )]
+[assembly: AssemblyFileVersion( "1.0." )]
+[assembly: AssemblyInformationalVersion( "1.0" )]
