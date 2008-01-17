@@ -72,5 +72,7 @@ corresponding exe and dll files by removing the old ones and installing new vers
 Enjoy!
 
 If you have problems please visit
-Project blog: http://env-man.blogspot.com/
+Project Homepage: http://env-man.blogspot.com/2007/04/envman-user-guide.html
 SourceForge page: http://sourceforge.net/projects/env-man for Bug Tracker options
+
+Contact E-Mail: Anastasia.Corporation+EnvMan@gmail.com
