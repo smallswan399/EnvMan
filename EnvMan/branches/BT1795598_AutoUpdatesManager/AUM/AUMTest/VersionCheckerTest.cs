@@ -47,6 +47,9 @@ namespace AUM.Tests
             Assert.IsTrue(versionChecker.DownloadFile(address, localFileNamePath));
         }
 
+        /// <summary>
+        /// Tests the Auto Check for a new version.
+        /// </summary>
         [Test]
         public void TestCheckVersionAutoNew()
         {
@@ -57,6 +60,9 @@ namespace AUM.Tests
             versionChecker.CheckVersion( versionInfo );
         }
 
+        /// <summary>
+        /// Tests the Auto Check for latest (current) version.
+        /// </summary>
         [Test]
         public void TestCheckVersionAutoLatest ( )
         {
@@ -67,6 +73,9 @@ namespace AUM.Tests
             versionChecker.CheckVersion( versionInfo );
         }
 
+        /// <summary>
+        /// Tests the manual check for latest (current) version.
+        /// </summary>
         [Test]
         public void TestCheckVersionManualLatest()
         {
@@ -77,6 +86,9 @@ namespace AUM.Tests
             versionChecker.CheckVersion( versionInfo, true);
         }
 
+        /// <summary>
+        /// Tests the manual check for new version.
+        /// </summary>
         [Test]
         public void TestCheckVersionManualNew ( )
         {
