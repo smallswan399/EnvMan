@@ -1,6 +1,6 @@
 ﻿/*
-   AUM - Automated Updates Manager
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
+   EnvMan - The Open-Source Windows Environment Variables Manager
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "AUMTest" )]
-[assembly: AssemblyDescription( "Austo Updates Manager Tests" )]
+[assembly: AssemblyTitle( "EnvManTest" )]
+[assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "Anastasia Corporation" )]
-[assembly: AssemblyProduct( "AUMTest" )]
+[assembly: AssemblyProduct( "EnvManTest" )]
 [assembly: AssemblyCopyright( "Copyright © Anastasia Corporation 2008" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid( "ebb0f65e-fe59-49e3-beea-fcdb9c6a5008" )]
+[assembly: Guid( "7d84420c-ecb0-4fb9-9bfd-8961f314479c" )]
 
 // Version information for an assembly consists of the following four values:
 //

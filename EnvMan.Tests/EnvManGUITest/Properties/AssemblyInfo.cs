@@ -1,6 +1,6 @@
 ﻿/*
-   AUM - Automated Updates Manager
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
+   EnvMan - The Open-Source Windows Environment Variables Manager
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "AUM" )]
-[assembly: AssemblyDescription( "Auto Updates Manager" )]
+[assembly: AssemblyTitle( "EnvManGUITest" )]
+[assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "Anastasia Corporation" )]
-[assembly: AssemblyProduct( "AUM" )]
+[assembly: AssemblyProduct( "EnvManGUITest" )]
 [assembly: AssemblyCopyright( "Copyright © Anastasia Corporation 2008" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid( "e9f2e998-f8c8-4736-b84a-6e322724a8a9" )]
+[assembly: Guid( "d62b0e05-6210-4273-8233-4adcabbec4be" )]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -49,6 +49,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion( "1.0" )]
-[assembly: AssemblyFileVersion( "1.0." )]
-[assembly: AssemblyInformationalVersion( "1.0" )]
+[assembly: AssemblyVersion( "1.0.*" )]
+[assembly: AssemblyFileVersion( "1.0.0.0" )]

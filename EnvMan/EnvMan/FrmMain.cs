@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+EnvMan@gmail.com>
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@ using System.Text;
 using System.Windows.Forms;
 
 using EnvManager;
-using AUM;
-using AUM.VersionInformation;
+using EnvMan.VersionManager;
+using EnvMan.VersionManager.VersionInformation;
 
 namespace EnvMan
 {
@@ -34,32 +34,72 @@ namespace EnvMan
     {
         private BackgroundWorker worker = null;
         private VersionChecker versionChecker = null;
+        private VersionInfo versionInfo = null;
+        private bool showFrmVersionInfo = false;
         private FrmAbout frmAbout = null;
+        private VersionInfo currentVersionInfo = new VersionInfo();
+
         #region Form Functions
         public FrmMain()
         {
             InitializeComponent();
+
             frmAbout = new FrmAbout();
             this.Text += " v" + frmAbout.AssemblyFileVersion;
             this.MinimumSize = new Size(472, 504);
+
+            versionChecker = new VersionChecker( Properties.Resources.EnvManICO );
+            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler( versionChecker_NewVersionChecked );
+
             worker = new BackgroundWorker();
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            versionChecker = new VersionChecker(Properties.Resources.EnvManICO);
+            
             LoadSettings();
         }
 
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            VersionInfo versionInfo = new VersionInfo();
-            versionInfo.AssemblyVersion = "1.2"; //frmAbout.AssemblyFileVersion;
-            versionChecker.NewVersionReleased += new VersionChecker.NewVersionReleasedHandler(versionChecker_NewVersionReleased);
-            versionChecker.CheckVersion(versionInfo);
+            showFrmVersionInfo = sender == null;
+            
+            currentVersionInfo.AssemblyVersion = "1.2"; //frmAbout.AssemblyFileVersion;
+            versionChecker.CheckVersion(currentVersionInfo);
+
+            if ( e != null )
+            {
+                e.Cancel = true; 
+            }
         }
 
-        void versionChecker_NewVersionReleased(VersionInfo versionInfo)
+        void versionChecker_NewVersionChecked(bool newVersion, VersionInfo versionInfo)
         {
-            // TODO: Display new version info in status bar
-            Console.WriteLine("New Version");
+            string msg = string.Empty;
+
+            if ( newVersion )
+            {
+                msg = "New version " + versionInfo.AssemblyVersion + " released";
+                tsmiNewVersionInfo.Text = msg;
+                tsmiNewVersionInfo.Visible = true;
+                this.versionInfo = versionInfo;
+
+                if ( showFrmVersionInfo )
+                {
+                    FrmVersionInfo versionInfoForm = new FrmVersionInfo();
+                    versionInfoForm.Icon = Properties.Resources.EnvManICO;
+                    versionInfoForm.Message = msg;
+                    if ( versionInfoForm.ShowDialog() == DialogResult.OK )
+                    {
+                        TsmiClick( tsmiNewVersionInfo, null );
+                    }
+                }
+            }
+            else
+            {
+                msg = "You have the current version.";
+                if ( showFrmVersionInfo )
+                {
+                    MessageBox.Show( msg, "EnvMan", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                }
+            }
         }
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -75,26 +115,38 @@ namespace EnvMan
             {
                 frmAbout.ShowDialog();
             }
-            else if (sender.Equals(tsmiNewsWebsite))
+            else if (sender.Equals(tsmiForumWebsite))
             {
-                System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/");
+                System.Diagnostics.Process.Start( @"http://groups.google.com/group/envman" );
             }
             else if (sender.Equals(tsmiDonate))
             {
-                System.Diagnostics.Process.Start(@"http://sourceforge.net/donate/index.php?group_id=193626");
+                System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/12/donate.html" );
             }
             else if (sender.Equals(tsmiPostFeedbackOrBugReport))
             {
-                System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
+                System.Diagnostics.Process.Start( @"http://sourceforge.net/tracker/?group_id=193626" );
             }
             else if (sender.Equals(tsmiWebsite))
             {
-                MessageBox.Show("Not Implemented!");
-                //System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
+                System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/04/envman-user-guide.html" );
+            }
+            else if (sender.Equals(tsmiJoinForum))
+	        {
+                System.Diagnostics.Process.Start( "mailto:envman-subscribe@googlegroups.com" );
+	        }
+            else if ( sender.Equals( tsmiAskAQuestion ) )
+            {
+                System.Diagnostics.Process.Start( "mailto:envman-dev@googlegroups.com" );
             }
             else if (sender.Equals(tsmiCheckForUpdates))
             {
-                MessageBox.Show("Not Implemented!");
+                Application.DoEvents();
+                worker_DoWork( null, null );
+            }
+            else if ( sender.Equals( tsmiNewVersionInfo ) )
+            {
+                System.Diagnostics.Process.Start( versionInfo.DownloadWebPageAddress );
             }
         }
         #endregion Form Functions

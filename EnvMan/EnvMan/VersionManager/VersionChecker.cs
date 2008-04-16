@@ -1,6 +1,6 @@
 /*
-   AUM - Automated Updates Manager
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
+   EnvMan - The Open-Source Windows Environment Variables Manager
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -24,24 +24,24 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 
-using AUM.Properties;
-using AUM.VersionInformation;
-using AUM.UI.Tray;
-using AUM.UI;
+using EnvMan.VersionManager;
+using EnvMan.VersionManager.VersionInformation;
+using EnvMan.Properties;
 
-namespace AUM
+namespace EnvMan.VersionManager
 {
     public class VersionChecker
     {
-        private TrayIcon trayIcon = null;
         private Icon programIcon = null;
         private VersionInfoManager versionInfoManager = null;
         private WebClient webClient = null;
-        private AUMSettings settings = AUMSettings.Default;
+        private VersionManagerSettings settings = VersionManagerSettings.Default;
+        
         private VersionInfo versionInfo = null;
 
-        public delegate void NewVersionReleasedHandler(VersionInfo versionInfo);
-        public event NewVersionReleasedHandler NewVersionReleased;
+        public delegate void NewVersionCheckedHandler(bool newVersion, VersionInfo versionInfo);
+        public event NewVersionCheckedHandler VersionChecked;
+
         #region Contractors
         /// <summary>
         /// Initializes a new instance of the <see cref="VersionChecker"/> class.
@@ -189,101 +189,40 @@ namespace AUM
         }
 
         #region Check Version
+
         /// <summary>
         /// Checks the version.
         /// </summary>
         /// <param name="localVersionInfo">The local version info.</param>
         public void CheckVersion(VersionInfo localVersionInfo)
         {
-            CheckVersion(localVersionInfo, false);
-        }
-
-        /// <summary>
-        /// Checks the version.
-        /// </summary>
-        /// <param name="localVersionInfo">The local version info.</param>
-        /// <param name="showUIInfo">if set to <c>true</c> [show Info in UI].</param>
-        public void CheckVersion(VersionInfo localVersionInfo, bool showUIInfo)
-        {
-            string localFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
-                + settings.LocalPath + settings.VersionFile;
+            string localFile = System.IO.Path.GetTempFileName();
+#if DEBUG
+            Uri webFile = new Uri( settings.WebPath + "EnvMan.Debug" );
+#else
             Uri webFile = new Uri(settings.WebPath + settings.VersionFile);
+#endif
 
             if (DownloadFile(webFile, localFile))
             {
                 string message = string.Empty;
                 versionInfoManager.Load(localFile);
                 versionInfo = versionInfoManager.VersionInformation;
+                bool newVersion = false;
 
                 if (localVersionInfo.AssemblyVersion != versionInfo.AssemblyVersion)
                 {
-                    message = "New version " + versionInfo.AssemblyVersion + " was released.";
-
-                    if (showUIInfo)
-                    {
-                        // TODO: Display dialog box with "Download now", "Remind me later" buttons
-                        //MessageBox.Show( message );
-                        FrmMessageDialog messageDialog = new FrmMessageDialog();
-                        messageDialog.Text = Resources.DialogTitle;
-                        messageDialog.Message = message;
-                        messageDialog.Icon = programIcon;
-                        if (messageDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            trayIcon_BalloonTipClicked(null, null);
-                        }
-                    }
-                    else
-                    {
-                        if (programIcon != null)
-                        {
-                            trayIcon = new TrayIcon(programIcon);
-                        }
-                        else
-                        {
-                            trayIcon = new TrayIcon();
-                        }
-                        trayIcon.BalloonTipClicked += new EventHandler(trayIcon_BalloonTipClicked);
-                        trayIcon.BaloonToolTip = message;
-                    }
-
-                    if (NewVersionReleased != null)
-                    {
-                        NewVersionReleased(versionInfo);
-                    }
+                    newVersion = true;
                 }
-                else
-                {
-                    message = "You have the latest version.";
 
-                    if (showUIInfo)
-                    {
-                        MessageBox.Show(message, Resources.DialogTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                if ( VersionChecked != null )
+                {
+                    VersionChecked( newVersion, versionInfo );
                 }
             }
 
+            File.Delete( localFile );
         } 
         #endregion Check Version
-
-        /// <summary>
-        /// Handles the BalloonTipClicked event of the trayIcon control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        void trayIcon_BalloonTipClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                if (versionInfo.DownloadWebPageAddress != string.Empty)
-                {
-                    System.Diagnostics.Process.Start(versionInfo.DownloadWebPageAddress);
-                }
-            }
-            catch (Exception/* ex*/)
-            {
-                // TODO: Check exception on opening a page in browser
-                //MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-            }
-        }
     }
 }

@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E2F55303-5877-40D9-BAB6-9DD1EA2C7F0A}</ProjectGuid>
+    <ProjectGuid>{6568444E-A2F0-4B7A-AADA-D8C511E0F629}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AUM</RootNamespace>
-    <AssemblyName>AUM</AssemblyName>
+    <RootNamespace>EnvMan.Tests</RootNamespace>
+    <AssemblyName>EnvManTest</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -19,15 +19,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.5.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\ThirdParty\NUnit\bin\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -36,48 +32,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AUMSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>AUMSettings.settings</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\FrmMessageDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\FrmMessageDialog.Designer.cs">
-      <DependentUpon>FrmMessageDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Tray\TrayIcon.cs" />
-    <Compile Include="VersionChecker.cs" />
-    <Compile Include="VersionInformation\VersionInfo.cs" />
-    <Compile Include="VersionInformation\VersionInfoManager.cs" />
+    <Compile Include="VersionManager\VersionCheckerTest.cs" />
+    <Compile Include="VersionManager\VersionInformation\VersionInfoManagerTest.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\AUMSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>AUMSettings.Designer.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\..\EnvMan\EnvMan\EnvMan.csproj">
+      <Project>{2704D52D-4FE5-49C1-8FCE-9619155B01F6}</Project>
+      <Name>EnvMan %28EnvMan\EnvMan%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DefaultICO.ico">
-    </None>
+    <Content Include="Resources\ProgramICO.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\FrmMessageDialog.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>FrmMessageDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
