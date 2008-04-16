@@ -6,6 +6,8 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
+XX/XX/2008  Release 1.4
+	* ...
 18/12/2007	Release 1.3
 	* BT1828033 Escape to Close 
         - Added Ctrl+X Shortcut on Main Form Exit File Menu
@@ -75,4 +77,4 @@ If you have problems please visit
 Project Homepage: http://env-man.blogspot.com/2007/04/envman-user-guide.html
 SourceForge page: http://sourceforge.net/projects/env-man for Bug Tracker options
 
-Contact E-Mail: Anastasia.Corporation+EnvMan@gmail.com
+Contact E-Mail: <envman-dev@googlegroups.com>

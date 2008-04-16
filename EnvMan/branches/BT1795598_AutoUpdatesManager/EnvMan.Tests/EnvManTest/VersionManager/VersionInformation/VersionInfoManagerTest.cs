@@ -1,6 +1,6 @@
 /*
-   AUM - Automated Updates Manager Tests
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
+   EnvMan - The Open-Source Windows Environment Variables Manager
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,9 +23,9 @@ using System.Windows.Forms;
 using System.IO;
 
 using NUnit.Framework;
-using AUM.VersionInformation;
+using EnvMan.VersionManager.VersionInformation;
 
-namespace AUM.Tests.VersionInformation
+namespace EnvMan.Tests.VersionManager.VersionInformation
 {
     [TestFixture]
     public class VersionInfoManagerTest
@@ -49,6 +49,7 @@ namespace AUM.Tests.VersionInformation
         [Test]
         public void TestSaveVersionInfo()
         {
+            // TODO: Change to save into temp file and dir
             versionInfoManager.VersionInformation = versionInfo;
             string fileName = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData ) 
                 + "\\Anastasia_Corporation\\VersionInfo.aum";

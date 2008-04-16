@@ -1,6 +1,6 @@
 /*
-   AUM - Automated Updates Manager Tests
-   Copyright (C) 2006-2008 Vlad Setchin <Anastasia.Corporation+AUM@gmail.com>
+   EnvMan - The Open-Source Windows Environment Variables Manager
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace AUM.UI
+namespace EnvMan.VersionManager
 {
-    partial class FrmMessageDialog
+    partial class FrmVersionInfo
     {
         /// <summary>
         /// Required designer variable.
