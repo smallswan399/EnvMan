@@ -42,7 +42,7 @@ namespace EnvMan.Tests.VersionManager.VersionInformation
         [SetUp]
         public void Setup()
         {
-            versionInfo.AssemblyVersion = "1.3";
+            versionInfo.AssemblyVersion = new Version(1, 3);
             versionInfo.DownloadWebPageAddress = "http://env-man.blogspot.com/2007/04/envman-user-guide.html";
         }
 
@@ -56,6 +56,7 @@ namespace EnvMan.Tests.VersionManager.VersionInformation
             versionInfoManager.Save(fileName);
 
             Assert.IsTrue( File.Exists( fileName ) );
+            File.Delete(fileName);
         }
     }
 }

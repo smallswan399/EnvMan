@@ -33,6 +33,9 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.4")]
-[assembly: AssemblyFileVersion("1.4")]
-[assembly: AssemblyInformationalVersion("1.4")]
+// set here buil version,
+// use x.x.x.* format for final releases
+// or x.x.x.n format for beta releases
+[assembly: AssemblyVersion("1.4.0.1")]
+[assembly: AssemblyFileVersion("1.4.0.1")]
+[assembly: AssemblyInformationalVersion("1.4.0.1")]
