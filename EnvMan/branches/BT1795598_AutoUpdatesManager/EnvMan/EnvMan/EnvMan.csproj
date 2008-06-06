@@ -86,11 +86,6 @@
       <DependentUpon>FrmMainSettings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Properties\VersionManagerSettings.Designer.cs">
-      <DependentUpon>VersionManagerSettings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="VersionManager\FrmVersionInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,10 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EnvManICO.ico" />
-    <None Include="Properties\VersionManagerSettings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>VersionManagerSettings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Resources\Mail.gif" />
     <None Include="Resources\SupportProject.gif" />
     <None Include="Resources\Forum.png" />

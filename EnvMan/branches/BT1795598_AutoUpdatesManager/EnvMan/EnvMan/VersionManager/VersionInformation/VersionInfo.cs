@@ -26,15 +26,21 @@ namespace EnvMan.VersionManager.VersionInformation
     [Serializable]
     public class VersionInfo
     {
-        private string assemblyVersion = string.Empty;
         /// <summary>
         /// Gets or sets the assembly version.
         /// </summary>
         /// <value>The assembly version.</value>
-        public string AssemblyVersion
+        [XmlIgnore]
+        public Version AssemblyVersion
         {
-            get { return assemblyVersion; }
-            set { assemblyVersion = value; }
+            get { return new Version(major, minor, build); }
+            set 
+            {
+                major = value.Major;
+                minor = value.Minor;
+                build = value.Build;
+                revision = value.Revision;
+            }
         }
 
         private string downloadWebPageAddress = string.Empty;
@@ -46,6 +52,50 @@ namespace EnvMan.VersionManager.VersionInformation
         {
             get { return downloadWebPageAddress; }
             set { downloadWebPageAddress = value; }
-        }	
+        }
+
+        private int major = -1;
+        /// <summary>
+        /// Gets or sets the major version number.
+        /// </summary>
+        /// <value>The major version number.</value>
+        public int Major
+        {
+            get { return major; }
+            set { major = value; }
+        }
+
+        private int minor = -1;
+        /// <summary>
+        /// Gets or sets the minor version number.
+        /// </summary>
+        /// <value>The minor.</value>
+        public int Minor
+        {
+            get { return minor; }
+            set { minor = value; }
+        }
+
+        private int build = -1;
+        /// <summary>
+        /// Gets or sets the build version number.
+        /// </summary>
+        /// <value>The build version number.</value>
+        public int Build
+        {
+            get { return build; }
+            set { build = value; }
+        }
+
+        private int revision = -1;
+        /// <summary>
+        /// Gets or sets the revision version number.
+        /// </summary>
+        /// <value>The revision version number.</value>
+        public int Revision
+        {
+            get { return revision; }
+            set { revision = value; }
+        }
     }
 }

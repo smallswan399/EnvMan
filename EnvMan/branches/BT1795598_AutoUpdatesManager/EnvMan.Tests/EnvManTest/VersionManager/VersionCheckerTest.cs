@@ -30,33 +30,35 @@ namespace EnvMan.Tests.VersionManager
     public class VersionCheckerTest
     {
         private VersionChecker versionChecker = null;
+        VersionInfo versionInfo = new VersionInfo();
 
         public VersionCheckerTest()
         {
             versionChecker = new VersionChecker(Properties.Resources.ProgramICO);
         }
 
+        [SetUp]
+        public void Setup()
+        {
+            versionInfo.AssemblyVersion = new Version(1, 3);
+            versionInfo.DownloadWebPageAddress = "";
+        }
+
         [Test]
         public void TestDownloadFile()
         {
-            //Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmEdit.png" );
-            //string localFileNamePath = "EditForm.png";
-
             Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmMain.JPG" );
             string localFileNamePath = "MainForm.jpg";
             Assert.IsTrue(versionChecker.DownloadFile(address, localFileNamePath));
         }
-
+        // TODO: work with these tests
         /// <summary>
         /// Tests the Auto Check for a new version.
         /// </summary>
         [Test]
         public void TestCheckVersionAutoNew()
         {
-            VersionInfo versionInfo = new VersionInfo();
-            versionInfo.AssemblyVersion = "1.2";
-            versionInfo.DownloadWebPageAddress = "";
-
+            versionInfo.AssemblyVersion = new Version(1, 2);
             versionChecker.CheckVersion( versionInfo );
         }
 
@@ -66,10 +68,6 @@ namespace EnvMan.Tests.VersionManager
         [Test]
         public void TestCheckVersionAutoLatest ( )
         {
-            VersionInfo versionInfo = new VersionInfo();
-            versionInfo.AssemblyVersion = "1.3";
-            versionInfo.DownloadWebPageAddress = "";
-
             versionChecker.CheckVersion( versionInfo );
         }
 
@@ -79,10 +77,6 @@ namespace EnvMan.Tests.VersionManager
         [Test]
         public void TestCheckVersionManualLatest()
         {
-            VersionInfo versionInfo = new VersionInfo();
-            versionInfo.AssemblyVersion = "1.3";
-            versionInfo.DownloadWebPageAddress = "";
-
             versionChecker.CheckVersion( versionInfo );
         }
 
@@ -92,10 +86,6 @@ namespace EnvMan.Tests.VersionManager
         [Test]
         public void TestCheckVersionManualNew ( )
         {
-            VersionInfo versionInfo = new VersionInfo();
-            versionInfo.AssemblyVersion = "1.2";
-            versionInfo.DownloadWebPageAddress = "";
-
             versionChecker.CheckVersion( versionInfo );
         }
     }

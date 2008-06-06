@@ -35,7 +35,6 @@ namespace EnvMan.VersionManager
         private Icon programIcon = null;
         private VersionInfoManager versionInfoManager = null;
         private WebClient webClient = null;
-        private VersionManagerSettings settings = VersionManagerSettings.Default;
         
         private VersionInfo versionInfo = null;
 
@@ -189,20 +188,31 @@ namespace EnvMan.VersionManager
         }
 
         #region Check Version
-
+        public void CheckVersion(VersionInfo localVersionInfo)
+        {
+            string webServer = "http://env-man.sourceforge.net/";
+#if DEBUG
+            string webFileName = "EnvMan.Debug";
+#else
+            string webFileName = "EnvMan.Release";
+#endif
+            string webFile = webServer + webFileName;
+            
+            this.CheckVersion(localVersionInfo, webFile);
+        }
         /// <summary>
         /// Checks the version.
         /// </summary>
         /// <param name="localVersionInfo">The local version info.</param>
-        public void CheckVersion(VersionInfo localVersionInfo)
-        {
-            string localFile = System.IO.Path.GetTempFileName();
 #if DEBUG
-            Uri webFile = new Uri( settings.WebPath + "EnvMan.Debug" );
+        public void CheckVersion(VersionInfo localVersionInfo, string remoteFile) 
 #else
-            Uri webFile = new Uri(settings.WebPath + settings.VersionFile);
+        private void CheckVersion(VersionInfo localVersionInfo, string webFile) 
 #endif
-
+        {
+            Uri webFile = new Uri(remoteFile);
+            string localFile = System.IO.Path.GetTempFileName();
+            
             if (DownloadFile(webFile, localFile))
             {
                 string message = string.Empty;

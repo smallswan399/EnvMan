@@ -45,7 +45,7 @@ namespace EnvMan
             InitializeComponent();
 
             frmAbout = new FrmAbout();
-            this.Text += " v" + frmAbout.AssemblyFileVersion;
+            this.Text += " " + frmAbout.PackageVersion;
             this.MinimumSize = new Size(472, 504);
 
             versionChecker = new VersionChecker( Properties.Resources.EnvManICO );
@@ -61,7 +61,7 @@ namespace EnvMan
         {
             showFrmVersionInfo = sender == null;
             
-            currentVersionInfo.AssemblyVersion = "1.2"; //frmAbout.AssemblyFileVersion;
+            currentVersionInfo.AssemblyVersion = frmAbout.AssemblyVersion;
             versionChecker.CheckVersion(currentVersionInfo);
 
             if ( e != null )
