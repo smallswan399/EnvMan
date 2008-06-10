@@ -57,6 +57,11 @@ namespace EnvMan
             LoadSettings();
         }
 
+        /// <summary>
+        /// Handles the DoWork event of the worker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             showFrmVersionInfo = sender == null;
@@ -70,6 +75,11 @@ namespace EnvMan
             }
         }
 
+        /// <summary>
+        /// Version Checker Handler for version checks.
+        /// </summary>
+        /// <param name="newVersion">if set to <c>true</c> [new version].</param>
+        /// <param name="versionInfo">The version info.</param>
         void versionChecker_NewVersionChecked(bool newVersion, VersionInfo versionInfo)
         {
             string msg = string.Empty;
