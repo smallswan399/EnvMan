@@ -12,7 +12,7 @@ namespace EnvMan.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "8.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
     internal sealed partial class FrmMainSettings : global::System.Configuration.ApplicationSettingsBase {
         
         private static FrmMainSettings defaultInstance = ((FrmMainSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new FrmMainSettings())));
