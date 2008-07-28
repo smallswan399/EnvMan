@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EnvManager.Tests</RootNamespace>
-    <AssemblyName>EnvManTest</AssemblyName>
+    <AssemblyName>EnvManagerTest</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditVarNameCommandTest.cs" />
+    <Compile Include="EnvVarManagerTest.cs" />
     <Compile Include="EnvVarValueValidatorTest.cs" />
     <Compile Include="Handlers\MockCommand.cs" />
     <Compile Include="Handlers\UndoRedoCommandListTest.cs" />

@@ -19,7 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using System.Threading;
 namespace EnvMan
 {
     static class Program
@@ -30,9 +30,22 @@ namespace EnvMan
         [STAThread]
         static void Main ( )
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new FrmMain() );
+            bool isOneInstance = false;
+
+            using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
+            {
+                if (isOneInstance)
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new FrmMain());
+                    mutex.ReleaseMutex();
+                }
+                else
+                {
+                    // TODO: Activate window of the running EnvMan program
+                }
+            }
         }
     }
 }
