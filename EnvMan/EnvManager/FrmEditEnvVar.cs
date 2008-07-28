@@ -30,6 +30,7 @@ using EnvManager.ImportExport;
 
 namespace EnvManager
 {
+    [System.Runtime.InteropServices.GuidAttribute("2C7B3D0D-379D-4B48-B371-C0AE56B66A8F")]
     public partial class FrmEditEnvVar : Form
     {
         #region Form Functions
@@ -93,6 +94,11 @@ namespace EnvManager
             saveFileDialog.Filter = FILE_FILTER;
             saveFileDialog.DefaultExt = DEFAULT_FILTER_EXTENSION;
         }
+        /// <summary>
+        /// Handles Control Click Events.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void BtnClick(object sender, EventArgs e)
         {
             ICommand currentCommand = null;
@@ -163,6 +169,10 @@ namespace EnvManager
             }
         }
 
+        /// <summary>
+        /// Adds the command to commands undo/redo list.
+        /// </summary>
+        /// <param name="command">The command.</param>
         private void AddCommand(ICommand command)
         {
             if (command != null)
@@ -352,7 +362,7 @@ namespace EnvManager
         }
         private void LoadEnvironmentVariableValues()
         {
-            string environmentVariableValue = variableManager.GetEnvVariable(txtVariableName.Text, variableType);
+            string environmentVariableValue = variableManager.GetEnvironmentVariable(txtVariableName.Text, variableType);
 
             this.dgvHandler.AddRows( environmentVariableValue );
         }
@@ -403,7 +413,8 @@ namespace EnvManager
             {
                 if ( row.Index != dgvValuesList.Rows.Count - 1 )
                 {
-                    varValue = row.Cells[ 1 ].Value.ToString();
+                    DataGridViewCell cell = row.Cells[ 1 ]; 
+                    varValue = (cell.Value.ToString().Contains("%")) ? cell.ToolTipText : cell.Value.ToString();
                     switch ( validator.ValueType( varValue ) )
                     {
                         case EnvironmentValueType.Folder:
@@ -473,11 +484,17 @@ namespace EnvManager
         }
         private void dgvValuesList_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.FormattedValue.ToString().Contains(";"))
+            string dgvValue = e.FormattedValue.ToString();
+            if (dgvValue.Contains(";"))
             {
                 dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot contain ';'";
                 //errorProvider.SetError(lblError, dgvValuesList.Rows[e.RowIndex].ErrorText);
                 e.Cancel = true;
+            }
+            else
+            {
+                dgvHandler.SetRowIcon(e.RowIndex, dgvValue);
+                dgvHandler.SetCellToolTip(e.RowIndex, dgvValue);
             }
         }
         private void dgvValuesList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -490,7 +507,7 @@ namespace EnvManager
                 && ( editRowCommandValue == null 
                 || editRowCommandValue.ToString() != dgvValue.ToString()))
             {
-                dgvHandler.SetRowIcon(e.RowIndex, dgvValue.ToString());
+                //dgvHandler.SetRowIcon(e.RowIndex, dgvValue.ToString());
                 editRowCommand.NewRow = dgvValuesList.Rows[ e.RowIndex ];
                 AddCommand(editRowCommand);
             }

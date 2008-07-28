@@ -207,7 +207,7 @@ namespace EnvMan.VersionManager
 #if DEBUG
         public void CheckVersion(VersionInfo localVersionInfo, string remoteFile) 
 #else
-        private void CheckVersion(VersionInfo localVersionInfo, string webFile) 
+        private void CheckVersion(VersionInfo localVersionInfo, string remoteFile) 
 #endif
         {
             Uri webFile = new Uri(remoteFile);

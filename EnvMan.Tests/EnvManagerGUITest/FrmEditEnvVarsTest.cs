@@ -88,7 +88,7 @@ namespace EnvManager.Tests.GUI
             btnTestDown.Click();
             btnTestSave.Click();
             Assert.AreEqual("Val1;Val2;Val4;Val5;Val3;Val6;Val7",
-                varManager.GetEnvVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine));
+                varManager.GetEnvironmentVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine));
             varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, EnvironmentVariableTarget.Machine);
         }
         [Test]
