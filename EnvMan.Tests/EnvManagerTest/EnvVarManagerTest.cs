@@ -45,7 +45,7 @@ namespace EnvManager.Tests
             variableManager.DeleteEnvironmentVariable("TempDirVar", EnvironmentVariableTarget.User);
             variableManager.DeleteEnvironmentVariable("TempExtandedDirVar", EnvironmentVariableTarget.User);
 
-            Assert.AreEqual(varVal + @"\cmd.exe", varExpandedVal);
+            Assert.AreEqual(@"%TempDirVar%\temp", varExpandedVal);
         }
 
         [Test]
