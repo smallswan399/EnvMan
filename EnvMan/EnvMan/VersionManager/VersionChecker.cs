@@ -82,9 +82,10 @@ namespace EnvMan.VersionManager
                 webClient.DownloadFile(fileWebAddress, localFilePath);
                 result = true;
 	        }
-	        catch (Exception ex)
+	        catch (System.Net.WebException ex)
 	        {
-                MessageBox.Show( ex.Message );
+                throw new WebException("Could not get new version info. "
+                    + "Please check your network and proxy settings.", ex);
 	        }
 
             return result;

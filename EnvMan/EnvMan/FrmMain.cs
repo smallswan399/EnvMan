@@ -67,7 +67,14 @@ namespace EnvMan
             showFrmVersionInfo = sender == null;
             
             currentVersionInfo.AssemblyVersion = frmAbout.AssemblyVersion;
-            versionChecker.CheckVersion(currentVersionInfo);
+            try
+            {
+                versionChecker.CheckVersion(currentVersionInfo);
+            }
+            catch (Exception ex)
+            {
+                tslblStatus.Text = ex.Message;
+            }
 
             if ( e != null )
             {
