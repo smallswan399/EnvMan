@@ -50,6 +50,7 @@ namespace EnvMan
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWebsite = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEnvManForum = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,8 +66,9 @@ namespace EnvMan
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewVersionInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain = new System.Windows.Forms.StatusStrip();
-            this.envManager = new EnvManager.EnvManager();
             this.tslblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.envManager = new EnvManager.EnvManager();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.msMain.SuspendLayout();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +88,8 @@ namespace EnvMan
             // tsmiFile
             // 
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiSettings,
+            this.toolStripMenuItem3,
             this.tsmiExit});
             this.tsmiFile.Name = "tsmiFile";
             this.tsmiFile.Size = new System.Drawing.Size(35, 20);
@@ -96,10 +100,17 @@ namespace EnvMan
             this.tsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
             this.tsmiExit.Name = "tsmiExit";
             this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.tsmiExit.Size = new System.Drawing.Size(141, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(152, 22);
             this.tsmiExit.Text = "E&xit";
             this.tsmiExit.ToolTipText = "Close Application";
             this.tsmiExit.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiSettings
+            // 
+            this.TsmiSettings.Name = "TsmiSettings";
+            this.TsmiSettings.Size = new System.Drawing.Size(152, 22);
+            this.TsmiSettings.Text = "Settings...";
+            this.TsmiSettings.Click += new System.EventHandler(this.TsmiClick);
             // 
             // helpToolStripMenuItem
             // 
@@ -230,6 +241,11 @@ namespace EnvMan
             this.tsMain.TabIndex = 3;
             this.tsMain.Text = "statusStrip1";
             // 
+            // tslblStatus
+            // 
+            this.tslblStatus.Name = "tslblStatus";
+            this.tslblStatus.Size = new System.Drawing.Size(0, 17);
+            // 
             // envManager
             // 
             this.envManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -241,10 +257,10 @@ namespace EnvMan
             this.envManager.Size = new System.Drawing.Size(364, 362);
             this.envManager.TabIndex = 0;
             // 
-            // tslblStatus
+            // toolStripMenuItem3
             // 
-            this.tslblStatus.Name = "tslblStatus";
-            this.tslblStatus.Size = new System.Drawing.Size(0, 17);
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(149, 6);
             // 
             // FrmMain
             // 
@@ -293,6 +309,8 @@ namespace EnvMan
         private System.Windows.Forms.ToolStripMenuItem tsmiForumWebsite;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewVersionInfo;
         private System.Windows.Forms.ToolStripStatusLabel tslblStatus;
+        private System.Windows.Forms.ToolStripMenuItem TsmiSettings;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     }
 }
 

@@ -30,21 +30,29 @@ namespace EnvMan
         [STAThread]
         static void Main ( )
         {
-            bool isOneInstance = false;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
+            if (Properties.FrmMainSettings.Default.OnlyOneInstance)
             {
-                if (isOneInstance)
+                bool isOneInstance = false;
+
+                using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
                 {
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new FrmMain());
-                    mutex.ReleaseMutex();
-                }
-                else
-                {
-                    // TODO: Activate window of the running EnvMan program
-                }
+                    if (isOneInstance)
+                    {
+                        Application.Run(new FrmMain());
+                        mutex.ReleaseMutex();
+                    }
+                    else
+                    {
+                        // TODO: Activate window of the running EnvMan program
+                    }
+                } 
+            }
+            else
+            {   // Multiple Instances of the Application allowed
+                Application.Run(new FrmMain());
             }
         }
     }

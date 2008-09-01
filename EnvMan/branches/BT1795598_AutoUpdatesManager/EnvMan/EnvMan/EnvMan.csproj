@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -74,6 +75,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmOptions.resx">
+      <DependentUpon>FrmOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,6 +101,11 @@
       <DependentUpon>FrmMainSettings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Properties\ProxySettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ProxySettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="VersionManager\FrmVersionInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EnvManICO.ico" />
+    <None Include="Properties\ProxySettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ProxySettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\Mail.gif" />
     <None Include="Resources\SupportProject.gif" />
     <None Include="Resources\Forum.png" />

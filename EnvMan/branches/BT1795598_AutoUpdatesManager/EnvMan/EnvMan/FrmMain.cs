@@ -165,6 +165,12 @@ namespace EnvMan
             {
                 System.Diagnostics.Process.Start( versionInfo.DownloadWebPageAddress );
             }
+            else if (sender.Equals(TsmiSettings))
+            {
+                FrmOptions settingsForm = new FrmOptions();
+                settingsForm.ShowDialog();
+                settingsForm.Dispose();
+            }
         }
         #endregion Form Functions
 
