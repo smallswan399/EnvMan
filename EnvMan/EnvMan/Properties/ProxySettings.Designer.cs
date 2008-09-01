@@ -13,11 +13,11 @@ namespace EnvMan.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-    internal sealed partial class FrmMainSettings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class ProxySettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static FrmMainSettings defaultInstance = ((FrmMainSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new FrmMainSettings())));
+        private static ProxySettings defaultInstance = ((ProxySettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ProxySettings())));
         
-        public static FrmMainSettings Default {
+        public static ProxySettings Default {
             get {
                 return defaultInstance;
             }
@@ -25,49 +25,61 @@ namespace EnvMan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState FrmWindowState {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseProxy {
             get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["FrmWindowState"]));
+                return ((bool)(this["UseProxy"]));
             }
             set {
-                this["FrmWindowState"] = value;
+                this["UseProxy"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point FrmWindowLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ServerAddress {
             get {
-                return ((global::System.Drawing.Point)(this["FrmWindowLocation"]));
+                return ((string)(this["ServerAddress"]));
             }
             set {
-                this["FrmWindowLocation"] = value;
+                this["ServerAddress"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("377, 448")]
-        public global::System.Drawing.Size FrmSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public string ServerPort {
             get {
-                return ((global::System.Drawing.Size)(this["FrmSize"]));
+                return ((string)(this["ServerPort"]));
             }
             set {
-                this["FrmSize"] = value;
+                this["ServerPort"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool OnlyOneInstance {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ServerUserName {
             get {
-                return ((bool)(this["OnlyOneInstance"]));
+                return ((string)(this["ServerUserName"]));
             }
             set {
-                this["OnlyOneInstance"] = value;
+                this["ServerUserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ServerPassword {
+            get {
+                return ((string)(this["ServerPassword"]));
+            }
+            set {
+                this["ServerPassword"] = value;
             }
         }
     }
