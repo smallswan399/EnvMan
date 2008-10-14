@@ -28,32 +28,44 @@ namespace EnvMan
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main ( )
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (Properties.FrmMainSettings.Default.OnlyOneInstance)
+            using (SingleProgramInstance spi = new SingleProgramInstance())
             {
-                bool isOneInstance = false;
-
-                using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
+                if (Properties.FrmMainSettings.Default.OnlyOneInstance)
                 {
-                    if (isOneInstance)
+                    if (spi.IsSingleInstance)
                     {
                         Application.Run(new FrmMain());
-                        mutex.ReleaseMutex();
                     }
                     else
                     {
-                        // TODO: Activate window of the running EnvMan program
+                        spi.RaiseOtherProcess();
                     }
-                } 
+                }
+                else
+                {   // Multiple Instances of the Application allowed
+                    Application.Run(new FrmMain());
+                }
             }
-            else
-            {   // Multiple Instances of the Application allowed
-                Application.Run(new FrmMain());
-            }
+
+            //bool isOneInstance = false;
+
+            //using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
+            //{
+            //    if (isOneInstance)
+            //    {
+            //        Application.Run(new FrmMain());
+            //        mutex.ReleaseMutex();
+            //    }
+            //    else
+            //    {
+            //        // TODO: Activate window of the running EnvMan program
+            //    }
+            //}
         }
     }
 }
