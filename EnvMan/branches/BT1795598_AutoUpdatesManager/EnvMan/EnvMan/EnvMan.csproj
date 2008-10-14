@@ -106,6 +106,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ProxySettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SingleProgramInstance.cs" />
     <Compile Include="VersionManager\FrmVersionInfo.cs">
       <SubType>Form</SubType>
     </Compile>

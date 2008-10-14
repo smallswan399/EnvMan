@@ -118,7 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="rtxtCredits.Text" xml:space="preserve">
-    <value>EnvMan 1.2
+    <value>EnvMan 1.4
+==========
+How to Create and Change Environment Variables using C# or .Net by Greg Houston
+http://ghouston.blogspot.com/2005/08/how-to-create-and-change-environment.html
+
+Single Process Instance Object by Michael Potter
+http://www.codeproject.com/KB/cs/cssingprocess.aspx
+
+EnvMan 1.2
 ==========
 PRANKENST!EN - Implementation of "Locate in Windows Explorer" Edit Form Grid context menu
 
