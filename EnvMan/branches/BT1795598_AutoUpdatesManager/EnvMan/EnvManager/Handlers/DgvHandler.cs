@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -127,9 +127,10 @@ namespace EnvManager.Handlers
         /// <param name="rowIndex">Index of the row.</param>
         public void SetRowIcon ( int rowIndex, string varValue )
         {
+            string value = Environment.ExpandEnvironmentVariables(varValue);
             string toolTipMsg = "";
             DataGridViewCell cell = dgv.Rows[ rowIndex ].Cells[ 0 ];
-            cell.Value = IconValueType( varValue, ref toolTipMsg );
+            cell.Value = IconValueType(value, ref toolTipMsg);
             cell.ToolTipText = toolTipMsg;
         }
         /// <summary>
@@ -164,7 +165,7 @@ namespace EnvManager.Handlers
             int rowIndex = dgv.Rows.Add();
 
             SetRowValue( rowIndex, varValue );
-            SetRowIcon( rowIndex, Environment.ExpandEnvironmentVariables(varValue));
+            SetRowIcon( rowIndex, varValue);
             SetCellToolTip(rowIndex, varValue);   
 
             return rowIndex;

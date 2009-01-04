@@ -6,7 +6,8 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
-XX/XX/2008  Release 1.4
+XX/XX/2009  Release 1.4
+	* Fixed Variable Type Validation
 	* ...
 18/12/2007	Release 1.3
 	* BT1828033 Escape to Close 
