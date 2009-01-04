@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -484,17 +484,36 @@ namespace EnvManager
         }
         private void dgvValuesList_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            string dgvValue = e.FormattedValue.ToString();
-            if (dgvValue.Contains(";"))
-            {
-                dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot contain ';'";
-                //errorProvider.SetError(lblError, dgvValuesList.Rows[e.RowIndex].ErrorText);
-                e.Cancel = true;
-            }
-            else
-            {
-                dgvHandler.SetRowIcon(e.RowIndex, dgvValue);
-                dgvHandler.SetCellToolTip(e.RowIndex, dgvValue);
+            DataGridView dgv = (DataGridView)sender;
+
+            if (e.RowIndex < dgv.Rows.Count - 1)
+            {   // don't look at last row
+                string dgvValue = string.Empty;
+                
+                if (e.ColumnIndex == 0) 
+                {
+                    dgvValue = (dgv[1, e.RowIndex].Value != null) ? dgv[1, e.RowIndex].Value.ToString() : string.Empty;
+                }
+                else
+                {
+                    dgvValue = e.FormattedValue.ToString();
+                }
+
+                if (dgvValue == string.Empty)
+                {
+                    dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot be empty";
+                    e.Cancel = true;
+                }
+                else if (dgvValue.Contains(";"))
+                {
+                    dgvValuesList.Rows[e.RowIndex].ErrorText = "Value cannot contain ';'";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    dgvHandler.SetRowIcon(e.RowIndex, dgvValue);
+                    dgvHandler.SetCellToolTip(e.RowIndex, dgvValue);
+                } 
             }
         }
         private void dgvValuesList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
