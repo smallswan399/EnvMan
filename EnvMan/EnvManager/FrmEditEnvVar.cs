@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -528,48 +528,60 @@ namespace EnvManager
         }
         private void dgvValuesList_UserDeletingRow ( object sender, DataGridViewRowCancelEventArgs e )
         {
-            DialogResult result = DialogResult.No;
+            DialogResult deleteRows = DialogResult.No;
 
             // force un-select on the bottom row
             dgvValuesList.Rows[dgvValuesList.Rows.Count - 1].Selected = false;
 
-            if (!deletingRows)
-            {
-                if ( e == null || !e.Row.IsNewRow )
-                {   // Don't show on deletion of new rows
-                    result = MessageBox.Show( "Are you sure to delete value?", "Delete Confirmation",
-                                MessageBoxButtons.YesNo, MessageBoxIcon.Question ); 
-                }
-
-                if (result == DialogResult.Yes)
-                {
-                    deletingRows = true;
-                    rowInfoList = new SortedList<int,DgvRowInfo>();
-                }
+            if (e == null || !e.Row.IsNewRow)
+            {   // Don't show on deletion of new rows
+                deleteRows = MessageBox.Show("Are you sure to delete value(s)?", "Delete Confirmation",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if (deletingRows)
+            if (deleteRows == DialogResult.Yes)
             {
-                if (e != null)
-                {   
-                    // user hit delete keyboard key
-                    DgvRowInfo rowInfo = new DgvRowInfo();
-                    rowInfo.CurrentRowIndex = e.Row.Index;
-                    rowInfoList.Add(e.Row.Index, rowInfo);
-                    e.Row.Visible = false;  // hide row
-                    e.Row.Selected = false; // un-select row
+                ICommand deleteCommand = new DgvDeleteBatchCommand(dgvHandler);
+                AddCommand(deleteCommand);
+            }
+
+            //if (!deletingRows)
+            //{
+            //    if ( e == null || !e.Row.IsNewRow )
+            //    {   // Don't show on deletion of new rows
+            //        result = MessageBox.Show( "Are you sure to delete value?", "Delete Confirmation",
+            //                    MessageBoxButtons.YesNo, MessageBoxIcon.Question ); 
+            //    }
+
+            //    if (result == DialogResult.Yes)
+            //    {
+            //        deletingRows = true;
+            //        rowInfoList = new SortedList<int,DgvRowInfo>();
+            //    }
+            //}
+
+            //if (deletingRows)
+            //{
+            //    if (e != null)
+            //    {   
+            //        // user hit delete keyboard key
+            //        DgvRowInfo rowInfo = new DgvRowInfo();
+            //        rowInfo.CurrentRowIndex = e.Row.Index;
+            //        rowInfoList.Add(e.Row.Index, rowInfo);
+            //        e.Row.Visible = false;  // hide row
+            //        e.Row.Selected = false; // un-select row
                     
-                    if (dgvValuesList.SelectedRows.Count == 0)
-                    {
-                        DeleteRows(true);
-                    }
-                }
-                else
-                {   
-                    // user used delete button on the form
-                    DeleteRows(false);
-                }
-            }
+            //        if (dgvValuesList.SelectedRows.Count == 0)
+            //        {
+            //            DeleteRows(true);
+            //        }
+            //    }
+            //    else
+            //    {   
+            //        // user used delete button on the form
+            //        DeleteRows(false);
+            //    }
+            //}
             if (e != null && !e.Row.IsNewRow)
             {
                 e.Cancel = true;    
@@ -577,16 +589,16 @@ namespace EnvManager
         }
         private void DeleteRows(bool useRowInfoList)
         {
-            DgvDeleteCommand deleteCommand = null;
+            DgvDeleteCommandOld deleteCommand = null;
             if (useRowInfoList)
             {   
                 // user hit delete keyboard key
-                deleteCommand = new DgvDeleteCommand(dgvHandler, rowInfoList);
+                deleteCommand = new DgvDeleteCommandOld(dgvHandler, rowInfoList);
             }
             else
             {
                 // user used delete button on the form
-                deleteCommand = new DgvDeleteCommand(dgvHandler);
+                deleteCommand = new DgvDeleteCommandOld(dgvHandler);
             }
             AddCommand(deleteCommand);
             deletingRows = false;
