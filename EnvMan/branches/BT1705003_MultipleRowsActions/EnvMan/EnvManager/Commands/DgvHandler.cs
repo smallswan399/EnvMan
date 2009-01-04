@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2008 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -177,6 +177,23 @@ namespace EnvManager.Commands
         public void SetRowVisibility(int rowIndex, bool visible)
         {
             dgv.Rows[rowIndex].Visible = visible;
+        }
+
+        public StringBuilder EnvironmentVariableValue()
+        {
+            StringBuilder envVarValue = new StringBuilder();
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Index != dgv.Rows.Count - 1
+                    && row.Visible)
+                {
+                    envVarValue.Append((envVarValue.Length != 0 ? ";" : "") + row.Cells[1].Value.ToString());
+                    System.Diagnostics.Debug.WriteLine(envVarValue.ToString());
+                }
+            }
+
+            return envVarValue;
         }
     }
 }
