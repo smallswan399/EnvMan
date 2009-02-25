@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmOptions));
             this.TctrlSettings = new System.Windows.Forms.TabControl();
             this.TpGeneral = new System.Windows.Forms.TabPage();
             this.CbOneInstance = new System.Windows.Forms.CheckBox();
@@ -45,9 +47,11 @@
             this.CbUseProxy = new System.Windows.Forms.CheckBox();
             this.BtnOK = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.TctrlSettings.SuspendLayout();
             this.TpGeneral.SuspendLayout();
             this.TpUpdateChecker.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // TctrlSettings
@@ -138,6 +142,7 @@
             this.TxtPort.Size = new System.Drawing.Size(48, 20);
             this.TxtPort.TabIndex = 8;
             this.TxtPort.Text = "80";
+            this.TxtPort.Validating += new System.ComponentModel.CancelEventHandler(this.TxtValidating);
             // 
             // LblPort
             // 
@@ -208,6 +213,7 @@
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(100, 20);
             this.TxtAddress.TabIndex = 1;
+            this.TxtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.TxtValidating);
             // 
             // CbUseProxy
             // 
@@ -245,6 +251,10 @@
             this.BtnCancel.Text = "&Cancel";
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // FrmOptions
             // 
             this.AcceptButton = this.BtnOK;
@@ -255,6 +265,7 @@
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOK);
             this.Controls.Add(this.TctrlSettings);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
@@ -263,6 +274,7 @@
             this.TpGeneral.PerformLayout();
             this.TpUpdateChecker.ResumeLayout(false);
             this.TpUpdateChecker.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,5 +298,6 @@
         private System.Windows.Forms.Label LblPort;
         private System.Windows.Forms.Label LblPasswordOptional;
         private System.Windows.Forms.Label LblUserNameOptional;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

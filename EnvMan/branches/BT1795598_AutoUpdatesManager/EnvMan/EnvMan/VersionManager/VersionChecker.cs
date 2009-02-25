@@ -41,6 +41,9 @@ namespace EnvMan.VersionManager
         public delegate void NewVersionCheckedHandler(bool newVersion, VersionInfo versionInfo);
         public event NewVersionCheckedHandler VersionChecked;
 
+        private Properties.ProxySettings proxySettings = Properties.ProxySettings.Default;
+        private WebProxy proxy = null;
+
         #region Contractors
         /// <summary>
         /// Initializes a new instance of the <see cref="VersionChecker"/> class.
@@ -56,15 +59,42 @@ namespace EnvMan.VersionManager
         public VersionChecker(Icon programIcon)
         {
             this.programIcon = programIcon;
+
             InitVersionChecker();
         }
+
         /// <summary>
         /// Initialises the version checker.
         /// </summary>
         private void InitVersionChecker()
         {
             webClient = new WebClient();
+            //InitProxySettings();
             versionInfoManager = new VersionInfoManager();
+        }
+
+
+        /// <summary>
+        /// Initialises the proxy settings.
+        /// </summary>
+        public void InitProxySettings()
+        {
+            try
+            {   // Assign Proxy Server
+                if (proxySettings.UseProxy)
+                {
+                    proxy = new WebProxy(proxySettings.ServerAddress, int.Parse(proxySettings.ServerPort));
+                    webClient.Proxy = proxy;
+                }
+                else
+                {
+                    webClient.Proxy = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to set Proxy Server. " + ex.Message);
+            }
         }
         #endregion Contractors
 
@@ -80,6 +110,7 @@ namespace EnvMan.VersionManager
             try 
 	        {
                 webClient.DownloadFile(fileWebAddress, localFilePath);
+                
                 result = true;
 	        }
 	        catch (System.Net.WebException ex)

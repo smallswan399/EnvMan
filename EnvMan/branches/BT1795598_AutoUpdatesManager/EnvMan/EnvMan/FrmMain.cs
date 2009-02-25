@@ -69,11 +69,19 @@ namespace EnvMan
             currentVersionInfo.AssemblyVersion = frmAbout.AssemblyVersion;
             try
             {
+                versionChecker.InitProxySettings();
                 versionChecker.CheckVersion(currentVersionInfo);
             }
             catch (Exception ex)
             {
                 tslblStatus.Text = ex.Message;
+
+                // show error to user in MessageBox
+                if (showFrmVersionInfo)
+                {
+                    MessageBox.Show(ex.Message, "Network Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
 
             if ( e != null )

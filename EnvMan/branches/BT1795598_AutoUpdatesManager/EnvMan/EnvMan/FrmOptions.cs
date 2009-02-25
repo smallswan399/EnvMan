@@ -31,6 +31,7 @@ namespace EnvMan
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void CbUseProxy_CheckedChanged(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             LblAddress.Enabled = CbUseProxy.Checked;
             TxtAddress.Enabled = CbUseProxy.Checked;
             LblPassword.Enabled = CbUseProxy.Checked;
@@ -45,6 +46,10 @@ namespace EnvMan
             if (!CbUseProxy.Checked)
             {
                 InitProxySettings();
+            }
+            else
+            {
+                LoadProxySettings();
             }
         }
 
@@ -68,11 +73,16 @@ namespace EnvMan
             this.CbUseProxy.Checked = proxySettings.UseProxy;
             if (proxySettings.UseProxy)
             {
-                TxtAddress.Text = proxySettings.ServerAddress;
-                TxtPort.Text = string.Empty + proxySettings.ServerPort;
-                TxtUserName.Text = proxySettings.ServerUserName;
-                TxtPassword.Text = proxySettings.ServerPassword; 
+                LoadProxySettings();
             }
+        }
+
+        private void LoadProxySettings()
+        {
+            TxtAddress.Text = proxySettings.ServerAddress;
+            TxtPort.Text = string.Empty + proxySettings.ServerPort;
+            TxtUserName.Text = proxySettings.ServerUserName;
+            TxtPassword.Text = proxySettings.ServerPassword; 
         }
 
         /// <summary>
@@ -93,8 +103,48 @@ namespace EnvMan
 
         private void BtnOK_Click(object sender, EventArgs e)
         {
-            SaveSettings();
-            this.Close();
+            // Validate controls
+            CancelEventArgs cancelEvent = new CancelEventArgs();
+            TxtValidating(TxtAddress, cancelEvent);
+                       
+            if (!cancelEvent.Cancel)
+            {
+                SaveSettings();
+                this.Close(); 
+            }
+        }
+
+        /// <summary>
+        /// Validating Text Boxes.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance containing the event data.</param>
+        private void TxtValidating(object sender, CancelEventArgs e)
+        {
+            // Validate Proxy
+            if (CbUseProxy.Checked)
+            {
+                if (sender.Equals(TxtAddress))
+                {
+                    if (TxtAddress.Text == string.Empty)
+                    {
+                        errorProvider.SetError(TxtAddress, "Address Cannot be Empty");
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        errorProvider.Clear();
+                    }
+                }
+                else if (sender.Equals(TxtPort))
+                {
+                    if (TxtPort.Text == string.Empty)
+                    {
+                        errorProvider.SetError(TxtPort, "Server Port cannot be empty");
+                        e.Cancel = true;
+                    }
+                }
+            }
         }
     }
 }
