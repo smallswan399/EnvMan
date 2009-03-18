@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using EnvMan.VersionManager.VersionInformation;
 
 namespace EnvManager
 {
@@ -68,15 +69,9 @@ namespace EnvManager
         {
             get
             {
-                string VERSION_SEPERATOR = ".";
                 Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                string build = (version.Build == 0) 
-                    ? string.Empty : VERSION_SEPERATOR + version.Build;
-                string revision = (version.Revision == 0) ? string.Empty 
-                    : " RC" + version.Revision;
-                string packageVersion = "V" + version.Major + VERSION_SEPERATOR 
-                    + version.Minor + build + revision;
-                return packageVersion;
+                
+                return VersionInfo.VersionFormatter(version);
             }
         }
         public Version AssemblyVersion

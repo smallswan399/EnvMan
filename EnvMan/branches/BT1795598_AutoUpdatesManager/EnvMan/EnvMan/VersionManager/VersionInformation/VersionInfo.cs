@@ -33,7 +33,7 @@ namespace EnvMan.VersionManager.VersionInformation
         [XmlIgnore]
         public Version AssemblyVersion
         {
-            get { return new Version(major, minor, build); }
+            get { return new Version(major, minor, build, revision); }
             set 
             {
                 major = value.Major;
@@ -96,6 +96,25 @@ namespace EnvMan.VersionManager.VersionInformation
         {
             get { return revision; }
             set { revision = value; }
+        }
+
+        /// <summary>
+        /// Formats Version Information for displaying.
+        /// </summary>
+        /// <param name="version">The version information to display.</param>
+        /// <returns>formatted version info</returns>
+        public static string VersionFormatter(Version version)
+        {
+            string VERSION_SEPERATOR = ".";
+
+            string build = (version.Build == 0)
+                    ? string.Empty : VERSION_SEPERATOR + version.Build;
+            string revision = (version.Revision == 0) ? string.Empty
+                : " RC" + version.Revision;
+            string packageVersion = "V" + version.Major + VERSION_SEPERATOR
+                + version.Minor + build + revision;
+
+            return packageVersion;
         }
     }
 }
