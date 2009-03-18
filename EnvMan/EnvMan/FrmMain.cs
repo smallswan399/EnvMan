@@ -101,7 +101,7 @@ namespace EnvMan
 
             if ( newVersion )
             {
-                msg = "New version " + versionInfo.AssemblyVersion + " released";
+                msg = "New version " + VersionInfo.VersionFormatter(versionInfo.AssemblyVersion) + " released";
                 tsmiNewVersionInfo.Text = msg;
                 tsmiNewVersionInfo.Visible = true;
                 this.versionInfo = versionInfo;
