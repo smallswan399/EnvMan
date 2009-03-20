@@ -37,11 +37,23 @@ namespace EnvMan.Tests.VersionManager
             versionChecker = new VersionChecker(Properties.Resources.ProgramICO);
         }
 
+        void versionChecker_VersionChecked(bool newVersion, VersionInfo versionInfo)
+        {
+            
+        }
+
         [SetUp]
         public void Setup()
         {
-            versionInfo.AssemblyVersion = new Version(1, 3);
+            versionInfo.AssemblyVersion = new Version(1, 3, 0, 0);
             versionInfo.DownloadWebPageAddress = "";
+            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler(versionChecker_VersionChecked);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            versionChecker.VersionChecked -= new VersionChecker.NewVersionCheckedHandler(versionChecker_VersionChecked);
         }
 
         [Test]
@@ -58,7 +70,7 @@ namespace EnvMan.Tests.VersionManager
         [Test]
         public void TestCheckVersionAutoNew()
         {
-            versionInfo.AssemblyVersion = new Version(1, 2);
+            versionInfo.AssemblyVersion = new Version(1, 2, 0, 0);
             versionChecker.CheckVersion( versionInfo );
         }
 
@@ -88,5 +100,7 @@ namespace EnvMan.Tests.VersionManager
         {
             versionChecker.CheckVersion( versionInfo );
         }
+
+        
     }
 }

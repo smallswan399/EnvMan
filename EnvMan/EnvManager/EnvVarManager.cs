@@ -139,7 +139,11 @@ namespace EnvManager
         /// </summary>
         /// <param name="varName">Name of the variable.</param>
         /// <param name="varValue">The variable value.</param>
-        private void ValidateVariables(string varName, string varValue)
+#if DEBUG
+        public void ValidateVariables(string varName, string varValue) 
+#else
+        private void ValidateVariables(string varName, string varValue) 
+#endif
         {
             if (string.IsNullOrEmpty(varName))
             {
