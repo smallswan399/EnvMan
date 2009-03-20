@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6568444E-A2F0-4B7A-AADA-D8C511E0F629}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="VersionManager\VersionCheckerTest.cs" />
     <Compile Include="VersionManager\VersionInformation\VersionInfoManagerTest.cs" />
+    <Compile Include="VersionManager\VersionInformation\VersionInfoTest.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>

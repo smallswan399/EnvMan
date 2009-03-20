@@ -55,5 +55,19 @@ namespace EnvManager.Tests
 
             Assert.AreEqual(testUserVarVal, varVal);
         }
+
+        [Test]
+        [ExpectedException(ExpectedMessage="Variable Name cannot be blank.")]
+        public void TestValidateVariablesNullVarName()
+        {
+            variableManager.ValidateVariables(null, null);
+        }
+
+        [Test]
+        [ExpectedException(ExpectedMessage = "Variable should have a value.")]
+        public void TestValidateVariablesEmptyVarValue()
+        {
+            variableManager.ValidateVariables("TestVariable", string.Empty);
+        }
     }
 }
