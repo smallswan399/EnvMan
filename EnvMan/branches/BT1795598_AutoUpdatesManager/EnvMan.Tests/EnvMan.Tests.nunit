@@ -1,7 +1,8 @@
 ﻿<NUnitProject>
   <Settings activeconfig="Debug" />
   <Config name="Debug" binpathtype="Auto">
-    <assembly path="EnvManagerTest\bin\Debug\EnvManTest.dll" />
+    <assembly path="EnvManagerTest\bin\Debug\EnvManagerTest.dll" />
+    <assembly path="EnvManTest\bin\Debug\EnvManTest.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto" />
 </NUnitProject>
