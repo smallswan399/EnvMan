@@ -6,12 +6,15 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
-XX/XX/2009  Release 1.4
+XX/XX/2009  Release 1.4 RC1
 	* Added handling of extensible variables
 	* Implemented Automated Updates Manager notifications
+	* Added connection through Proxy server for Automated Updates Manager
+	* Added Settings screen to control Proxy settings and number of instances
 	* Added version display for Beta versions
 	* Fixed Variable Type Validation
 	* EnvMan allows only one running instance
+	* Minor Bug Fixes
 18/12/2007	Release 1.3
 	* BT1828033 Escape to Close 
         - Added Ctrl+X Shortcut on Main Form Exit File Menu
