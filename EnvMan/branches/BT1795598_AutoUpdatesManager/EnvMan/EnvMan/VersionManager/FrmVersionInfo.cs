@@ -31,6 +31,8 @@ namespace EnvMan.VersionManager
         public FrmVersionInfo ( )
         {
             InitializeComponent();
+
+            this.Text = "EnvMan - New version detected";
         }
 
         /// <summary>
