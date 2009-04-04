@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -33,22 +33,31 @@ namespace EnvManager
         File,
         Error
     }
+    /// <summary>
+    /// Validates Environment Variable Value
+    /// </summary>
     public class EnvVarValueValidator
     {
+        /// <summary>
+        /// Check the type of the Environment Variable.
+        /// </summary>
+        /// <param name="varValue">The Variable Value.</param>
+        /// <returns>Variable Type</returns>
         public EnvironmentValueType ValueType(string varValue)
         {
             EnvironmentValueType type = EnvironmentValueType.String;
+
             if (IsNumber(varValue))
             {
                 type = EnvironmentValueType.Number;
             }
-            else if ( varValue.Length >= 3 && varValue.Substring(0, 3).Contains( @":\" ) )
+            else if (varValue.Length >= 3 && varValue.Substring(0, 3).Contains(@":\"))
             {   // Make sure that path starts with "C:\" where "C" is a drive letter
-                if ( System.IO.File.Exists( varValue ) )
+                if (System.IO.File.Exists(varValue))
                 {
                     type = EnvironmentValueType.File;
                 }
-                else if ( System.IO.Directory.Exists( varValue ) )
+                else if (System.IO.Directory.Exists(varValue))
                 {
                     type = EnvironmentValueType.Folder;
                 }
@@ -94,9 +103,11 @@ namespace EnvManager
             bool result = true;
 
             string[] values = varValue.Split(DgvHandler.SEPARATOR);
+            string value = string.Empty;
 
-            foreach (string value in values)
+            foreach (string currentValue in values)
             {
+                value = Environment.ExpandEnvironmentVariables(currentValue);
                 if (ValueType(value) == EnvironmentValueType.Error )
                 {
                     result = false;

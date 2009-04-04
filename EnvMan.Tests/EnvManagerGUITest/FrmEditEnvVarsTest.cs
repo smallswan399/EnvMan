@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ namespace EnvManager.Tests.GUI
             btnTestDown.Click();
             btnTestSave.Click();
             Assert.AreEqual("Val1;Val2;Val4;Val5;Val3;Val6;Val7",
-                varManager.GetEnvVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine));
+                varManager.GetEnvironmentVariable(SYS_VAR_NAME, EnvironmentVariableTarget.Machine));
             varManager.SetEnvironmentVariable(SYS_VAR_NAME, VAR_VALUE, EnvironmentVariableTarget.Machine);
         }
         [Test]

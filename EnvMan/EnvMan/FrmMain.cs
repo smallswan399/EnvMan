@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -25,20 +25,106 @@ using System.Text;
 using System.Windows.Forms;
 
 using EnvManager;
+using EnvMan.VersionManager;
+using EnvMan.VersionManager.VersionInformation;
 
 namespace EnvMan
 {
     public partial class FrmMain : Form
     {
-        FrmAbout frmAbout = null;
+        private BackgroundWorker worker = null;
+        private VersionChecker versionChecker = null;
+        private VersionInfo versionInfo = null;
+        private bool showFrmVersionInfo = false;
+        private FrmAbout frmAbout = null;
+        private VersionInfo currentVersionInfo = new VersionInfo();
+
         #region Form Functions
         public FrmMain()
         {
             InitializeComponent();
+
             frmAbout = new FrmAbout();
-            this.Text += " v" + frmAbout.AssemblyFileVersion;
+            this.Text += " " + frmAbout.PackageVersion;
             this.MinimumSize = new Size(472, 504);
+
+            versionChecker = new VersionChecker( Properties.Resources.EnvManICO );
+            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler( versionChecker_NewVersionChecked );
+
+            worker = new BackgroundWorker();
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            
             LoadSettings();
+        }
+
+        /// <summary>
+        /// Handles the DoWork event of the worker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.ComponentModel.DoWorkEventArgs"/> instance containing the event data.</param>
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            showFrmVersionInfo = sender == null;
+            
+            currentVersionInfo.AssemblyVersion = frmAbout.AssemblyVersion;
+            try
+            {
+                versionChecker.InitProxySettings();
+                versionChecker.CheckVersion(currentVersionInfo);
+            }
+            catch (Exception ex)
+            {
+                tslblStatus.Text = ex.Message;
+
+                // show error to user in MessageBox
+                if (showFrmVersionInfo)
+                {
+                    MessageBox.Show(ex.Message, "Network Error", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+
+            if ( e != null )
+            {
+                e.Cancel = true; 
+            }
+        }
+
+        /// <summary>
+        /// Version Checker Handler for version checks.
+        /// </summary>
+        /// <param name="newVersion">if set to <c>true</c> [new version].</param>
+        /// <param name="versionInfo">The version info.</param>
+        void versionChecker_NewVersionChecked(bool newVersion, VersionInfo versionInfo)
+        {
+            string msg = string.Empty;
+
+            if ( newVersion )
+            {
+                msg = "New version " + VersionInfo.VersionFormatter(versionInfo.AssemblyVersion) + " released";
+                tsmiNewVersionInfo.Text = msg;
+                tsmiNewVersionInfo.Visible = true;
+                this.versionInfo = versionInfo;
+
+                if ( showFrmVersionInfo )
+                {
+                    FrmVersionInfo versionInfoForm = new FrmVersionInfo();
+                    versionInfoForm.Icon = Properties.Resources.EnvManICO;
+                    versionInfoForm.Message = msg;
+                    if ( versionInfoForm.ShowDialog() == DialogResult.OK )
+                    {
+                        TsmiClick( tsmiNewVersionInfo, null );
+                    }
+                }
+            }
+            else
+            {
+                msg = "You have the current version.";
+                if ( showFrmVersionInfo )
+                {
+                    MessageBox.Show( msg, "EnvMan", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                }
+            }
         }
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -46,40 +132,52 @@ namespace EnvMan
         }
         private void TsmiClick(object sender, EventArgs e)
         {
-            try
+            if (sender.Equals(tsmiExit))
             {
-                if (sender.Equals(tsmiExit))
-                {
-                    Application.Exit();
-                }
-                else if (sender.Equals(tsmiAbout))
-                {
-                    frmAbout.ShowDialog();
-                }
-                else if (sender.Equals(tsmiNewsWebsite))
-                {
-                    System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/");
-                }
-                else if (sender.Equals(tsmiDonate))
-                {
-                    System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/12/donate.html" );
-                }
-                else if (sender.Equals(tsmiPostFeedbackOrBugReport))
-                {
-                    System.Diagnostics.Process.Start(@"http://sourceforge.net/forum/?group_id=193626");
-                }
-                else if (sender.Equals(tsmiWebsite))
-                {
-                    System.Diagnostics.Process.Start(@"http://env-man.blogspot.com/2007/04/envman-user-guide.html");
-                }
-                else if (sender.Equals(tsmiCheckForUpdates))
-                {
-                    MessageBox.Show("Not Implemented!");
-                }
+                Application.Exit();
             }
-            catch (Exception ex)
+            else if (sender.Equals(tsmiAbout))
             {
-                MessageBox.Show(ex.Message, "EnvMan ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                frmAbout.ShowDialog();
+            }
+            else if (sender.Equals(tsmiForumWebsite))
+            {
+                System.Diagnostics.Process.Start( @"http://groups.google.com/group/envman" );
+            }
+            else if (sender.Equals(tsmiDonate))
+            {
+                System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/12/donate.html" );
+            }
+            else if (sender.Equals(tsmiPostFeedbackOrBugReport))
+            {
+                System.Diagnostics.Process.Start( @"http://sourceforge.net/tracker/?group_id=193626" );
+            }
+            else if (sender.Equals(tsmiWebsite))
+            {
+                System.Diagnostics.Process.Start( @"http://env-man.blogspot.com/2007/04/envman-user-guide.html" );
+            }
+            else if (sender.Equals(tsmiJoinForum))
+	        {
+                System.Diagnostics.Process.Start( "mailto:envman-subscribe@googlegroups.com" );
+	        }
+            else if ( sender.Equals( tsmiAskAQuestion ) )
+            {
+                System.Diagnostics.Process.Start( "mailto:envman-dev@googlegroups.com" );
+            }
+            else if (sender.Equals(tsmiCheckForUpdates))
+            {
+                Application.DoEvents();
+                worker_DoWork( null, null );
+            }
+            else if ( sender.Equals( tsmiNewVersionInfo ) )
+            {
+                System.Diagnostics.Process.Start( versionInfo.DownloadWebPageAddress );
+            }
+            else if (sender.Equals(TsmiSettings))
+            {
+                FrmOptions settingsForm = new FrmOptions();
+                settingsForm.ShowDialog();
+                settingsForm.Dispose();
             }
         }
         #endregion Form Functions
@@ -115,5 +213,11 @@ namespace EnvMan
             settings.Save();
         }
         #endregion Settings
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            worker.RunWorkerAsync();
+            Application.DoEvents();
+        }
     }
 }

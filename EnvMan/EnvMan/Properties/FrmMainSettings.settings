@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EnvMan.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EnvMan.Properties" GeneratedClassName="FrmMainSettings">
   <Profiles />
   <Settings>
     <Setting Name="FrmWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
@@ -10,6 +10,9 @@
     </Setting>
     <Setting Name="FrmSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">377, 448</Value>
+    </Setting>
+    <Setting Name="OnlyOneInstance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
