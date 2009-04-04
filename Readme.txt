@@ -6,7 +6,7 @@ It is designed to replace Control Panel System Environment Manager and easily ma
 
 HISTORY
 
-XX/XX/2009  Release 1.4 RC1
+04/04/2009  Release 1.4 RC1
 	* Added handling of extensible variables
 	* Implemented Automated Updates Manager notifications
 	* Added connection through Proxy server for Automated Updates Manager
