@@ -117,7 +117,8 @@ namespace EnvManager
             
             int result; 
             SendMessageTimeout((System.IntPtr)HWND_BROADCAST, WM_SETTINGCHANGE, 
-                0, "Environment", SMTO_BLOCK | SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 5000, out result);
+                0, "Environment", SMTO_BLOCK | SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 
+                5000, out result);
         }
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
