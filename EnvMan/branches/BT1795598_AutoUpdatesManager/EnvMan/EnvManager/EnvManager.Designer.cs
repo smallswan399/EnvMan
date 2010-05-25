@@ -49,10 +49,10 @@ namespace EnvManager
         private void InitializeComponent ( )
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.gbUserVariables = new System.Windows.Forms.GroupBox();
             this.btnDeleteUserVariable = new System.Windows.Forms.Button();
@@ -161,8 +161,8 @@ namespace EnvManager
             // 
             this.dgvUserVariables.AllowUserToAddRows = false;
             this.dgvUserVariables.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
-            this.dgvUserVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
+            this.dgvUserVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUserVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -176,11 +176,12 @@ namespace EnvManager
             this.dgvUserVariables.Name = "dgvUserVariables";
             this.dgvUserVariables.RowHeadersVisible = false;
             this.dgvUserVariables.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvUserVariables.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvUserVariables.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUserVariables.Size = new System.Drawing.Size(346, 142);
             this.dgvUserVariables.TabIndex = 4;
+            this.dgvUserVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             this.dgvUserVariables.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvCellMouseDoubleClick);
             // 
             // Variable
@@ -261,8 +262,8 @@ namespace EnvManager
             // 
             this.dgvSystemVariables.AllowUserToAddRows = false;
             this.dgvSystemVariables.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
-            this.dgvSystemVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
+            this.dgvSystemVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSystemVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -276,11 +277,12 @@ namespace EnvManager
             this.dgvSystemVariables.Name = "dgvSystemVariables";
             this.dgvSystemVariables.RowHeadersVisible = false;
             this.dgvSystemVariables.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvSystemVariables.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvSystemVariables.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSystemVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSystemVariables.Size = new System.Drawing.Size(346, 158);
             this.dgvSystemVariables.TabIndex = 4;
+            this.dgvSystemVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             this.dgvSystemVariables.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvCellMouseDoubleClick);
             // 
             // dataGridViewTextBoxColumn1

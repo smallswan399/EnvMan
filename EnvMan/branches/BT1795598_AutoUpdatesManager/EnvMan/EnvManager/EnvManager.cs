@@ -84,8 +84,11 @@ namespace EnvManager
             {   // if row was deleted this will set it to first one
                 // TODO: Implement this by searching for var name in the grid. 
                 // Catching Exceptions makes program slow
-                dgv.CurrentCell = dgv[ 0, 0 ];
-                dgv.FirstDisplayedScrollingRowIndex = 0;
+                if (dgv.Rows.Count != 0)
+                {
+                    dgv.CurrentCell = dgv[0, 0];
+                    dgv.FirstDisplayedScrollingRowIndex = 0; 
+                }
             }
         }
         #endregion Load Environment Variables
@@ -152,14 +155,16 @@ namespace EnvManager
         #region Edit Environment Variables
         FrmEditEnvVar frmEditVariable = null;
 
-        private void DeleteEnvVar ( DataGridView dgv, EnvironmentVariableTarget variableType )
+        private DialogResult DeleteEnvVar ( DataGridView dgv, EnvironmentVariableTarget variableType )
         {
+            DialogResult dialogRresult = DialogResult.No;
             string varName = DgvVariableName( dgv );
 
             if ( !String.IsNullOrEmpty( varName ) )
             {
-                if ( MessageBox.Show( "Are you sure to remove variable \"" + varName + "\"?",
-                        "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
+                dialogRresult = MessageBox.Show("Are you sure to remove variable \"" + varName + "\"?",
+                        "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question );
+                if (dialogRresult == DialogResult.Yes)
                 {
                     try
                     {
@@ -171,6 +176,8 @@ namespace EnvManager
                     }
                 }
             }
+
+            return dialogRresult;
         }
         private void EditEnvVar ( DataGridView dgv, EnvironmentVariableTarget variableType )
         {
@@ -207,5 +214,24 @@ namespace EnvManager
             LoadSettings();
         }
         #endregion Settings
+
+        private void DgvUserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            DialogResult dialogResult = DialogResult.No;
+
+            if (sender.Equals(dgvSystemVariables))
+            {
+                dialogResult = DeleteEnvVar(dgvSystemVariables, EnvironmentVariableTarget.Machine);
+            }
+            else if(sender.Equals(dgvUserVariables))
+            {
+                dialogResult = DeleteEnvVar(dgvUserVariables, EnvironmentVariableTarget.User);
+            }
+
+            if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

@@ -578,6 +578,10 @@ namespace EnvManager
 
                 AddCommand(command); 
             }
+            else
+            {
+                e.Cancel = true;
+            }
         }
         #endregion Data Grid View
 
