@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Windows Environment Variables Manager")]
 [assembly: AssemblyDescription("This program is distributed under the terms of the GNU General Public License v3 or later.")]
 [assembly: AssemblyCompany("Anastasia Corporation")]
-[assembly: AssemblyCopyright("Copyright © Vlad Setchin 2007")]
+[assembly: AssemblyCopyright("Copyright © Vlad Setchin 2008")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,6 +33,9 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.3")]
-[assembly: AssemblyFileVersion("1.3")]
-[assembly: AssemblyInformationalVersion("1.3")]
+// set here build version,
+// use x.x.x.* format for final releases
+// or x.x.x.n format for beta releases
+[assembly: AssemblyVersion("1.4.0.1")]
+[assembly: AssemblyFileVersion("1.4.0.1")]
+[assembly: AssemblyInformationalVersion("1.4.0.1")]

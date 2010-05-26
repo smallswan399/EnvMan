@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -48,144 +48,208 @@ namespace EnvMan
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.msMain = new System.Windows.Forms.MenuStrip();
-            this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiWebsite = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewsWebsite = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDonate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiPostFeedbackOrBugReport = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.TsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiProjectiWebsite = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiForum = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiJoinForum = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiAskAQuestion = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiForumWebsite = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiDonate = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiPostFeedbackOrBugReport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiLanguage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiLanguage = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiCheckForUpdates = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmiNewVersionInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain = new System.Windows.Forms.StatusStrip();
+            this.tslblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.envManager = new EnvManager.EnvManager();
             this.msMain.SuspendLayout();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMain
             // 
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiFile,
-            this.helpToolStripMenuItem});
+            this.TsmiFile,
+            this.TsmiHelp,
+            this.TsmiNewVersionInfo});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(369, 24);
             this.msMain.TabIndex = 2;
             this.msMain.Text = "menuStrip1";
             // 
-            // tsmiFile
+            // TsmiFile
             // 
-            this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiExit});
-            this.tsmiFile.Name = "tsmiFile";
-            this.tsmiFile.Size = new System.Drawing.Size(37, 20);
-            this.tsmiFile.Text = "&File";
+            this.TsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiSettings,
+            this.toolStripMenuItem3,
+            this.TsmiExit});
+            this.TsmiFile.Name = "TsmiFile";
+            this.TsmiFile.Size = new System.Drawing.Size(37, 20);
+            this.TsmiFile.Text = "&File";
             // 
-            // tsmiExit
+            // TsmiSettings
             // 
-            this.tsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
-            this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.tsmiExit.Size = new System.Drawing.Size(133, 22);
-            this.tsmiExit.Text = "E&xit";
-            this.tsmiExit.ToolTipText = "Close Application";
-            this.tsmiExit.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiSettings.Name = "TsmiSettings";
+            this.TsmiSettings.Size = new System.Drawing.Size(133, 22);
+            this.TsmiSettings.Text = "Settings...";
+            this.TsmiSettings.Click += new System.EventHandler(this.TsmiClick);
             // 
-            // helpToolStripMenuItem
+            // toolStripMenuItem3
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiWebsite,
-            this.tsmiNewsWebsite,
-            this.tsmiDonate,
-            this.tsmiPostFeedbackOrBugReport,
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(130, 6);
+            // 
+            // TsmiExit
+            // 
+            this.TsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
+            this.TsmiExit.Name = "TsmiExit";
+            this.TsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.TsmiExit.Size = new System.Drawing.Size(133, 22);
+            this.TsmiExit.Text = "E&xit";
+            this.TsmiExit.ToolTipText = "Close Application";
+            this.TsmiExit.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiHelp
+            // 
+            this.TsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiProjectiWebsite,
+            this.TsmiForum,
+            this.TsmiDonate,
+            this.TsmiPostFeedbackOrBugReport,
             this.toolStripMenuItem2,
-            this.tsmiLanguage,
-            this.tsmiCheckForUpdates,
+            this.TsmiLanguage,
+            this.TsmiCheckForUpdates,
             this.toolStripMenuItem1,
-            this.tsmiAbout});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiAbout});
+            this.TsmiHelp.Name = "TsmiHelp";
+            this.TsmiHelp.Size = new System.Drawing.Size(44, 20);
+            this.TsmiHelp.Text = "&Help";
+            this.TsmiHelp.Click += new System.EventHandler(this.TsmiClick);
             // 
-            // tsmiWebsite
+            // TsmiProjectiWebsite
             // 
-            this.tsmiWebsite.Image = global::EnvMan.Properties.Resources.Website;
-            this.tsmiWebsite.Name = "tsmiWebsite";
-            this.tsmiWebsite.Size = new System.Drawing.Size(233, 22);
-            this.tsmiWebsite.Text = "EnvMan &Project Home Page...";
-            this.tsmiWebsite.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiProjectiWebsite.Image = global::EnvMan.Properties.Resources.Website;
+            this.TsmiProjectiWebsite.Name = "TsmiProjectiWebsite";
+            this.TsmiProjectiWebsite.Size = new System.Drawing.Size(233, 22);
+            this.TsmiProjectiWebsite.Text = "EnvMan &Project Website...";
+            this.TsmiProjectiWebsite.Click += new System.EventHandler(this.TsmiClick);
             // 
-            // tsmiNewsWebsite
+            // TsmiForum
             // 
-            this.tsmiNewsWebsite.Image = global::EnvMan.Properties.Resources.News;
-            this.tsmiNewsWebsite.Name = "tsmiNewsWebsite";
-            this.tsmiNewsWebsite.Size = new System.Drawing.Size(233, 22);
-            this.tsmiNewsWebsite.Text = "EnvMan &News Website...";
-            this.tsmiNewsWebsite.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiForum.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsmiJoinForum,
+            this.TsmiAskAQuestion,
+            this.TsmiForumWebsite});
+            this.TsmiForum.Image = global::EnvMan.Properties.Resources.News;
+            this.TsmiForum.Name = "TsmiForum";
+            this.TsmiForum.Size = new System.Drawing.Size(233, 22);
+            this.TsmiForum.Text = "EnvMan &Forum...";
             // 
-            // tsmiDonate
+            // TsmiJoinForum
             // 
-            this.tsmiDonate.Image = global::EnvMan.Properties.Resources.Donate;
-            this.tsmiDonate.Name = "tsmiDonate";
-            this.tsmiDonate.Size = new System.Drawing.Size(233, 22);
-            this.tsmiDonate.Text = "&Donate...";
-            this.tsmiDonate.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiJoinForum.Image = global::EnvMan.Properties.Resources.Members;
+            this.TsmiJoinForum.Name = "TsmiJoinForum";
+            this.TsmiJoinForum.Size = new System.Drawing.Size(163, 22);
+            this.TsmiJoinForum.Text = "&Join Forum...";
+            this.TsmiJoinForum.Click += new System.EventHandler(this.TsmiClick);
             // 
-            // tsmiPostFeedbackOrBugReport
+            // TsmiAskAQuestion
             // 
-            this.tsmiPostFeedbackOrBugReport.Image = global::EnvMan.Properties.Resources.SendFeedback;
-            this.tsmiPostFeedbackOrBugReport.Name = "tsmiPostFeedbackOrBugReport";
-            this.tsmiPostFeedbackOrBugReport.Size = new System.Drawing.Size(233, 22);
-            this.tsmiPostFeedbackOrBugReport.Text = "Post feedback or bug report ...";
-            this.tsmiPostFeedbackOrBugReport.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiAskAQuestion.Image = global::EnvMan.Properties.Resources.Mail;
+            this.TsmiAskAQuestion.Name = "TsmiAskAQuestion";
+            this.TsmiAskAQuestion.Size = new System.Drawing.Size(163, 22);
+            this.TsmiAskAQuestion.Text = "Ask a &Question...";
+            this.TsmiAskAQuestion.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiForumWebsite
+            // 
+            this.TsmiForumWebsite.Image = global::EnvMan.Properties.Resources.Forum;
+            this.TsmiForumWebsite.Name = "TsmiForumWebsite";
+            this.TsmiForumWebsite.Size = new System.Drawing.Size(163, 22);
+            this.TsmiForumWebsite.Text = "Forum Website...";
+            this.TsmiForumWebsite.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiDonate
+            // 
+            this.TsmiDonate.Image = global::EnvMan.Properties.Resources.SupportProject;
+            this.TsmiDonate.Name = "TsmiDonate";
+            this.TsmiDonate.Size = new System.Drawing.Size(233, 22);
+            this.TsmiDonate.Text = "&Support this Project...";
+            this.TsmiDonate.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiPostFeedbackOrBugReport
+            // 
+            this.TsmiPostFeedbackOrBugReport.Image = global::EnvMan.Properties.Resources.SendFeedback;
+            this.TsmiPostFeedbackOrBugReport.Name = "TsmiPostFeedbackOrBugReport";
+            this.TsmiPostFeedbackOrBugReport.Size = new System.Drawing.Size(233, 22);
+            this.TsmiPostFeedbackOrBugReport.Text = "Post feedback or bug report ...";
+            this.TsmiPostFeedbackOrBugReport.Click += new System.EventHandler(this.TsmiClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(230, 6);
             // 
-            // tsmiLanguage
+            // TsmiLanguage
             // 
-            this.tsmiLanguage.Image = global::EnvMan.Properties.Resources.Language;
-            this.tsmiLanguage.Name = "tsmiLanguage";
-            this.tsmiLanguage.Size = new System.Drawing.Size(233, 22);
-            this.tsmiLanguage.Text = "&Language";
-            this.tsmiLanguage.Visible = false;
+            this.TsmiLanguage.Image = global::EnvMan.Properties.Resources.Language;
+            this.TsmiLanguage.Name = "TsmiLanguage";
+            this.TsmiLanguage.Size = new System.Drawing.Size(233, 22);
+            this.TsmiLanguage.Text = "&Language";
+            this.TsmiLanguage.Visible = false;
             // 
-            // tsmiCheckForUpdates
+            // TsmiCheckForUpdates
             // 
-            this.tsmiCheckForUpdates.Image = global::EnvMan.Properties.Resources.Updates;
-            this.tsmiCheckForUpdates.Name = "tsmiCheckForUpdates";
-            this.tsmiCheckForUpdates.Size = new System.Drawing.Size(233, 22);
-            this.tsmiCheckForUpdates.Text = "Check for &Updates...";
-            this.tsmiCheckForUpdates.Visible = false;
-            this.tsmiCheckForUpdates.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiCheckForUpdates.Image = global::EnvMan.Properties.Resources.Updates;
+            this.TsmiCheckForUpdates.Name = "TsmiCheckForUpdates";
+            this.TsmiCheckForUpdates.Size = new System.Drawing.Size(233, 22);
+            this.TsmiCheckForUpdates.Text = "Check for &Updates...";
+            this.TsmiCheckForUpdates.Click += new System.EventHandler(this.TsmiClick);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(230, 6);
-            this.toolStripMenuItem1.Visible = false;
             // 
-            // tsmiAbout
+            // TsmiAbout
             // 
-            this.tsmiAbout.Image = global::EnvMan.Properties.Resources.EnvManAbout;
-            this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(233, 22);
-            this.tsmiAbout.Text = "&About";
-            this.tsmiAbout.Click += new System.EventHandler(this.TsmiClick);
+            this.TsmiAbout.Image = global::EnvMan.Properties.Resources.EnvManAbout;
+            this.TsmiAbout.Name = "TsmiAbout";
+            this.TsmiAbout.Size = new System.Drawing.Size(233, 22);
+            this.TsmiAbout.Text = "&About";
+            this.TsmiAbout.Click += new System.EventHandler(this.TsmiClick);
+            // 
+            // TsmiNewVersionInfo
+            // 
+            this.TsmiNewVersionInfo.Image = global::EnvMan.Properties.Resources.Updates;
+            this.TsmiNewVersionInfo.Name = "TsmiNewVersionInfo";
+            this.TsmiNewVersionInfo.Size = new System.Drawing.Size(101, 20);
+            this.TsmiNewVersionInfo.Text = " Version Info";
+            this.TsmiNewVersionInfo.Visible = false;
+            this.TsmiNewVersionInfo.Click += new System.EventHandler(this.TsmiClick);
             // 
             // tsMain
             // 
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslblStatus});
             this.tsMain.Location = new System.Drawing.Point(0, 392);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(369, 22);
             this.tsMain.TabIndex = 3;
             this.tsMain.Text = "statusStrip1";
+            // 
+            // tslblStatus
+            // 
+            this.tslblStatus.Name = "tslblStatus";
+            this.tslblStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // envManager
             // 
@@ -212,9 +276,12 @@ namespace EnvMan
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Environment Variables";
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
+            this.tsMain.ResumeLayout(false);
+            this.tsMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,19 +291,26 @@ namespace EnvMan
 
         private EnvManager.EnvManager envManager;
         private System.Windows.Forms.MenuStrip msMain;
-        private System.Windows.Forms.ToolStripMenuItem tsmiFile;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExit;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStripMenuItem TsmiFile;
+        private System.Windows.Forms.ToolStripMenuItem TsmiExit;
+        private System.Windows.Forms.ToolStripMenuItem TsmiHelp;
+        private System.Windows.Forms.ToolStripMenuItem TsmiAbout;
         private System.Windows.Forms.StatusStrip tsMain;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewsWebsite;
+        private System.Windows.Forms.ToolStripMenuItem TsmiForum;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLanguage;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCheckForUpdates;
+        private System.Windows.Forms.ToolStripMenuItem TsmiLanguage;
+        private System.Windows.Forms.ToolStripMenuItem TsmiCheckForUpdates;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem tsmiPostFeedbackOrBugReport;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDonate;
-        private System.Windows.Forms.ToolStripMenuItem tsmiWebsite;
+        private System.Windows.Forms.ToolStripMenuItem TsmiPostFeedbackOrBugReport;
+        private System.Windows.Forms.ToolStripMenuItem TsmiDonate;
+        private System.Windows.Forms.ToolStripMenuItem TsmiProjectiWebsite;
+        private System.Windows.Forms.ToolStripMenuItem TsmiJoinForum;
+        private System.Windows.Forms.ToolStripMenuItem TsmiAskAQuestion;
+        private System.Windows.Forms.ToolStripMenuItem TsmiForumWebsite;
+        private System.Windows.Forms.ToolStripMenuItem TsmiNewVersionInfo;
+        private System.Windows.Forms.ToolStripStatusLabel tslblStatus;
+        private System.Windows.Forms.ToolStripMenuItem TsmiSettings;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
     }
 }
 

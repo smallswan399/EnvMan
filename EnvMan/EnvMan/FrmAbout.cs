@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using EnvMan.VersionManager.VersionInformation;
 
 namespace EnvManager
 {
@@ -38,7 +39,7 @@ namespace EnvManager
             this.Text = String.Format( "About {0}", AssemblyTitle );
             this.lblProductName.Text = AssemblyProduct;
             this.lblVersion.Text = String.Format("Version {0} (Build {1})", 
-                AssemblyFileVersion, AssemblyVersion);
+                this.PackageVersion, AssemblyVersion);
             this.lblCopyright.Text = AssemblyCopyright;
             this.txtDescription.Text = AssemblyDescription;
         }
@@ -64,11 +65,20 @@ namespace EnvManager
                 return System.IO.Path.GetFileNameWithoutExtension( Assembly.GetExecutingAssembly().CodeBase );
             }
         }
-        public string AssemblyVersion
+        public string PackageVersion
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+                
+                return VersionInfo.VersionFormatter(version);
+            }
+        }
+        public Version AssemblyVersion
+        {
+            get
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version;
             }
         }
 
