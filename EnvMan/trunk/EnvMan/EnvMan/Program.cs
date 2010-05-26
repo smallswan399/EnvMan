@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using System.Threading;
 namespace EnvMan
 {
     static class Program
@@ -28,11 +28,44 @@ namespace EnvMan
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main ( )
+        static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault( false );
-            Application.Run( new FrmMain() );
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            using (SingleProgramInstance spi = new SingleProgramInstance())
+            {
+                if (Properties.FrmMainSettings.Default.OnlyOneInstance)
+                {
+                    if (spi.IsSingleInstance)
+                    {
+                        Application.Run(new FrmMain());
+                    }
+                    else
+                    {
+                        spi.RaiseOtherProcess();
+                    }
+                }
+                else
+                {   // Multiple Instances of the Application allowed
+                    Application.Run(new FrmMain());
+                }
+            }
+
+            //bool isOneInstance = false;
+
+            //using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
+            //{
+            //    if (isOneInstance)
+            //    {
+            //        Application.Run(new FrmMain());
+            //        mutex.ReleaseMutex();
+            //    }
+            //    else
+            //    {
+            //        // TODO: Activate window of the running EnvMan program
+            //    }
+            //}
         }
     }
 }

@@ -1,6 +1,6 @@
 /*
    EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2007 Vlad Setchin <v_setchin@yahoo.com.au>
+   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ namespace EnvManager.Handlers
         public DgvHandler(ref DataGridView dgv)
         {
             this.dgv = dgv;
+            
         }
         public int CurrentRowIndex
         {
@@ -126,10 +127,11 @@ namespace EnvManager.Handlers
         /// <param name="rowIndex">Index of the row.</param>
         public void SetRowIcon ( int rowIndex, string varValue )
         {
+            string value = Environment.ExpandEnvironmentVariables(varValue);
             string toolTipMsg = "";
-            dgv.Rows[ rowIndex ].Cells[ 0 ].Value
-                = IconValueType( varValue, ref toolTipMsg );
-            dgv.Rows[ rowIndex ].Cells[ 0 ].ToolTipText = toolTipMsg;
+            DataGridViewCell cell = dgv.Rows[ rowIndex ].Cells[ 0 ];
+            cell.Value = IconValueType(value, ref toolTipMsg);
+            cell.ToolTipText = toolTipMsg;
         }
         /// <summary>
         /// Sets the string value to row.
@@ -138,7 +140,21 @@ namespace EnvManager.Handlers
         /// <param name="varValue">The variable value.</param>
         public void SetRowValue ( int rowIndex, string varValue )
         {
-            dgv.Rows[ rowIndex ].Cells[ 1 ].Value = varValue;
+            DataGridViewCell cell = dgv.Rows[ rowIndex ].Cells[ 1 ];
+            cell.Value = varValue;         
+        }
+        /// <summary>
+        /// Sets the cell tool tip.
+        /// </summary>
+        /// <param name="rowIndex">Index of the row.</param>
+        /// <param name="varValue">The variable value.</param>
+        public void SetCellToolTip(int rowIndex, string varValue)
+        {
+            if (varValue.Contains("%"))
+            {
+                DataGridViewCell cell = dgv.Rows[rowIndex].Cells[1];
+                cell.ToolTipText = Environment.ExpandEnvironmentVariables(varValue);
+            }
         }
         /// <summary>
         /// Adds a new row to grid.
@@ -149,7 +165,8 @@ namespace EnvManager.Handlers
             int rowIndex = dgv.Rows.Add();
 
             SetRowValue( rowIndex, varValue );
-            SetRowIcon( rowIndex, varValue );
+            SetRowIcon( rowIndex, varValue);
+            SetCellToolTip(rowIndex, varValue);   
 
             return rowIndex;
         }
