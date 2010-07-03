@@ -113,6 +113,7 @@
     <Compile Include="VersionManager\FrmVersionInfo.Designer.cs">
       <DependentUpon>FrmVersionInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="VersionManager\NewVersionEventArgs.cs" />
     <Compile Include="VersionManager\VersionChecker.cs" />
     <Compile Include="VersionManager\VersionInformation\VersionInfo.cs" />
     <Compile Include="VersionManager\VersionInformation\VersionInfoManager.cs" />
