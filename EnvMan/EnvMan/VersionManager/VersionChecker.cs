@@ -38,7 +38,8 @@ namespace EnvMan.VersionManager
         
         private VersionInfo versionInfo = null;
 
-        public delegate void NewVersionCheckedHandler(bool newVersion, VersionInfo versionInfo);
+        public delegate void NewVersionCheckedHandler(object sender, NewVersionEventArgs e);
+        //public delegate void NewVersionCheckedHandler(bool newVersion, VersionInfo versionInfo);
         public event NewVersionCheckedHandler VersionChecked;
 
         private Properties.ProxySettings proxySettings = Properties.ProxySettings.Default;
@@ -162,7 +163,10 @@ namespace EnvMan.VersionManager
 
                 if ( VersionChecked != null )
                 {
-                    VersionChecked( newVersion, versionInfo );
+                    NewVersionEventArgs e = new NewVersionEventArgs();
+                    e.NewVersion = newVersion;
+                    e.VersionInformation = versionInfo;
+                    VersionChecked( this, e );
                 }
             }
 

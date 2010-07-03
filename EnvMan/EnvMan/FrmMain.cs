@@ -49,8 +49,8 @@ namespace EnvMan
             this.MinimumSize = new Size(472, 504);
 
             versionChecker = new VersionChecker( Properties.Resources.EnvManICO );
-            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler( versionChecker_NewVersionChecked );
-
+            //versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler( versionChecker_NewVersionChecked );
+            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler(versionChecker_NewVersionChecked);
             worker = new BackgroundWorker();
             worker.DoWork += new DoWorkEventHandler(worker_DoWork);
             
@@ -95,16 +95,16 @@ namespace EnvMan
         /// </summary>
         /// <param name="newVersion">if set to <c>true</c> [new version].</param>
         /// <param name="versionInfo">The version info.</param>
-        void versionChecker_NewVersionChecked(bool newVersion, VersionInfo versionInfo)
+        void versionChecker_NewVersionChecked(object sender, NewVersionEventArgs e)
         {
             string msg = string.Empty;
 
-            if ( newVersion )
+            if ( e.NewVersion )
             {
                 msg = "New version " + VersionInfo.VersionFormatter(versionInfo.AssemblyVersion) + " released";
                 TsmiNewVersionInfo.Text = msg;
                 TsmiNewVersionInfo.Visible = true;
-                this.versionInfo = versionInfo;
+                this.versionInfo = e.VersionInformation;
 
                 if ( showFrmVersionInfo )
                 {
