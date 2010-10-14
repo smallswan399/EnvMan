@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EnvMan</RootNamespace>
-    <AssemblyName>EnvMan</AssemblyName>
+    <AssemblyName>Envman</AssemblyName>
     <StartupObject>EnvMan.Program</StartupObject>
     <ApplicationIcon>EnvManICO.ico</ApplicationIcon>
     <FileUpgradeFlags>
