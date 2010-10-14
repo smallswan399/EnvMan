@@ -37,7 +37,7 @@ namespace EnvMan.Tests.VersionManager
             versionChecker = new VersionChecker(Properties.Resources.ProgramICO);
         }
 
-        void versionChecker_VersionChecked(bool newVersion, VersionInfo versionInfo)
+        void versionChecker_VersionChecked(object sender, NewVersionEventArgs e)
         {
             
         }
