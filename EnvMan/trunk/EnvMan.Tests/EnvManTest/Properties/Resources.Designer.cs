@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnvMan.Tests.Properties {
+namespace Envman.Tests.Properties {
     using System;
     
     

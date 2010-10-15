@@ -25,10 +25,10 @@ using System.Text;
 using System.Windows.Forms;
 
 using EnvManager;
-using EnvMan.VersionManager;
-using EnvMan.VersionManager.VersionInformation;
+using Envman.VersionManager;
+using Envman.VersionManager.VersionInformation;
 
-namespace EnvMan
+namespace Envman
 {
     public partial class FrmMain : Form
     {
@@ -130,6 +130,11 @@ namespace EnvMan
         {
             SaveSettings();
         }
+        /// <summary>
+        /// Tool Strip Menu Item click Handler.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TsmiClick(object sender, EventArgs e)
         {
             try
@@ -194,6 +199,7 @@ namespace EnvMan
                     settingsForm.Dispose();
                 }
             }
+            // TODO: Review what Exceptions could be reiased in this method
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "EnvMan ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);

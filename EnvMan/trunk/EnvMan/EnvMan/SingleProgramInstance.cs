@@ -8,7 +8,7 @@ using System.Reflection;
 // This code is borrowed from Code Project post by Michael Potter
 // http://www.codeproject.com/KB/cs/cssingprocess.aspx
 //
-namespace EnvMan
+namespace Envman
 {
 	//SingleProgamInstance uses a mutex synchronization object
 	// to ensure that only one copy of process is running at

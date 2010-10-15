@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace EnvMan.VersionManager.VersionInformation
+namespace Envman.VersionManager.VersionInformation
 {
     [Serializable]
     public class VersionInfo

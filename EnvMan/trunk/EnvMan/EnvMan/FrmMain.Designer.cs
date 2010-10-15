@@ -16,7 +16,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace EnvMan
+namespace Envman
 {
     partial class FrmMain
     {
@@ -109,7 +109,7 @@ namespace EnvMan
             // 
             // TsmiExit
             // 
-            this.TsmiExit.Image = global::EnvMan.Properties.Resources.ShutDown;
+            this.TsmiExit.Image = global::Envman.Properties.Resources.ShutDown;
             this.TsmiExit.Name = "TsmiExit";
             this.TsmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.TsmiExit.Size = new System.Drawing.Size(133, 22);
@@ -136,7 +136,7 @@ namespace EnvMan
             // 
             // TsmiProjectiWebsite
             // 
-            this.TsmiProjectiWebsite.Image = global::EnvMan.Properties.Resources.Website;
+            this.TsmiProjectiWebsite.Image = global::Envman.Properties.Resources.Website;
             this.TsmiProjectiWebsite.Name = "TsmiProjectiWebsite";
             this.TsmiProjectiWebsite.Size = new System.Drawing.Size(233, 22);
             this.TsmiProjectiWebsite.Text = "EnvMan &Project Website...";
@@ -148,14 +148,14 @@ namespace EnvMan
             this.TsmiJoinForum,
             this.TsmiAskAQuestion,
             this.TsmiForumWebsite});
-            this.TsmiForum.Image = global::EnvMan.Properties.Resources.News;
+            this.TsmiForum.Image = global::Envman.Properties.Resources.News;
             this.TsmiForum.Name = "TsmiForum";
             this.TsmiForum.Size = new System.Drawing.Size(233, 22);
             this.TsmiForum.Text = "EnvMan &Forum...";
             // 
             // TsmiJoinForum
             // 
-            this.TsmiJoinForum.Image = global::EnvMan.Properties.Resources.Members;
+            this.TsmiJoinForum.Image = global::Envman.Properties.Resources.Members;
             this.TsmiJoinForum.Name = "TsmiJoinForum";
             this.TsmiJoinForum.Size = new System.Drawing.Size(163, 22);
             this.TsmiJoinForum.Text = "&Join Forum...";
@@ -163,7 +163,7 @@ namespace EnvMan
             // 
             // TsmiAskAQuestion
             // 
-            this.TsmiAskAQuestion.Image = global::EnvMan.Properties.Resources.Mail;
+            this.TsmiAskAQuestion.Image = global::Envman.Properties.Resources.Mail;
             this.TsmiAskAQuestion.Name = "TsmiAskAQuestion";
             this.TsmiAskAQuestion.Size = new System.Drawing.Size(163, 22);
             this.TsmiAskAQuestion.Text = "Ask a &Question...";
@@ -171,7 +171,7 @@ namespace EnvMan
             // 
             // TsmiForumWebsite
             // 
-            this.TsmiForumWebsite.Image = global::EnvMan.Properties.Resources.Forum;
+            this.TsmiForumWebsite.Image = global::Envman.Properties.Resources.Forum;
             this.TsmiForumWebsite.Name = "TsmiForumWebsite";
             this.TsmiForumWebsite.Size = new System.Drawing.Size(163, 22);
             this.TsmiForumWebsite.Text = "Forum Website...";
@@ -179,7 +179,7 @@ namespace EnvMan
             // 
             // TsmiDonate
             // 
-            this.TsmiDonate.Image = global::EnvMan.Properties.Resources.SupportProject;
+            this.TsmiDonate.Image = global::Envman.Properties.Resources.SupportProject;
             this.TsmiDonate.Name = "TsmiDonate";
             this.TsmiDonate.Size = new System.Drawing.Size(233, 22);
             this.TsmiDonate.Text = "&Support this Project...";
@@ -187,7 +187,7 @@ namespace EnvMan
             // 
             // TsmiPostFeedbackOrBugReport
             // 
-            this.TsmiPostFeedbackOrBugReport.Image = global::EnvMan.Properties.Resources.SendFeedback;
+            this.TsmiPostFeedbackOrBugReport.Image = global::Envman.Properties.Resources.SendFeedback;
             this.TsmiPostFeedbackOrBugReport.Name = "TsmiPostFeedbackOrBugReport";
             this.TsmiPostFeedbackOrBugReport.Size = new System.Drawing.Size(233, 22);
             this.TsmiPostFeedbackOrBugReport.Text = "Post feedback or bug report ...";
@@ -200,7 +200,7 @@ namespace EnvMan
             // 
             // TsmiLanguage
             // 
-            this.TsmiLanguage.Image = global::EnvMan.Properties.Resources.Language;
+            this.TsmiLanguage.Image = global::Envman.Properties.Resources.Language;
             this.TsmiLanguage.Name = "TsmiLanguage";
             this.TsmiLanguage.Size = new System.Drawing.Size(233, 22);
             this.TsmiLanguage.Text = "&Language";
@@ -208,7 +208,7 @@ namespace EnvMan
             // 
             // TsmiCheckForUpdates
             // 
-            this.TsmiCheckForUpdates.Image = global::EnvMan.Properties.Resources.Updates;
+            this.TsmiCheckForUpdates.Image = global::Envman.Properties.Resources.Updates;
             this.TsmiCheckForUpdates.Name = "TsmiCheckForUpdates";
             this.TsmiCheckForUpdates.Size = new System.Drawing.Size(233, 22);
             this.TsmiCheckForUpdates.Text = "Check for &Updates...";
@@ -221,7 +221,7 @@ namespace EnvMan
             // 
             // TsmiAbout
             // 
-            this.TsmiAbout.Image = global::EnvMan.Properties.Resources.EnvManAbout;
+            this.TsmiAbout.Image = global::Envman.Properties.Resources.EnvManAbout;
             this.TsmiAbout.Name = "TsmiAbout";
             this.TsmiAbout.Size = new System.Drawing.Size(233, 22);
             this.TsmiAbout.Text = "&About";
@@ -229,7 +229,7 @@ namespace EnvMan
             // 
             // TsmiNewVersionInfo
             // 
-            this.TsmiNewVersionInfo.Image = global::EnvMan.Properties.Resources.Updates;
+            this.TsmiNewVersionInfo.Image = global::Envman.Properties.Resources.Updates;
             this.TsmiNewVersionInfo.Name = "TsmiNewVersionInfo";
             this.TsmiNewVersionInfo.Size = new System.Drawing.Size(101, 20);
             this.TsmiNewVersionInfo.Text = " Version Info";

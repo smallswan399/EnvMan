@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
-namespace EnvMan
+namespace Envman
 {
     static class Program
     {

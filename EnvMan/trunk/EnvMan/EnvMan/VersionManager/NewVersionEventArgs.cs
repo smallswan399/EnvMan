@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using EnvMan.VersionManager.VersionInformation;
+using Envman.VersionManager.VersionInformation;
 
-namespace EnvMan.VersionManager
+namespace Envman.VersionManager
 {
     /// <summary>
     /// 

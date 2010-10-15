@@ -22,7 +22,7 @@ using System.Text;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace EnvMan.VersionManager.VersionInformation
+namespace Envman.VersionManager.VersionInformation
 {
     /// <summary>
     /// Class for Saving and Loading Version Info from File

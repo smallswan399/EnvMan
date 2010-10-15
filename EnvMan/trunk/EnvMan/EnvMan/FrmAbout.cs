@@ -22,7 +22,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
-using EnvMan.VersionManager.VersionInformation;
+using Envman.VersionManager.VersionInformation;
 
 namespace EnvManager
 {

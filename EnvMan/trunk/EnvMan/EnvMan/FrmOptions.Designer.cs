@@ -1,4 +1,4 @@
-﻿namespace EnvMan
+﻿namespace Envman
 {
     partial class FrmOptions
     {
