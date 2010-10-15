@@ -23,9 +23,9 @@ using System.Windows.Forms;
 using System.IO;
 
 using NUnit.Framework;
-using EnvMan.VersionManager.VersionInformation;
+using Envman.VersionManager.VersionInformation;
 
-namespace EnvMan.Tests.VersionManager.VersionInformation
+namespace Envman.Tests.VersionManager.VersionInformation
 {
     [TestFixture]
     public class VersionInfoManagerTest

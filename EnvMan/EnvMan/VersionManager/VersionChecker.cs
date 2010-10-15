@@ -24,11 +24,11 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
 
-using EnvMan.VersionManager;
-using EnvMan.VersionManager.VersionInformation;
-using EnvMan.Properties;
+using Envman.VersionManager;
+using Envman.VersionManager.VersionInformation;
+using Envman.Properties;
 
-namespace EnvMan.VersionManager
+namespace Envman.VersionManager
 {
     public class VersionChecker
     {

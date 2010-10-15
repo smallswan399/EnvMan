@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EnvMan.Properties {
+namespace Envman.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

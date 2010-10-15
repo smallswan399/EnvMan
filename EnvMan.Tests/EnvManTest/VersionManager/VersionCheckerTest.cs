@@ -20,11 +20,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using EnvMan.VersionManager;
-using EnvMan.VersionManager.VersionInformation;
+using Envman.VersionManager;
+using Envman.VersionManager.VersionInformation;
 using NUnit.Framework;
 
-namespace EnvMan.Tests.VersionManager
+namespace Envman.Tests.VersionManager
 {
     [TestFixture]
     public class VersionCheckerTest

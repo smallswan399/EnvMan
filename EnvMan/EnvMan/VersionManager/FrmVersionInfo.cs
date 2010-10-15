@@ -24,7 +24,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EnvMan.VersionManager
+namespace Envman.VersionManager
 {
     public partial class FrmVersionInfo : Form
     {

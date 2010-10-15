@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using EnvMan.Properties;
+using Envman.Properties;
 using System.Configuration;
 
-namespace EnvMan
+namespace Envman
 {
     public partial class FrmOptions : Form
     {

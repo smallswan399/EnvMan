@@ -43,59 +43,17 @@
  </Rules>
  <FxCopReport Version="10.0">
   <Namespaces>
-   <Namespace Name="EnvMan">
-    <Messages>
-     <Message Id="EnvMan" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:42:27Z">
-      <Issue Name="NamespaceShouldBeDiscreteTerm">
-       <Item>EnvMan</Item>
-       <Item>EnvMan</Item>
-       <Item>Envman</Item>
-      </Issue>
-     </Message>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvMan'.</Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="EnvMan.VersionManager">
-    <Messages>
-     <Message Id="EnvMan" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:42:27Z">
-      <Issue Name="NamespaceShouldBeDiscreteTerm">
-       <Item>EnvMan</Item>
-       <Item>EnvMan.VersionManager</Item>
-       <Item>Envman</Item>
-      </Issue>
-     </Message>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvMan.VersionManager'.</Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="EnvMan.VersionManager.VersionInformation">
-    <Messages>
-     <Message Id="EnvMan" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:42:27Z">
-      <Issue Name="NamespaceShouldBeDiscreteTerm">
-       <Item>EnvMan</Item>
-       <Item>EnvMan.VersionManager.VersionInformation</Item>
-       <Item>Envman</Item>
-      </Issue>
-     </Message>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvMan.VersionManager.VersionInformation'.</Issue>
-     </Message>
-    </Messages>
-   </Namespace>
    <Namespace Name="EnvManager">
     <Messages>
      <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvManager'.</Issue>
+      <Issue>Correct the spelling of 'Env' in namespace name 'EnvManager'.</Issue>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="EnvManager.Handlers">
     <Messages>
      <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvManager.Handlers'.</Issue>
+      <Issue>Correct the spelling of 'Env' in namespace name 'EnvManager.Handlers'.</Issue>
      </Message>
     </Messages>
    </Namespace>
@@ -107,7 +65,7 @@
       </Issue>
      </Message>
      <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-      <Issue Name="Namespace">Correct the spelling of 'Env' in namespace name 'EnvManager.ImportExport'.</Issue>
+      <Issue>Correct the spelling of 'Env' in namespace name 'EnvManager.ImportExport'.</Issue>
      </Message>
     </Messages>
    </Namespace>
@@ -133,53 +91,58 @@
         </Issue>
        </Message>
        <Message Id="EnvMan" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Absent" Created="2010-10-14 22:42:27Z">
-        <Issue Name="AssemblyShouldBeDiscreteTerm">The compound word 'EnvMan' in assembly name 'EnvMan.exe' exists as a discrete term. If your usage is intended to be single word, case it as 'Envman'.</Issue>
+        <Issue>The compound word 'EnvMan' in assembly name 'EnvMan.exe' exists as a discrete term. If your usage is intended to be single word, case it as 'Envman'.</Issue>
        </Message>
        <Message Id="envman" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Absent" Created="2010-10-14 22:44:08Z">
-        <Issue Name="Assembly">Correct the casing of 'envman' in assembly name 'EnvMan.exe' by changing it to 'Envman'.</Issue>
+        <Issue>Correct the casing of 'envman' in assembly name 'EnvMan.exe' by changing it to 'Envman'.</Issue>
        </Message>
        <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-        <Issue Name="Assembly">Correct the spelling of 'Env' in assembly name 'EnvMan.exe'.</Issue>
+        <Issue>Correct the spelling of 'Env' in assembly name 'EnvMan.exe'.</Issue>
        </Message>
       </Messages>
       <Namespaces>
-       <Namespace Name="EnvMan">
+       <Namespace Name="Envman">
         <Types>
          <Type Name="FrmMain">
           <Members>
            <Member Name="#TsmiClick(System.Object,System.EventArgs)">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.TsmiClick(object, EventArgs)'</Item>
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.TsmiClick(object, EventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
-           <Member Name="#versionChecker_NewVersionChecked(System.Object,EnvMan.VersionManager.NewVersionEventArgs)">
+           <Member Name="#versionChecker_NewVersionChecked(System.Object,Envman.VersionManager.NewVersionEventArgs)">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.versionChecker_NewVersionChecked(object, NewVersionEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="0" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="#worker_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.worker_DoWork(object, DoWorkEventArgs)'</Item>
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.worker_DoWork(object, DoWorkEventArgs)'</Item>
               </Issue>
@@ -192,7 +155,7 @@
           <Members>
            <Member Name="#TxtValidating(System.Object,System.ComponentModel.CancelEventArgs)">
             <Messages>
-             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2010-10-15 01:59:36Z">
               <Issue Name="IsNullOrEmpty">
                <Item>'string.operator ==(string, string)'</Item>
                <Item>'FrmOptions.TxtValidating(object, CancelEventArgs)'</Item>
@@ -208,7 +171,7 @@
          </Type>
          <Type Name="SingleProgramInstance">
           <Messages>
-           <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-14 22:38:41Z">
+           <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-15 01:59:36Z">
             <Issue Name="ProvideDisposeBool">
              <Item>'SingleProgramInstance'</Item>
             </Issue>
@@ -217,14 +180,14 @@
           <Members>
            <Member Name="#Dispose()">
             <Messages>
-             <Message Id="_processSync" TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213" Created="2010-10-14 22:38:41Z">
+             <Message Id="_processSync" TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance'</Item>
                <Item>'SingleProgramInstance._processSync'</Item>
                <Item>'Mutex'</Item>
               </Issue>
              </Message>
-             <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-15 01:59:36Z">
               <Issue Name="DisposeImplementation">
                <Item>'SingleProgramInstance.Dispose()'</Item>
               </Issue>
@@ -233,7 +196,7 @@
            </Member>
            <Member Name="#Finalize()">
             <Messages>
-             <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063" Created="2010-10-15 01:59:36Z">
               <Issue Name="FinalizeImplementation">
                <Item>'SingleProgramInstance.~SingleProgramInstance()'</Item>
               </Issue>
@@ -242,12 +205,12 @@
            </Member>
            <Member Name="#IsIconic(System.IntPtr)">
             <Messages>
-             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-15 01:59:36Z">
               <Issue Name="Return">
                <Item>'SingleProgramInstance.IsIconic(IntPtr)'</Item>
               </Issue>
              </Message>
-             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance.IsIconic(IntPtr)'</Item>
               </Issue>
@@ -256,7 +219,7 @@
            </Member>
            <Member Name="#RaiseOtherProcess()">
             <Messages>
-             <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="DoNotIndirectlyExposeMethodsWithLinkDemands" Category="Microsoft.Security" CheckId="CA2122" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance.RaiseOtherProcess()'</Item>
                <Item>'Process.GetCurrentProcess()'</Item>
@@ -278,12 +241,12 @@
                <Item>&#xD;&#xA;   -&gt;'SingleProgramInstance.RaiseOtherProcess()'&#xD;&#xA;   -&gt;'SingleProgramInstance.RaiseOtherProcess()'</Item>
               </Issue>
              </Message>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2010-10-14 22:38:41Z" FixCategory="DependsOnFix">
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2010-10-15 01:59:36Z" FixCategory="DependsOnFix">
               <Issue>
                <Item>'SingleProgramInstance.RaiseOtherProcess()'</Item>
               </Issue>
              </Message>
-             <Message TypeName="UseEventsWhereAppropriate" Category="Microsoft.Design" CheckId="CA1030" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="UseEventsWhereAppropriate" Category="Microsoft.Design" CheckId="CA1030" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance.RaiseOtherProcess()'</Item>
               </Issue>
@@ -292,12 +255,12 @@
            </Member>
            <Member Name="#SetForegroundWindow(System.IntPtr)">
             <Messages>
-             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-15 01:59:36Z">
               <Issue Name="Return">
                <Item>'SingleProgramInstance.SetForegroundWindow(IntPtr)'</Item>
               </Issue>
              </Message>
-             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance.SetForegroundWindow(IntPtr)'</Item>
               </Issue>
@@ -306,12 +269,12 @@
            </Member>
            <Member Name="#ShowWindowAsync(System.IntPtr,System.Int32)">
             <Messages>
-             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MarkBooleanPInvokeArgumentsWithMarshalAs" Category="Microsoft.Interoperability" CheckId="CA1414" Created="2010-10-15 01:59:36Z">
               <Issue Name="Return">
                <Item>'SingleProgramInstance.ShowWindowAsync(IntPtr, int)'</Item>
               </Issue>
              </Message>
-             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'SingleProgramInstance.ShowWindowAsync(IntPtr, int)'</Item>
               </Issue>
@@ -322,13 +285,13 @@
          </Type>
         </Types>
        </Namespace>
-       <Namespace Name="EnvMan.VersionManager">
+       <Namespace Name="Envman.VersionManager">
         <Types>
          <Type Name="FrmVersionInfo">
           <Members>
            <Member Name="#BtnCancel">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-14 22:38:41Z">
+             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-15 01:59:36Z">
               <Issue Name="Member">
                <Item>Btn</Item>
                <Item>'FrmVersionInfo.BtnCancel'</Item>
@@ -338,7 +301,7 @@
            </Member>
            <Member Name="#BtnClick(System.Object,System.EventArgs)">
             <Messages>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-14 22:38:41Z">
+             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-15 01:59:36Z">
               <Issue Name="Member">
                <Item>Btn</Item>
                <Item>'FrmVersionInfo.BtnClick(object, EventArgs)'</Item>
@@ -348,14 +311,14 @@
            </Member>
            <Member Name="#BtnOK">
             <Messages>
-             <Message Id="OK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2010-10-14 22:38:41Z">
+             <Message Id="OK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2010-10-15 01:59:36Z">
               <Issue Name="MemberAbbreviation">
                <Item>OK</Item>
                <Item>'FrmVersionInfo.BtnOK'</Item>
                <Item>Ok</Item>
               </Issue>
              </Message>
-             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-14 22:38:41Z">
+             <Message Id="Btn" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-15 01:59:36Z">
               <Issue Name="Member">
                <Item>Btn</Item>
                <Item>'FrmVersionInfo.BtnOK'</Item>
@@ -365,7 +328,7 @@
            </Member>
            <Member Name="#Message">
             <Messages>
-             <Message TypeName="PropertiesShouldNotBeWriteOnly" Category="Microsoft.Design" CheckId="CA1044" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="PropertiesShouldNotBeWriteOnly" Category="Microsoft.Design" CheckId="CA1044" Created="2010-10-15 01:59:36Z">
               <Issue Name="AddGetter">
                <Item>'FrmVersionInfo.Message'</Item>
               </Issue>
@@ -376,7 +339,7 @@
          </Type>
          <Type Name="VersionChecker">
           <Messages>
-           <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Created="2010-10-14 22:38:41Z" FixCategory="DependsOnFix">
+           <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Created="2010-10-15 01:59:36Z" FixCategory="DependsOnFix">
             <Issue Name="DependsOnFix">
              <Item>'VersionChecker'</Item>
              <Item>'WebClient'</Item>
@@ -384,9 +347,9 @@
            </Message>
           </Messages>
           <Members>
-           <Member Name="#CheckVersion(EnvMan.VersionManager.VersionInformation.VersionInfo,System.String)">
+           <Member Name="#CheckVersion(Envman.VersionManager.VersionInformation.VersionInfo,System.String)">
             <Messages>
-             <Message Id="message" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2010-10-14 22:38:41Z">
+             <Message Id="message" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.CheckVersion(VersionInfo, string)'</Item>
                <Item>'message'</Item>
@@ -397,13 +360,13 @@
            </Member>
            <Member Name="#InitProxySettings()">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.InitProxySettings()'</Item>
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2010-10-14 22:38:41Z">
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2010-10-15 01:59:36Z">
               <Issue Name="IFormatProviderAlternate">
                <Item>'int.Parse(string)'</Item>
                <Item>'VersionChecker.InitProxySettings()'</Item>
@@ -412,7 +375,7 @@
                <Item>'CultureInfo.InvariantCulture'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.InitProxySettings()'</Item>
               </Issue>
@@ -421,7 +384,7 @@
            </Member>
            <Member Name="#programIcon">
             <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.programIcon'</Item>
               </Issue>
@@ -430,7 +393,7 @@
            </Member>
            <Member Name="#VersionChecked" Kind="Event">
             <Messages>
-             <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.NewVersionCheckedHandler'</Item>
                <Item>EventHandler</Item>
@@ -442,12 +405,12 @@
          </Type>
          <Type Name="VersionChecker+NewVersionCheckedHandler">
           <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2010-10-14 22:38:41Z">
+           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2010-10-15 01:59:36Z">
             <Issue>
              <Item>'VersionChecker.NewVersionCheckedHandler'</Item>
             </Issue>
            </Message>
-           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2010-10-14 22:38:41Z">
+           <Message TypeName="UseGenericEventHandlerInstances" Category="Microsoft.Design" CheckId="CA1003" Created="2010-10-15 01:59:36Z">
             <Issue>
              <Item>'VersionChecker.NewVersionCheckedHandler'</Item>
             </Issue>
@@ -456,13 +419,13 @@
          </Type>
         </Types>
        </Namespace>
-       <Namespace Name="EnvMan.VersionManager.VersionInformation">
+       <Namespace Name="Envman.VersionManager.VersionInformation">
         <Types>
          <Type Name="VersionInfo">
           <Members>
            <Member Name="#DownloadWebPageAddress">
             <Messages>
-             <Message Id="WebPage" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:38:41Z">
+             <Message Id="WebPage" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-15 01:59:36Z">
               <Issue Name="MemberShouldBeDiscreteTerm">
                <Item>WebPage</Item>
                <Item>'VersionInfo.DownloadWebPageAddress'</Item>
@@ -477,7 +440,7 @@
           <Members>
            <Member Name="#Load(System.String)">
             <Messages>
-             <Message Id="filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:38:41Z">
+             <Message Id="filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-15 01:59:36Z">
               <Issue Name="MemberParameterShouldBeCompoundWord">
                <Item>'VersionInfoManager.Load(string)'</Item>
                <Item>filename</Item>
@@ -485,7 +448,7 @@
                <Item>fileName</Item>
               </Issue>
              </Message>
-             <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionInfoManager.Load(string)'</Item>
               </Issue>
@@ -494,7 +457,7 @@
            </Member>
            <Member Name="#Save(System.String)">
             <Messages>
-             <Message Id="filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-14 22:38:41Z">
+             <Message Id="filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2010-10-15 01:59:36Z">
               <Issue Name="MemberParameterShouldBeCompoundWord">
                <Item>'VersionInfoManager.Save(string)'</Item>
                <Item>filename</Item>
@@ -655,7 +618,7 @@
         </Issue>
        </Message>
        <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-        <Issue Name="Assembly">Correct the spelling of 'Env' in assembly name 'EnvManager.dll'.</Issue>
+        <Issue>Correct the spelling of 'Env' in assembly name 'EnvManager.dll'.</Issue>
        </Message>
       </Messages>
       <Namespaces>
@@ -670,7 +633,7 @@
             </Issue>
            </Message>
            <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-            <Issue Name="Type">Correct the spelling of 'Env' in type name 'EnvManager'.</Issue>
+            <Issue>Correct the spelling of 'Env' in type name 'EnvManager'.</Issue>
            </Message>
           </Messages>
           <Members>
@@ -716,7 +679,7 @@
          <Type Name="EnvVarManager">
           <Messages>
            <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-            <Issue Name="Type">Correct the spelling of 'Env' in type name 'EnvVarManager'.</Issue>
+            <Issue>Correct the spelling of 'Env' in type name 'EnvVarManager'.</Issue>
            </Message>
           </Messages>
           <Members>
@@ -746,7 +709,7 @@
               </Issue>
              </Message>
              <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-              <Issue Name="Member">Correct the spelling of 'Env' in member name 'EnvVarManager.GetEnvVariables(EnvironmentVariableTarget)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+              <Issue>Correct the spelling of 'Env' in member name 'EnvVarManager.GetEnvVariables(EnvironmentVariableTarget)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
              </Message>
             </Messages>
            </Member>
@@ -953,7 +916,7 @@
          <Type Name="EnvVarValueValidator">
           <Messages>
            <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-            <Issue Name="Type">Correct the spelling of 'Env' in type name 'EnvVarValueValidator'.</Issue>
+            <Issue>Correct the spelling of 'Env' in type name 'EnvVarValueValidator'.</Issue>
            </Message>
           </Messages>
           <Members>
@@ -971,7 +934,7 @@
          <Type Name="FrmEditEnvVar">
           <Messages>
            <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-            <Issue Name="Type">Correct the spelling of 'Env' in type name 'FrmEditEnvVar'.</Issue>
+            <Issue>Correct the spelling of 'Env' in type name 'FrmEditEnvVar'.</Issue>
            </Message>
           </Messages>
           <Members>
@@ -1595,7 +1558,7 @@
            <Member Name="#EnvVariable">
             <Messages>
              <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Absent" Created="2010-10-14 22:38:41Z">
-              <Issue Name="Member">Correct the spelling of 'Env' in member name 'ImportExportManager.EnvVariable' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+              <Issue>Correct the spelling of 'Env' in member name 'ImportExportManager.EnvVariable' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
              </Message>
             </Messages>
            </Member>
@@ -1637,6 +1600,11 @@
     </Modules>
    </Target>
   </Targets>
+  <Notes>
+   <User Name="vsetchin">
+    <Note Id="0" Modified="2010-10-15 02:00:35Z">Not Using Right to left text</Note>
+   </User>
+  </Notes>
   <Rules>
    <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
     <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
@@ -1653,7 +1621,6 @@
    <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
     <Resolution Name="MemberParameterShouldBeCompoundWord">In member {0}, the discrete term '{1}' in parameter name {2} should be expressed as a compound word, '{3}'.</Resolution>
     <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
-    <Resolution Name="NamespaceShouldBeDiscreteTerm">The compound word '{0}' in namespace name '{1}' exists as a discrete term. If your usage is intended to be single word, case it as '{2}'.</Resolution>
    </Rule>
    <Rule TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213">
     <Resolution Name="Default">{0} contains field {1} that is of IDisposable type: {2}. Change the Dispose method on {0} to call Dispose or Close on this field.</Resolution>
