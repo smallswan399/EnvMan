@@ -113,10 +113,15 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.TsmiClick(object, EventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -142,10 +147,15 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'FrmMain.worker_DoWork(object, DoWorkEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -155,15 +165,9 @@
           <Members>
            <Member Name="#TxtValidating(System.Object,System.ComponentModel.CancelEventArgs)">
             <Messages>
-             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2010-10-15 01:59:36Z">
-              <Issue Name="IsNullOrEmpty">
-               <Item>'string.operator ==(string, string)'</Item>
-               <Item>'FrmOptions.TxtValidating(object, CancelEventArgs)'</Item>
-              </Issue>
-              <Issue Name="IsNullOrEmpty">
-               <Item>'string.operator ==(string, string)'</Item>
-               <Item>'FrmOptions.TxtValidating(object, CancelEventArgs)'</Item>
-              </Issue>
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Status="Absent" Created="2010-10-15 01:59:36Z">
+              <Issue Name="IsNullOrEmpty">Replace the call to 'string.operator ==(string, string)' in 'FrmOptions.TxtValidating(object, CancelEventArgs)' with a call to 'String.IsNullOrEmpty'.</Issue>
+              <Issue Name="IsNullOrEmpty">Replace the call to 'string.operator ==(string, string)' in 'FrmOptions.TxtValidating(object, CancelEventArgs)' with a call to 'String.IsNullOrEmpty'.</Issue>
              </Message>
             </Messages>
            </Member>
@@ -375,10 +379,15 @@
                <Item>'CultureInfo.InvariantCulture'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-15 01:59:36Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-15 01:59:36Z">
               <Issue>
                <Item>'VersionChecker.InitProxySettings()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1265,10 +1274,15 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-14 22:38:41Z">
               <Issue>
                <Item>'DgvHandler.DeleteRow(int)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1474,10 +1488,15 @@
            </Member>
            <Member Name="#Execute()">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2010-10-14 22:38:41Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2010-10-14 22:38:41Z">
               <Issue>
                <Item>'VarImportCommand.Execute()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1603,6 +1622,7 @@
   <Notes>
    <User Name="vsetchin">
     <Note Id="0" Modified="2010-10-15 02:00:35Z">Not Using Right to left text</Note>
+    <Note Id="1" Modified="2010-10-20 01:26:17Z">Not using in the right to left systems. Safe to ignore.</Note>
    </User>
   </Notes>
   <Rules>

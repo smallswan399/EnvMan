@@ -126,7 +126,7 @@ namespace Envman
             {
                 if (sender.Equals(TxtAddress))
                 {
-                    if (TxtAddress.Text == string.Empty)
+                    if (string.IsNullOrEmpty(TxtAddress.Text))
                     {
                         errorProvider.SetError(TxtAddress, "Address Cannot be Empty");
                         e.Cancel = true;
@@ -138,7 +138,7 @@ namespace Envman
                 }
                 else if (sender.Equals(TxtPort))
                 {
-                    if (TxtPort.Text == string.Empty)
+                    if (string.IsNullOrEmpty(TxtPort.Text))
                     {
                         errorProvider.SetError(TxtPort, "Server Port cannot be empty");
                         e.Cancel = true;
