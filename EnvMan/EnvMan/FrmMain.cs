@@ -199,7 +199,7 @@ namespace Envman
                     settingsForm.Dispose();
                 }
             }
-            // TODO: Review what Exceptions could be reiased in this method
+            // TODO: Review what Exceptions could be raised in this method
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "EnvMan ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
