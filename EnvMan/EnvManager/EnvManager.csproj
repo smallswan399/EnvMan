@@ -149,7 +149,9 @@
     <None Include="res\ValType\ValTypeFolder.png" />
     <None Include="res\ValType\ValTypeFile.png" />
     <None Include="res\ValType\ValTypeString.png" />
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\FrmEditEnvVarSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>FrmEditEnvVarSettings.Designer.cs</LastGenOutput>

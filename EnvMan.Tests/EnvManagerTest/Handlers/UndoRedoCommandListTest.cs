@@ -1,151 +1,243 @@
-/*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
+//------------------------------------------------------------------------
+// <copyright file="UndoRedoCommandListTest.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-using EnvManager.Handlers;
-using NUnit.Framework;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EnvManager.Tests.Handlers
 {
+using global::EnvManager.Handlers;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// Test of Undo Redo Command List
+    /// </summary>
     [TestFixture]
     public class UndoRedoCommandListTest
     {
+        #region Constants
+        /// <summary>
+        /// Redo label
+        /// </summary>
+        private const string RedoString = "Redo ";
+
+        /// <summary>
+        /// Undo Label
+        /// </summary>
+        private const string UndoString = "Undo ";
+
+        /// <summary>
+        /// First Command Name
+        /// </summary>
+        private const string CommandName1 = "Command1";
+
+        /// <summary>
+        /// Second Command Name
+        /// </summary>
+        private const string CommandName2 = "Command2";
+
+        /// <summary>
+        /// Third Command Name
+        /// </summary>
+        private const string CommandName3 = "Command3";
+        #endregion Constants
+
         #region Variables
-        const string REDO_STRING = "Redo ";
-        const string UNDO_STRING = "Undo ";
-        const string COMMAND_NAME1 = "Command1";
-        const string COMMAND_NAME2 = "Command2";
-        const string COMMAND_NAME3 = "Command3";
-        UndoRedoCommandList commandsList = null;
-        MockCommand command1 = null;
-        MockCommand command2 = null;
-        MockCommand command3 = null;
+        /// <summary>
+        /// List of Commands
+        /// </summary>
+        private UndoRedoCommandList commandsList = null;
+
+        /// <summary>
+        /// First Command
+        /// </summary>
+        private MockCommand command1 = null;
+
+        /// <summary>
+        /// Second Command
+        /// </summary>
+        private MockCommand command2 = null;
+
+        /// <summary>
+        /// Third Command
+        /// </summary>
+        private MockCommand command3 = null;
         #endregion Variables
 
         #region Setup Teardown
+        /// <summary>
+        /// Sets up tests.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
-            commandsList = new UndoRedoCommandList();
+            this.commandsList = new UndoRedoCommandList();
 
-            command1 = new MockCommand();
-            command1.CommandName = COMMAND_NAME1;
+            this.command1 = new MockCommand();
+            this.command1.CommandName = CommandName1;
 
-            command2 = new MockCommand();
-            command2.CommandName = COMMAND_NAME2;
+            this.command2 = new MockCommand();
+            this.command2.CommandName = CommandName2;
 
-            command3 = new MockCommand();
-            command3.CommandName = COMMAND_NAME3;
+            this.command3 = new MockCommand();
+            this.command3.CommandName = CommandName3;
         }
         #endregion Setup Teardown
 
         #region Tests
+        /// <summary>
+        /// Tests the add.
+        /// </summary>
         [Test]
         public void TestAdd()
         {
-            commandsList.Add(command1);
+            this.commandsList.Add(this.command1);
 
-            Assert.IsTrue(commandsList.CanUndo);
-            Assert.IsFalse(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.UndoMsg, UNDO_STRING + COMMAND_NAME1);
+            Assert.IsTrue(this.commandsList.CanUndo);
+            Assert.IsFalse(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.UndoMsg, UndoString + CommandName1);
         }
+
+        /// <summary>
+        /// Tests the add undo.
+        /// </summary>
         [Test]
         public void TestAddUndo()
         {
-            commandsList.Add(command1);
-            UndoCommand(1);
-            Assert.IsFalse(commandsList.CanUndo);
-            Assert.IsTrue(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.RedoMsg, REDO_STRING + COMMAND_NAME1);
+            this.commandsList.Add(this.command1);
+            this.UndoCommand(1);
+            Assert.IsFalse(this.commandsList.CanUndo);
+            Assert.IsTrue(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.RedoMsg, RedoString + CommandName1);
         }
+
+        /// <summary>
+        /// Tests the add undo add.
+        /// </summary>
         [Test]
         public void TestAddUndoAdd()
         {
-            commandsList.Add(command1);
-            UndoCommand(1);
-            commandsList.Add(command2);
-            Assert.IsTrue(commandsList.CanUndo);
-            Assert.IsFalse(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.UndoMsg, UNDO_STRING + COMMAND_NAME2);
+            this.commandsList.Add(this.command1);
+            this.UndoCommand(1);
+            this.commandsList.Add(this.command2);
+            Assert.IsTrue(this.commandsList.CanUndo);
+            Assert.IsFalse(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.UndoMsg, UndoString + CommandName2);
         }
+
+        /// <summary>
+        /// Tests the addx2 undo.
+        /// </summary>
         [Test]
         public void TestAddx2Undo()
         {
-            commandsList.Add(command1);
-            commandsList.Add(command2);
-            UndoCommand(1);
-            Assert.IsTrue(commandsList.CanUndo);
-            Assert.IsTrue(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.UndoMsg, UNDO_STRING + COMMAND_NAME1);
-            Assert.AreEqual(commandsList.RedoMsg, REDO_STRING + COMMAND_NAME2);
+            this.commandsList.Add(this.command1);
+            this.commandsList.Add(this.command2);
+            this.UndoCommand(1);
+            Assert.IsTrue(this.commandsList.CanUndo);
+            Assert.IsTrue(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.UndoMsg, UndoString + CommandName1);
+            Assert.AreEqual(
+                this.commandsList.RedoMsg, RedoString + CommandName2);
         }
+
+        /// <summary>
+        /// Tests the add x 2 undo add.
+        /// </summary>
         [Test]
         public void TestAddx2UndoAdd()
         {
-            commandsList.Add(command1);
-            commandsList.Add(command2);
-            UndoCommand(1);
-            commandsList.Add(command3);
-            Assert.IsTrue(commandsList.CanUndo);
-            Assert.IsFalse(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.UndoMsg, UNDO_STRING + COMMAND_NAME3);
+            this.commandsList.Add(this.command1);
+            this.commandsList.Add(this.command2);
+            this.UndoCommand(1);
+            this.commandsList.Add(this.command3);
+            Assert.IsTrue(this.commandsList.CanUndo);
+            Assert.IsFalse(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.UndoMsg, UndoString + CommandName3);
         }
+
+        /// <summary>
+        /// Tests the add x 3 undo x 3.
+        /// </summary>
         [Test]
         public void TestAddx3Undox3()
         {
-            commandsList.Add(command1);
-            commandsList.Add(command2);
-            commandsList.Add(command3);
-            UndoCommand(3);
-            Assert.IsFalse(commandsList.CanUndo);
-            Assert.IsTrue(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.RedoMsg, REDO_STRING + COMMAND_NAME1);
+            this.commandsList.Add(this.command1);
+            this.commandsList.Add(this.command2);
+            this.commandsList.Add(this.command3);
+            this.UndoCommand(3);
+            Assert.IsFalse(this.commandsList.CanUndo);
+            Assert.IsTrue(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.RedoMsg, RedoString + CommandName1);
         }
+
+        /// <summary>
+        /// Tests the add x 3 undo x 3 redo x 3.
+        /// </summary>
         [Test]
         public void TestAddx3Undox3Redox3()
         {
-            commandsList.Add(command1);
-            commandsList.Add(command2);
-            commandsList.Add(command3);
-            UndoCommand(3);
-            RedoCommand(3);
-            Assert.IsTrue(commandsList.CanUndo);
-            Assert.IsFalse(commandsList.CanRedo);
-            Assert.AreEqual(commandsList.UndoMsg, UNDO_STRING + COMMAND_NAME3);
+            this.commandsList.Add(this.command1);
+            this.commandsList.Add(this.command2);
+            this.commandsList.Add(this.command3);
+            this.UndoCommand(3);
+            this.RedoCommand(3);
+            Assert.IsTrue(this.commandsList.CanUndo);
+            Assert.IsFalse(this.commandsList.CanRedo);
+            Assert.AreEqual(
+                this.commandsList.UndoMsg, UndoString + CommandName3);
         } 
         #endregion Tests
 
         #region Tool functions
+        /// <summary>
+        /// Undoes the command.
+        /// </summary>
+        /// <param name="numActions">The num actions.</param>
         private void UndoCommand(int numActions)
         {
-            for(int i = 0; i < numActions; i++)
+            for (int i = 0; i < numActions; i++)
             {
-                commandsList.Undo();
+                this.commandsList.Undo();
             }
         }
+
+        /// <summary>
+        /// Redoes the command.
+        /// </summary>
+        /// <param name="numActions">The num actions.</param>
         private void RedoCommand(int numActions)
         {
             for (int i = 0; i < numActions; i++)
             {
-                commandsList.Redo();
+                this.commandsList.Redo();
             }
         }
         #endregion Tool functions

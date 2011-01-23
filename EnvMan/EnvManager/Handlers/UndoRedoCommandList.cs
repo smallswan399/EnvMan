@@ -1,69 +1,114 @@
-/*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
+//------------------------------------------------------------------------
+// <copyright file="UndoRedoCommandList.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Collections;
-using EnvManager.Properties;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EnvManager.Handlers
 {
+    using System.Collections.Generic;
+    using global::EnvManager.Properties;
+
     /// <summary>
     /// Holds list of executed commands for Undo, Redo Functionality
     /// </summary>
     public class UndoRedoCommandList
     {
         #region Variables
+        /// <summary>
+        /// List of the Commands
+        /// </summary>
         private List<ICommand> commandsList = null;
+
+        /// <summary>
+        /// Index of the current command
+        /// </summary>
         private int currentCommandIndex = -1;   // -1 no command executed
-        private string undoMsg = "";
-        private string redoMsg = "";
+
+        /// <summary>
+        /// Undo Message
+        /// </summary>
+        private string undoMsg;
+
+        /// <summary>
+        /// Redo Message
+        /// </summary>
+        private string redoMsg;
         #endregion Variables
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UndoRedoCommandList"/> class.
+        /// </summary>
         public UndoRedoCommandList()
         {
-            commandsList = new List<ICommand>();
-            SetUndoRedoMessages();
+            this.commandsList = new List<ICommand>();
+            this.SetUndoRedoMessages();
         }
 
         #region Properties
+        /// <summary>
+        /// Gets the undo MSG.
+        /// </summary>
         public string UndoMsg
         {
-            get { return undoMsg; }
+            get { return this.undoMsg; }
         }
+
+        /// <summary>
+        /// Gets the redo MSG.
+        /// </summary>
         public string RedoMsg
         {
-            get { return redoMsg; }
+            get { return this.redoMsg; }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can undo.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can undo; otherwise, <c>false</c>.
+        /// </value>
         public bool CanUndo
         {
             get
             {
-                return currentCommandIndex != -1;
+                return this.currentCommandIndex != -1;
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance can redo.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance can redo; otherwise, <c>false</c>.
+        /// </value>
         public bool CanRedo
         {
             get
             {
-                return commandsList.Count > 0
-                    && currentCommandIndex != commandsList.Count - 1;
+                return this.commandsList.Count > 0
+                    && this.currentCommandIndex != this.commandsList.Count - 1;
             }
         }
         #endregion Properties
@@ -74,54 +119,53 @@ namespace EnvManager.Handlers
         /// </summary>
         public void Undo()
         {
-            ICommand command = commandsList[currentCommandIndex] as ICommand;
+            ICommand command
+                = this.commandsList[this.currentCommandIndex] as ICommand;
             command.Undo();
-            currentCommandIndex -= 1;
-            SetUndoRedoMessages();
+            this.currentCommandIndex -= 1;
+            this.SetUndoRedoMessages();
         }
+
         /// <summary>
         /// Executes Undo of the next command from the list after current.
         /// </summary>
         public void Redo()
         {
-            ICommand command = commandsList[++currentCommandIndex] as ICommand;
+            ICommand command
+                = this.commandsList[++this.currentCommandIndex] as ICommand;
             command.Redo();
-            SetUndoRedoMessages();
+            this.SetUndoRedoMessages();
         }
+
         /// <summary>
         /// Adds the specified command to a list.
         /// </summary>
         /// <param name="command">The command.</param>
         public void Add(ICommand command)
         {
-            if (commandsList.Count > 0 && currentCommandIndex != commandsList.Count - 1)
+            if (this.commandsList.Count > 0
+                && this.currentCommandIndex != this.commandsList.Count - 1)
             {   // remove all the commands after current
-                if(currentCommandIndex == -1)
+                if (this.currentCommandIndex == -1)
                 {
-                    commandsList.RemoveRange(0, commandsList.Count);
+                    this.commandsList.RemoveRange(0, this.commandsList.Count);
                 }
                 else
                 {
-                    commandsList.RemoveRange(currentCommandIndex + 1,
-                        commandsList.Count - (currentCommandIndex == -1 ? 0 : currentCommandIndex) - 1);
+                    int currCommandIndex
+                        = this.currentCommandIndex == -1
+                            ? 0 : this.currentCommandIndex;
+                    this.commandsList.RemoveRange(
+                        this.currentCommandIndex + 1,
+                        this.commandsList.Count - currCommandIndex - 1);
                 }   
             }
 
             // add command to a list and increment index
-            commandsList.Add(command);
-            currentCommandIndex += 1;
-            SetUndoRedoMessages();
+            this.commandsList.Add(command);
+            this.currentCommandIndex += 1;
+            this.SetUndoRedoMessages();
         }
-        private void SetUndoRedoMessages()
-        {
-            undoMsg = (this.CanUndo == true
-                ? Resources.ToolTipUndo + " " + (commandsList[currentCommandIndex] as ICommand).CommandName
-                : Resources.ToolTipUndo);
-            redoMsg = (this.CanRedo == true
-                ? Resources.ToolTipRedo + " " + (commandsList[currentCommandIndex + 1] as ICommand).CommandName
-                : Resources.ToolTipRedo);
-        }
-        #endregion Functions
 
         /// <summary>
         /// Clears list of commands.
@@ -131,5 +175,24 @@ namespace EnvManager.Handlers
             this.commandsList.Clear();
             this.currentCommandIndex = -1;
         }
+
+        /// <summary>
+        /// Sets the undo redo messages.
+        /// </summary>
+        private void SetUndoRedoMessages()
+        {
+            this.undoMsg = this.CanUndo == true
+                ? Resources.ToolTipUndo + " "
+                + (this.commandsList[this.currentCommandIndex] 
+                    as ICommand).CommandName
+                : Resources.ToolTipUndo;
+            this.redoMsg = this.CanRedo == true
+                ? Resources.ToolTipRedo 
+                + " "
+                + (this.commandsList[this.currentCommandIndex + 1] 
+                    as ICommand).CommandName
+                : Resources.ToolTipRedo;
+        }
+        #endregion Functions
     }
 }

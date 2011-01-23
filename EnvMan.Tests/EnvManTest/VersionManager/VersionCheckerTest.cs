@@ -1,86 +1,124 @@
-/*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
+//------------------------------------------------------------------------
+// <copyright file="VersionCheckerTest.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Envman.VersionManager;
-using Envman.VersionManager.VersionInformation;
-using NUnit.Framework;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Envman.Tests.VersionManager
 {
+    using System;
+
+    using Envman.VersionManager;
+    using Envman.VersionManager.VersionInformation;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// Tests for Version Checker
+    /// </summary>
     [TestFixture]
     public class VersionCheckerTest
     {
+        #region Variables
+        /// <summary>
+        /// Version Checker
+        /// </summary>
         private VersionChecker versionChecker = null;
-        VersionInfo versionInfo = new VersionInfo();
 
+        /// <summary>
+        /// Version Information
+        /// </summary>
+        private VersionInfo versionInfo = new VersionInfo();
+        #endregion Variables
+
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VersionCheckerTest"/> class.
+        /// </summary>
         public VersionCheckerTest()
         {
-            versionChecker = new VersionChecker(Properties.Resources.ProgramICO);
+            this.versionChecker = new VersionChecker(
+                Properties.Resources.ProgramICO);
         }
+        #endregion Constructor
 
-        void versionChecker_VersionChecked(object sender, NewVersionEventArgs e)
-        {
-            
-        }
-
+        #region Public Functions
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
-            versionInfo.AssemblyVersion = new Version(1, 3, 0, 0);
-            versionInfo.DownloadWebPageAddress = "";
-            versionChecker.VersionChecked += new VersionChecker.NewVersionCheckedHandler(versionChecker_VersionChecked);
+            this.versionInfo.AssemblyVersion = new Version(1, 3, 0, 0);
+            this.versionInfo.DownloadWebPageAddress = string.Empty;
+            this.versionChecker.VersionChecked
+                += new EventHandler<NewVersionEventArgs>(
+                    this.VersionChecker_VersionChecked);
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
-            versionChecker.VersionChecked -= new VersionChecker.NewVersionCheckedHandler(versionChecker_VersionChecked);
+            this.versionChecker.VersionChecked
+                += new EventHandler<NewVersionEventArgs>(
+                    this.VersionChecker_VersionChecked);
         }
 
+        /// <summary>
+        /// Tests the download file.
+        /// </summary>
         [Test]
         public void TestDownloadFile()
         {
-            Uri address = new Uri( "http://env-man.sourceforge.net/img/FrmMain.JPG" );
+            Uri address
+                = new Uri("http://env-man.sourceforge.net/img/FrmMain.JPG");
             string localFileNamePath = "MainForm.jpg";
-            Assert.IsTrue(versionChecker.DownloadFile(address, localFileNamePath));
+            Assert.IsTrue(
+                this.versionChecker.DownloadFile(address, localFileNamePath));
         }
-        // TODO: work with these tests
+
+        //// TODO: work with these tests
+
         /// <summary>
         /// Tests the Auto Check for a new version.
         /// </summary>
         [Test]
         public void TestCheckVersionAutoNew()
         {
-            versionInfo.AssemblyVersion = new Version(1, 2, 0, 0);
-            versionChecker.CheckVersion( versionInfo );
+            this.versionInfo.AssemblyVersion = new Version(1, 2, 0, 0);
+            this.versionChecker.CheckVersion(this.versionInfo);
         }
 
         /// <summary>
         /// Tests the Auto Check for latest (current) version.
         /// </summary>
         [Test]
-        public void TestCheckVersionAutoLatest ( )
+        public void TestCheckVersionAutoLatest()
         {
-            versionChecker.CheckVersion( versionInfo );
+            this.versionChecker.CheckVersion(this.versionInfo);
         }
 
         /// <summary>
@@ -89,18 +127,29 @@ namespace Envman.Tests.VersionManager
         [Test]
         public void TestCheckVersionManualLatest()
         {
-            versionChecker.CheckVersion( versionInfo );
+            this.versionChecker.CheckVersion(this.versionInfo);
         }
 
         /// <summary>
         /// Tests the manual check for new version.
         /// </summary>
         [Test]
-        public void TestCheckVersionManualNew ( )
+        public void TestCheckVersionManualNew()
         {
-            versionChecker.CheckVersion( versionInfo );
-        }
+            this.versionChecker.CheckVersion(this.versionInfo);
+        }      
+        #endregion Public Functions
 
-        
+        #region Private Functions
+        /// <summary>
+        /// Handles the VersionChecked event of the versionChecker control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="Envman.VersionManager.NewVersionEventArgs"/> instance containing the event data.</param>
+        private void VersionChecker_VersionChecked(
+            object sender, NewVersionEventArgs e)
+        {
+        }
+        #endregion Private Functions
     }
 }

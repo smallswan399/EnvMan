@@ -93,8 +93,8 @@ namespace EnvManager
             this.txtVariableName.Name = "txtVariableName";
             this.txtVariableName.Size = new System.Drawing.Size(177, 20);
             this.txtVariableName.TabIndex = 3;
-            this.txtVariableName.Validated += new System.EventHandler(this.txtVariableName_Validated);
-            this.txtVariableName.TextChanged += new System.EventHandler(this.txtVariableName_TextChanged);
+            this.txtVariableName.Validated += new System.EventHandler(this.TxtVariableName_Validated);
+            this.txtVariableName.TextChanged += new System.EventHandler(this.TxtVariableName_TextChanged);
             // 
             // dgvValuesList
             // 
@@ -122,13 +122,13 @@ namespace EnvManager
             this.dgvValuesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvValuesList.Size = new System.Drawing.Size(267, 337);
             this.dgvValuesList.TabIndex = 0;
-            this.dgvValuesList.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvValuesList_UserAddedRow);
-            this.dgvValuesList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvValuesList_UserDeletingRow);
-            this.dgvValuesList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvValuesList_CellBeginEdit);
-            this.dgvValuesList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvValuesList_CellMouseDown);
-            this.dgvValuesList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvValuesList_CellValidating);
-            this.dgvValuesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvValuesList_CellEndEdit);
-            this.dgvValuesList.SelectionChanged += new System.EventHandler(this.dgvValuesList_SelectionChanged);
+            this.dgvValuesList.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DgvValuesList_UserAddedRow);
+            this.dgvValuesList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvValuesList_UserDeletingRow);
+            this.dgvValuesList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DgvValuesList_CellBeginEdit);
+            this.dgvValuesList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvValuesList_CellMouseDown);
+            this.dgvValuesList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgvValuesList_CellValidating);
+            this.dgvValuesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvValuesList_CellEndEdit);
+            this.dgvValuesList.SelectionChanged += new System.EventHandler(this.DgvValuesList_SelectionChanged);
             // 
             // ValueType
             // 

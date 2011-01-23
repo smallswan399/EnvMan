@@ -1,29 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+﻿//------------------------------------------------------------------------
+// <copyright file="FrmOptions.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-using Envman.Properties;
-using System.Configuration;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Envman
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms;
+
+    using Envman.Properties;
+
+    /// <summary>
+    /// Options Form
+    /// </summary>
     public partial class FrmOptions : Form
     {
-        private const string DEFAULT_PROXY_PORT = "80";
-        private ProxySettings proxySettings = ProxySettings.Default;
-        private FrmMainSettings mainFormSettings = FrmMainSettings.Default;
+        #region Constants
+        /// <summary>
+        /// Default port for a proxy
+        /// </summary>
+        private const string DefaultProxyPort = "80";
+        #endregion Constants
 
+        #region Variables
+        /// <summary>
+        /// Proxy settings
+        /// </summary>
+        private ProxySettings proxySettings = ProxySettings.Default;
+
+        /// <summary>
+        /// Settings for Main Form
+        /// </summary>
+        private FrmMainSettings mainFormSettings = FrmMainSettings.Default;
+        #endregion Variables
+
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FrmOptions"/> class.
+        /// </summary>
         public FrmOptions()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            LoadSettings();
+            this.LoadSettings();
         }
+        #endregion Constructor
 
+        #region Private Functions
         /// <summary>
         /// Handles the CheckedChanged event of the CbUseProxy control.
         /// </summary>
@@ -31,7 +77,7 @@ namespace Envman
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void CbUseProxy_CheckedChanged(object sender, EventArgs e)
         {
-            errorProvider.Clear();
+            this.errorProvider.Clear();
             LblAddress.Enabled = CbUseProxy.Checked;
             TxtAddress.Enabled = CbUseProxy.Checked;
             LblPassword.Enabled = CbUseProxy.Checked;
@@ -45,11 +91,11 @@ namespace Envman
 
             if (!CbUseProxy.Checked)
             {
-                InitProxySettings();
+                this.InitProxySettings();
             }
             else
             {
-                LoadProxySettings();
+                this.LoadProxySettings();
             }
         }
 
@@ -59,7 +105,7 @@ namespace Envman
         private void InitProxySettings()
         {
             TxtAddress.Text = string.Empty;
-            TxtPort.Text = DEFAULT_PROXY_PORT;
+            TxtPort.Text = DefaultProxyPort;
             TxtUserName.Text = string.Empty;
             TxtPassword.Text = string.Empty;
         }
@@ -69,20 +115,23 @@ namespace Envman
         /// </summary>
         private void LoadSettings()
         {
-            this.CbOneInstance.Checked = mainFormSettings.OnlyOneInstance;
-            this.CbUseProxy.Checked = proxySettings.UseProxy;
-            if (proxySettings.UseProxy)
+            this.CbOneInstance.Checked = this.mainFormSettings.OnlyOneInstance;
+            this.CbUseProxy.Checked = this.proxySettings.UseProxy;
+            if (this.proxySettings.UseProxy)
             {
-                LoadProxySettings();
+                this.LoadProxySettings();
             }
         }
 
+        /// <summary>
+        /// Loads the proxy settings.
+        /// </summary>
         private void LoadProxySettings()
         {
-            TxtAddress.Text = proxySettings.ServerAddress;
-            TxtPort.Text = string.Empty + proxySettings.ServerPort;
-            TxtUserName.Text = proxySettings.ServerUserName;
-            TxtPassword.Text = proxySettings.ServerPassword; 
+            TxtAddress.Text = this.proxySettings.ServerAddress;
+            TxtPort.Text = string.Empty + this.proxySettings.ServerPort;
+            TxtUserName.Text = this.proxySettings.ServerUserName;
+            TxtPassword.Text = this.proxySettings.ServerPassword;
         }
 
         /// <summary>
@@ -93,24 +142,29 @@ namespace Envman
             this.mainFormSettings.OnlyOneInstance = CbOneInstance.Checked;
 
             // Proxy settings
-            proxySettings.UseProxy = CbUseProxy.Checked;
-            proxySettings.ServerAddress = TxtAddress.Text;
-            proxySettings.ServerPort = TxtPort.Text;
-            proxySettings.ServerUserName = TxtUserName.Text;
-            proxySettings.ServerPassword = TxtPassword.Text;
-            proxySettings.Save();
+            this.proxySettings.UseProxy = CbUseProxy.Checked;
+            this.proxySettings.ServerAddress = TxtAddress.Text;
+            this.proxySettings.ServerPort = TxtPort.Text;
+            this.proxySettings.ServerUserName = TxtUserName.Text;
+            this.proxySettings.ServerPassword = TxtPassword.Text;
+            this.proxySettings.Save();
         }
 
+        /// <summary>
+        /// Handles the Click event of the BtnOK control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void BtnOK_Click(object sender, EventArgs e)
         {
             // Validate controls
             CancelEventArgs cancelEvent = new CancelEventArgs();
-            TxtValidating(TxtAddress, cancelEvent);
-                       
+            this.TxtValidating(TxtAddress, cancelEvent);
+
             if (!cancelEvent.Cancel)
             {
-                SaveSettings();
-                this.Close(); 
+                this.SaveSettings();
+                this.Close();
             }
         }
 
@@ -146,5 +200,6 @@ namespace Envman
                 }
             }
         }
+        #endregion Private Functions
     }
 }
