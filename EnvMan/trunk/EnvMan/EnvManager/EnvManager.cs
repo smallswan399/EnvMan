@@ -1,70 +1,145 @@
-/*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
+//------------------------------------------------------------------------
+// <copyright file="EnvManager.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EnvManager
 {
+    using System;
+    using System.Collections;
+    using System.ComponentModel;
+    using System.Drawing;
+    using System.Windows.Forms;
+
+    /// <summary>
+    /// Environment Manager
+    /// </summary>
     public partial class EnvManager : UserControl
     {
-        public EnvManager ( )
+        #region Constants
+
+        #endregion Constants
+
+        #region Variables
+        /// <summary>
+        /// Variable Manager
+        /// </summary>
+        private EnvVarManager variableManger = new EnvVarManager();
+
+        /// <summary>
+        /// Edit Variable Form
+        /// </summary>
+        private FrmEditEnvVar frmEditVariable = null;
+
+        /// <summary>
+        /// Environment Manager Settings
+        /// </summary>
+        private Properties.EnvManagerSettings settings
+            = Properties.EnvManagerSettings.Default;
+        #endregion Variables
+
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnvManager"/> class.
+        /// </summary>
+        public EnvManager()
         {
             InitializeComponent();
 
             gbUserVariables.Text += Environment.UserName;
-            LoadEnvironmentVariables();
+            this.LoadEnvironmentVariables();
 
-            this.HandleDestroyed += new EventHandler(EnvManager_HandleDestroyed);
+            this.HandleDestroyed
+                += new EventHandler(this.EnvManager_HandleDestroyed);
         }
+        #endregion Constructor
 
-        void EnvManager_HandleDestroyed(object sender, EventArgs e)
+        #region Events
+
+        #endregion Events
+
+        #region Properties
+
+        #endregion Properties
+
+        #region Public Functions
+
+        #endregion Public Functions
+
+        #region Internal Functions
+
+        #endregion Internal Functions
+
+        #region Protected Functions
+
+        #endregion Protected Functions
+
+        #region Private Functions
+        /// <summary>
+        /// Handles the HandleDestroyed event of the EnvManager control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void EnvManager_HandleDestroyed(object sender, EventArgs e)
         {
-            SaveSettings();
+            this.SaveSettings();
         }
 
         #region Load Environment Variables
-        EnvVarManager variableManger = new EnvVarManager();
-
-        private void LoadEnvironmentVariables ( )
+        /// <summary>
+        /// Loads the environment variables.
+        /// </summary>
+        private void LoadEnvironmentVariables()
         {
-            LoadEnvironmentVariables( dgvSystemVariables, EnvironmentVariableTarget.Machine );
-            LoadEnvironmentVariables( dgvUserVariables, EnvironmentVariableTarget.User );
+            this.LoadEnvironmentVariables(
+                dgvSystemVariables, EnvironmentVariableTarget.Machine);
+            this.LoadEnvironmentVariables(
+                dgvUserVariables, EnvironmentVariableTarget.User);
         }
-        private void LoadEnvironmentVariables ( DataGridView dgv, EnvironmentVariableTarget target )
+
+        /// <summary>
+        /// Loads the environment variables.
+        /// </summary>
+        /// <param name="dgv">The Data Grid View.</param>
+        /// <param name="target">The target.</param>
+        private void LoadEnvironmentVariables(
+            DataGridView dgv, EnvironmentVariableTarget target)
         {
             EnvVarValueValidator validator = new EnvVarValueValidator();
-            int currentRowIndex = (dgv.CurrentRow != null ? dgv.CurrentRow.Index : 0);
+            int currentRowIndex
+                = dgv.CurrentRow != null ? dgv.CurrentRow.Index : 0;
             dgv.Rows.Clear();
             int rowIndex = 0;
 
-            IDictionary environmentVariables = variableManger.GetEnvVariables( target );
-            foreach ( DictionaryEntry de in environmentVariables )
+            IDictionary environmentVariables
+                = this.variableManger.GetEnvVariables(target);
+            foreach (DictionaryEntry de in environmentVariables)
             {
-                string[ ] row = { de.Key.ToString(), de.Value.ToString() };
+                string[] row = { de.Key.ToString(), de.Value.ToString() };
 
-                rowIndex = dgv.Rows.Add( row );
+                rowIndex = dgv.Rows.Add(row);
 
                 // validate variable value and show row in red if invalid
                 if (!validator.Validate(de.Value.ToString()))
@@ -74,10 +149,11 @@ namespace EnvManager
                 }
             }
 
-            dgv.Sort( dgv.Columns[ 0 ], ListSortDirection.Ascending );
+            dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
+
             try
-            {   
-                dgv.CurrentCell = dgv[ 0, currentRowIndex ];
+            {
+                dgv.CurrentCell = dgv[0, currentRowIndex];
                 dgv.FirstDisplayedScrollingRowIndex = currentRowIndex;
             }
             catch
@@ -87,145 +163,228 @@ namespace EnvManager
                 if (dgv.Rows.Count != 0)
                 {
                     dgv.CurrentCell = dgv[0, 0];
-                    dgv.FirstDisplayedScrollingRowIndex = 0; 
+                    dgv.FirstDisplayedScrollingRowIndex = 0;
                 }
             }
         }
         #endregion Load Environment Variables
 
         #region Controls Events
-        private void BtnClick ( object sender, EventArgs e )
+        /// <summary>
+        /// BTNs the click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void BtnClick(object sender, EventArgs e)
         {
-            if ( sender.Equals(btnEditUserVariable) )
+            if (sender.Equals(btnEditUserVariable))
             {
-                EditEnvVar(dgvUserVariables, EnvironmentVariableTarget.User);
+                this.EditEnvVar(
+                    dgvUserVariables, EnvironmentVariableTarget.User);
             }
-            else if ( sender.Equals(btnEditSystemVariable) )
+            else if (sender.Equals(btnEditSystemVariable))
             {
-                EditEnvVar(dgvSystemVariables, EnvironmentVariableTarget.Machine);
+                this.EditEnvVar(
+                    dgvSystemVariables, EnvironmentVariableTarget.Machine);
             }
-            else if ( sender.Equals(btnNewUserVariable))
+            else if (sender.Equals(btnNewUserVariable))
             {
-                EditEnvVar("", EnvironmentVariableTarget.User);
+                this.EditEnvVar(string.Empty, EnvironmentVariableTarget.User);
             }
             else if (sender.Equals(btnNewSystemVariable))
             {
-                EditEnvVar("", EnvironmentVariableTarget.Machine);
+                this.EditEnvVar(
+                    string.Empty, EnvironmentVariableTarget.Machine);
             }
             else if (sender.Equals(btnDeleteSystemVariable))
             {
-                DeleteEnvVar( dgvSystemVariables, EnvironmentVariableTarget.Machine );
+                this.DeleteEnvVar(
+                    dgvSystemVariables, EnvironmentVariableTarget.Machine);
             }
-            else if(sender.Equals(btnDeleteUserVariable))
+            else if (sender.Equals(btnDeleteUserVariable))
             {
-                DeleteEnvVar( dgvUserVariables, EnvironmentVariableTarget.User );
+                this.DeleteEnvVar(
+                    dgvUserVariables, EnvironmentVariableTarget.User);
             }
 
-            LoadEnvironmentVariables();
+            this.LoadEnvironmentVariables();
         }
+
+        /// <summary>
+        /// DGVs the name of the variable.
+        /// </summary>
+        /// <param name="dgv">The Data Grid View.</param>
+        /// <returns>Variable Name</returns>
         private string DgvVariableName(DataGridView dgv)
         {
-            string varName = "";
+            string varName = string.Empty;
 
-            if ( dgv.CurrentRow.Index != -1 )
+            if (dgv.CurrentRow.Index != -1)
             {
-                varName = dgv.Rows[dgv.CurrentRow.Index].Cells[0].Value.ToString();
+                varName 
+                    = dgv.Rows[dgv.CurrentRow.Index].Cells[0].Value.ToString();
             }
 
             return varName;
         }
-        private void DgvCellMouseDoubleClick ( object sender, DataGridViewCellMouseEventArgs e )
+
+        /// <summary>
+        /// DGVs the cell mouse double click.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.DataGridViewCellMouseEventArgs"/> instance containing the event data.</param>
+        private void DgvCellMouseDoubleClick(
+            object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridView dgv = ( DataGridView ) sender;
-            if ( e.RowIndex > -1 )
+            DataGridView dgv = (DataGridView)sender;
+            if (e.RowIndex > -1)
             {
-                EditEnvVar( dgv,
-                    ( sender.Equals( dgvUserVariables )
+                EnvironmentVariableTarget varTarget
+                    = sender.Equals(dgvUserVariables)
                         ? EnvironmentVariableTarget.User
-                        : EnvironmentVariableTarget.Machine ) );
-                LoadEnvironmentVariables();
+                        : EnvironmentVariableTarget.Machine;
+                this.EditEnvVar(dgv, varTarget);
+                this.LoadEnvironmentVariables();
             }
         }
-        private void splitContainer_MouseDoubleClick ( object sender, MouseEventArgs e )
+
+        /// <summary>
+        /// Handles the MouseDoubleClick event of the SplitContainer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        private void SplitContainer_MouseDoubleClick(
+            object sender, MouseEventArgs e)
         {
-            splitContainer.SplitterDistance = splitContainer.Size.Height / 2;
+            this.splitContainer.SplitterDistance 
+                = splitContainer.Size.Height / 2;
         }
         #endregion Controls Events
 
         #region Edit Environment Variables
-        FrmEditEnvVar frmEditVariable = null;
-
-        private DialogResult DeleteEnvVar ( DataGridView dgv, EnvironmentVariableTarget variableType )
+        /// <summary>
+        /// Deletes the environment variable.
+        /// </summary>
+        /// <param name="dgv">The Data Grid View.</param>
+        /// <param name="variableType">Type of the variable.</param>
+        /// <returns>Dialog Result</returns>
+        private DialogResult DeleteEnvVar(
+            DataGridView dgv, EnvironmentVariableTarget variableType)
         {
             DialogResult dialogRresult = DialogResult.No;
-            string varName = DgvVariableName( dgv );
+            string varName = this.DgvVariableName(dgv);
 
-            if ( !String.IsNullOrEmpty( varName ) )
+            if (!String.IsNullOrEmpty(varName))
             {
-                dialogRresult = MessageBox.Show("Are you sure to remove variable \"" + varName + "\"?",
-                        "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question );
+                dialogRresult = MessageBox.Show(
+                    "Are you sure to remove variable \"" + varName + "\"?",
+                    "Confirm Deletion",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
                 if (dialogRresult == DialogResult.Yes)
                 {
                     try
                     {
-                        variableManger.DeleteEnvironmentVariable(varName, variableType);
+                        this.variableManger.DeleteEnvironmentVariable(
+                            varName, variableType);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            ex.Message,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
             }
 
             return dialogRresult;
         }
-        private void EditEnvVar ( DataGridView dgv, EnvironmentVariableTarget variableType )
-        {
-            string varName = DgvVariableName( dgv );
 
-            if ( !String.IsNullOrEmpty( varName ) )
+        /// <summary>
+        /// Edits the environment variable.
+        /// </summary>
+        /// <param name="dgv">The Data Grid View.</param>
+        /// <param name="variableType">Type of the variable.</param>
+        private void EditEnvVar(
+            DataGridView dgv, EnvironmentVariableTarget variableType)
+        {
+            string varName = this.DgvVariableName(dgv);
+
+            if (!String.IsNullOrEmpty(varName))
             {
-                EditEnvVar( varName, variableType );
+                this.EditEnvVar(varName, variableType);
             }
         }
-        private void EditEnvVar ( string varName, EnvironmentVariableTarget varType )
+
+        /// <summary>
+        /// Edits the environment variable.
+        /// </summary>
+        /// <param name="varName">Name of the variable.</param>
+        /// <param name="varType">Type of the variable.</param>
+        private void EditEnvVar(
+            string varName, EnvironmentVariableTarget varType)
         {
-            frmEditVariable = new FrmEditEnvVar( varName, varType );
-            frmEditVariable.ShowDialog();
-            frmEditVariable.Dispose();
+            this.frmEditVariable = new FrmEditEnvVar(varName, varType);
+            this.frmEditVariable.ShowDialog();
+            this.frmEditVariable.Dispose();
         }
         #endregion Edit Environment Variables
 
         #region Settings
-        Properties.EnvManagerSettings settings = Properties.EnvManagerSettings.Default;
-
+        /// <summary>
+        /// Loads the settings.
+        /// </summary>
         private void LoadSettings()
         {
-            splitContainer.SplitterDistance = settings.SpliterPosition;
+            this.splitContainer.SplitterDistance 
+                = this.settings.SpliterPosition;
         }
 
+        /// <summary>
+        /// Saves the settings.
+        /// </summary>
         private void SaveSettings()
         {
-            settings.SpliterPosition = splitContainer.SplitterDistance;
-            settings.Save();
+            this.settings.SpliterPosition 
+                = this.splitContainer.SplitterDistance;
+            this.settings.Save();
         }
-        private void EnvManager_Load ( object sender, EventArgs e )
+
+        /// <summary>
+        /// Handles the Load event of the EnvManager control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void EnvManager_Load(object sender, EventArgs e)
         {
-            LoadSettings();
+            this.LoadSettings();
         }
         #endregion Settings
 
-        private void DgvUserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        /// <summary>
+        /// DGVs the user deleting row.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Forms.DataGridViewRowCancelEventArgs"/> instance containing the event data.</param>
+        private void DgvUserDeletingRow(
+            object sender, DataGridViewRowCancelEventArgs e)
         {
             DialogResult dialogResult = DialogResult.No;
 
             if (sender.Equals(dgvSystemVariables))
             {
-                dialogResult = DeleteEnvVar(dgvSystemVariables, EnvironmentVariableTarget.Machine);
+                dialogResult
+                    = this.DeleteEnvVar(
+                    dgvSystemVariables, EnvironmentVariableTarget.Machine);
             }
-            else if(sender.Equals(dgvUserVariables))
+            else if (sender.Equals(dgvUserVariables))
             {
-                dialogResult = DeleteEnvVar(dgvUserVariables, EnvironmentVariableTarget.User);
+                dialogResult
+                    = this.DeleteEnvVar(
+                    dgvUserVariables, EnvironmentVariableTarget.User);
             }
 
             if (dialogResult == DialogResult.No)
@@ -233,5 +392,6 @@ namespace EnvManager
                 e.Cancel = true;
             }
         }
+        #endregion Private Functions
     }
 }

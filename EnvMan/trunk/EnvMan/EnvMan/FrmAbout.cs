@@ -1,79 +1,106 @@
-/*
-   EnvMan - The Open-Source Windows Environment Variables Manager
-   Copyright (C) 2006-2009 Vlad Setchin <envman-dev@googlegroups.com>
+//------------------------------------------------------------------------
+// <copyright file="FrmAbout.cs" company="SETCHIN Freelance Consulting">
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting
+// </copyright>
+// <author>
+// Vlad Setchin
+// </author>
+//------------------------------------------------------------------------
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Reflection;
-using Envman.VersionManager.VersionInformation;
+// EnvMan - The Open-Source Windows Environment Variables Manager
+// Copyright (C) 2006-2011 SETCHIN Freelance Consulting 
+// <http://www.setchinfc.com.au>
+// EnvMan Development Group: <mailto:envman-dev@googlegroups.com>
+//  
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace EnvManager
 {
+    using System;
+    using System.Reflection;
+    using System.Windows.Forms;
+    using Envman.VersionManager.VersionInformation;
+
+    /// <summary>
+    /// About Form
+    /// </summary>
     public partial class FrmAbout : Form
     {
-        public FrmAbout ( )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FrmAbout"/> class.
+        /// </summary>
+        public FrmAbout()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            //  Initialize the AboutBox to display the product information from the assembly information.
-            //  Change assembly information settings for your application through either:
-            //  - Project->Properties->Application->Assembly Information
-            //  - AssemblyInfo.cs
-            this.Text = String.Format( "About {0}", AssemblyTitle );
-            this.lblProductName.Text = AssemblyProduct;
-            this.lblVersion.Text = String.Format("Version {0} (Build {1})", 
-                this.PackageVersion, AssemblyVersion);
-            this.lblCopyright.Text = AssemblyCopyright;
-            this.txtDescription.Text = AssemblyDescription;
+            this.Text = String.Format("About {0}", this.AssemblyTitle);
+            this.lblProductName.Text = this.AssemblyProduct;
+            this.lblVersion.Text
+                = String.Format(
+                "Version {0} (Build {1})",
+                this.PackageVersion,
+                this.AssemblyVersion);
+            this.lblCopyright.Text = this.AssemblyCopyright;
+            this.txtDescription.Text = this.AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
 
+        /// <summary>
+        /// Gets the assembly title.
+        /// </summary>
         public string AssemblyTitle
         {
             get
             {
                 // Get all Title attributes on this assembly
-                object[ ] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes( typeof( AssemblyTitleAttribute ), false );
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+
                 // If there is at least one Title attribute
-                if ( attributes.Length > 0 )
+                if (attributes.Length > 0)
                 {
                     // Select the first one
-                    AssemblyTitleAttribute titleAttribute = ( AssemblyTitleAttribute ) attributes[ 0 ];
+                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+
                     // If it is not an empty string, return it
-                    if ( titleAttribute.Title != "" )
+                    if (!string.IsNullOrEmpty(titleAttribute.Title))
+                    {
                         return titleAttribute.Title;
+                    }
                 }
+
                 // If there was no Title attribute, or if the Title attribute was the empty string, return the .exe name
-                return System.IO.Path.GetFileNameWithoutExtension( Assembly.GetExecutingAssembly().CodeBase );
+                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
             }
         }
+
+        /// <summary>
+        /// Gets the package version.
+        /// </summary>
         public string PackageVersion
         {
             get
             {
                 Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                
+
                 return VersionInfo.VersionFormatter(version);
             }
         }
+
+        /// <summary>
+        /// Gets the assembly version.
+        /// </summary>
         public Version AssemblyVersion
         {
             get
@@ -82,19 +109,29 @@ namespace EnvManager
             }
         }
 
+        /// <summary>
+        /// Gets the assembly description.
+        /// </summary>
         public string AssemblyDescription
         {
             get
             {
                 // Get all Description attributes on this assembly
-                object[ ] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes( typeof( AssemblyDescriptionAttribute ), false );
+                object[] attributes
+                    = Assembly.GetExecutingAssembly().GetCustomAttributes(
+                    typeof(AssemblyDescriptionAttribute), false);
+
                 // If there aren't any Description attributes, return an empty string
-                if ( attributes.Length == 0 )
-                    return "";
+                if (attributes.Length == 0)
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Description attribute, return its value
-                return ( ( AssemblyDescriptionAttribute ) attributes[ 0 ] ).Description;
+                return ((AssemblyDescriptionAttribute)attributes[0]).Description;
             }
         }
+
         /// <summary>
         /// Gets the assembly file version.
         /// </summary>
@@ -105,13 +142,18 @@ namespace EnvManager
             {
                 // Get all Description attributes on this assembly
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
+
                 // If there aren't any Description attributes, return an empty string
                 if (attributes.Length == 0)
-                    return "";
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Description attribute, return its value
                 return ((AssemblyFileVersionAttribute)attributes[0]).Version;
             }
         }
+
         /// <summary>
         /// Gets the assembly informational version.
         /// </summary>
@@ -122,52 +164,78 @@ namespace EnvManager
             {
                 // Get all Description attributes on this assembly
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
+
                 // If there aren't any Description attributes, return an empty string
                 if (attributes.Length == 0)
-                    return "";
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Description attribute, return its value
                 return ((AssemblyInformationalVersionAttribute)attributes[0]).InformationalVersion;
             }
         }
+
+        /// <summary>
+        /// Gets the assembly product.
+        /// </summary>
         public string AssemblyProduct
         {
             get
             {
                 // Get all Product attributes on this assembly
-                object[ ] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes( typeof( AssemblyProductAttribute ), false );
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+
                 // If there aren't any Product attributes, return an empty string
-                if ( attributes.Length == 0 )
-                    return "";
+                if (attributes.Length == 0)
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Product attribute, return its value
-                return ( ( AssemblyProductAttribute ) attributes[ 0 ] ).Product;
+                return ((AssemblyProductAttribute)attributes[0]).Product;
             }
         }
 
+        /// <summary>
+        /// Gets the assembly copyright.
+        /// </summary>
         public string AssemblyCopyright
         {
             get
             {
                 // Get all Copyright attributes on this assembly
-                object[ ] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes( typeof( AssemblyCopyrightAttribute ), false );
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+
                 // If there aren't any Copyright attributes, return an empty string
-                if ( attributes.Length == 0 )
-                    return "";
+                if (attributes.Length == 0)
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Copyright attribute, return its value
-                return ( ( AssemblyCopyrightAttribute ) attributes[ 0 ] ).Copyright;
+                return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
             }
         }
 
+        /// <summary>
+        /// Gets the assembly company.
+        /// </summary>
         public string AssemblyCompany
         {
             get
             {
                 // Get all Company attributes on this assembly
-                object[ ] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes( typeof( AssemblyCompanyAttribute ), false );
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+
                 // If there aren't any Company attributes, return an empty string
-                if ( attributes.Length == 0 )
-                    return "";
+                if (attributes.Length == 0)
+                {
+                    return string.Empty;
+                }
+
                 // If there is a Company attribute, return its value
-                return ( ( AssemblyCompanyAttribute ) attributes[ 0 ] ).Company;
+                return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
         #endregion
