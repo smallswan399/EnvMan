@@ -2,7 +2,7 @@
 <FxCopProject Version="10.0" Name="EnvMan">
  <ProjectOptions>
   <SharedProject>True</SharedProject>
-  <Stylesheet Apply="False">c:\program files\fxcop\Xml\FxCopReport.xsl</Stylesheet>
+  <Stylesheet Apply="False">$(ProjectDir)/../../../../../../program files/fxcop/Xml/FxCopReport.xsl</Stylesheet>
   <SaveMessages>
    <Project Status="Active, Excluded" NewOnly="False" />
    <Report Status="Active" NewOnly="False" />
@@ -41,66 +41,10 @@
  </Rules>
  <FxCopReport Version="10.0">
   <Namespaces>
-   <Namespace Name="Envman">
-    <Messages>
-     <Message Id="Envman" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-      <Issue Name="Namespace">
-       <Item>Envman</Item>
-       <Item>Envman</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="Envman.VersionManager">
-    <Messages>
-     <Message Id="Envman" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-      <Issue Name="Namespace">
-       <Item>Envman</Item>
-       <Item>Envman.VersionManager</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="Envman.VersionManager.VersionInformation">
-    <Messages>
-     <Message Id="Envman" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-      <Issue Name="Namespace">
-       <Item>Envman</Item>
-       <Item>Envman.VersionManager.VersionInformation</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="EnvManager">
-    <Messages>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-05 05:41:00Z">
-      <Issue Name="Namespace">
-       <Item>Env</Item>
-       <Item>EnvManager</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="EnvManager.Handlers">
-    <Messages>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-      <Issue Name="Namespace">
-       <Item>Env</Item>
-       <Item>EnvManager.Handlers</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
    <Namespace Name="EnvManager.ImportExport">
     <Messages>
      <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2011-01-18 11:20:57Z">
       <Issue>
-       <Item>EnvManager.ImportExport</Item>
-      </Issue>
-     </Message>
-     <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-      <Issue Name="Namespace">
-       <Item>Env</Item>
        <Item>EnvManager.ImportExport</Item>
       </Issue>
      </Message>
@@ -114,12 +58,6 @@
       <Messages>
        <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2010-10-05 05:41:00Z">
         <Issue Name="NoStrongName">
-         <Item>'EnvMan.exe'</Item>
-        </Issue>
-       </Message>
-       <Message Id="Envman" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-        <Issue Name="Assembly">
-         <Item>Envman</Item>
          <Item>'EnvMan.exe'</Item>
         </Issue>
        </Message>
@@ -138,14 +76,6 @@
        <Namespace Name="Envman">
         <Types>
          <Type Name="FrmMain">
-          <Messages>
-           <Message Id="Frm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Frm</Item>
-             <Item>'FrmMain'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#TsmiClick(System.Object,System.EventArgs)">
             <Messages>
@@ -155,48 +85,53 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmMain.TsmiClick(object, EventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="0" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="#VersionChecker_NewVersionChecked(System.Object,Envman.VersionManager.NewVersionEventArgs)">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-24 02:28:49Z">
               <Issue>
                <Item>'FrmMain.VersionChecker_NewVersionChecked(object, NewVersionEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="0" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="#WorkerDoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2011-01-24 02:28:49Z">
               <Issue>
                <Item>'FrmMain.WorkerDoWork(object, DoWorkEventArgs)'</Item>
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-24 02:28:49Z">
               <Issue>
                <Item>'FrmMain.WorkerDoWork(object, DoWorkEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
-         </Type>
-         <Type Name="FrmOptions">
-          <Messages>
-           <Message Id="Frm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Frm</Item>
-             <Item>'FrmOptions'</Item>
-            </Issue>
-           </Message>
-          </Messages>
          </Type>
          <Type Name="SingleProgramInstance">
           <Messages>
@@ -317,14 +252,6 @@
        <Namespace Name="Envman.VersionManager">
         <Types>
          <Type Name="FrmVersionInfo">
-          <Messages>
-           <Message Id="Frm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Frm</Item>
-             <Item>'FrmVersionInfo'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#BtnCancel">
             <Messages>
@@ -412,10 +339,15 @@
                <Item>'CultureInfo.InvariantCulture'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'VersionChecker.InitProxySettings()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -487,14 +419,6 @@
        <Namespace Name="EnvManager">
         <Types>
          <Type Name="FrmAbout">
-          <Messages>
-           <Message Id="Frm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2010-10-05 05:41:00Z">
-            <Issue Name="Type">
-             <Item>Frm</Item>
-             <Item>'FrmAbout'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#.ctor()">
             <Messages>
@@ -616,12 +540,6 @@
          <Item>'EnvManager.dll'</Item>
         </Issue>
        </Message>
-       <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-        <Issue Name="Assembly">
-         <Item>Env</Item>
-         <Item>'EnvManager.dll'</Item>
-        </Issue>
-       </Message>
        <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2011-01-18 11:20:57Z">
         <Issue>
          <Item>'EnvManager.dll'</Item>
@@ -638,12 +556,6 @@
         <Types>
          <Type Name="EnvManager">
           <Messages>
-           <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Env</Item>
-             <Item>'EnvManager'</Item>
-            </Issue>
-           </Message>
            <Message TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724" Created="2011-01-18 11:20:57Z">
             <Issue>
              <Item>'EnvManager'</Item>
@@ -660,13 +572,18 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'EnvManager.DeleteEnvVar(DataGridView, EnvironmentVariableTarget)'</Item>
               </Issue>
               <Issue>
                <Item>'EnvManager.DeleteEnvVar(DataGridView, EnvironmentVariableTarget)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -692,14 +609,6 @@
           </Members>
          </Type>
          <Type Name="EnvVarManager">
-          <Messages>
-           <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Env</Item>
-             <Item>'EnvVarManager'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#DeleteEnvironmentVariable(System.String,System.EnvironmentVariableTarget)">
             <Messages>
@@ -721,12 +630,6 @@
            </Member>
            <Member Name="#GetEnvVariables(System.EnvironmentVariableTarget)">
             <Messages>
-             <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>Env</Item>
-               <Item>'EnvVarManager.GetEnvVariables(EnvironmentVariableTarget)'</Item>
-              </Issue>
-             </Message>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-01-18 11:20:57Z" FixCategory="DependsOnFix">
               <Issue>
                <Item>'EnvVarManager.GetEnvVariables(EnvironmentVariableTarget)'</Item>
@@ -734,25 +637,12 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#HWND_BROADCAST">
+           <Member Name="#HwndBroadcast">
             <Messages>
-             <Message Id="BROADCAST" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
+             <Message Id="Hwnd" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-24 02:28:49Z">
               <Issue Name="Member">
-               <Item>BROADCAST</Item>
-               <Item>'EnvVarManager.HWND_BROADCAST'</Item>
-               <Item>Broadcast</Item>
-              </Issue>
-             </Message>
-             <Message Id="HWND" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>HWND</Item>
-               <Item>'EnvVarManager.HWND_BROADCAST'</Item>
                <Item>Hwnd</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.HWND_BROADCAST'</Item>
+               <Item>'EnvVarManager.HwndBroadcast'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -799,94 +689,46 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#SMTO_ABORTIFHUNG">
+           <Member Name="#SMTOAbortIfHung">
             <Messages>
-             <Message Id="ABORTIFHUNG" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>ABORTIFHUNG</Item>
-               <Item>'EnvVarManager.SMTO_ABORTIFHUNG'</Item>
-               <Item>Abortifhung</Item>
-              </Issue>
-             </Message>
-             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
+             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-24 02:28:49Z">
               <Issue Name="Member">
                <Item>SMTO</Item>
-               <Item>'EnvVarManager.SMTO_ABORTIFHUNG'</Item>
+               <Item>'EnvVarManager.SMTOAbortIfHung'</Item>
                <Item>Smto</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.SMTO_ABORTIFHUNG'</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
-           <Member Name="#SMTO_BLOCK">
+           <Member Name="#SMTOBlock">
             <Messages>
-             <Message Id="BLOCK" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>BLOCK</Item>
-               <Item>'EnvVarManager.SMTO_BLOCK'</Item>
-               <Item>Block</Item>
-              </Issue>
-             </Message>
-             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
+             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-24 02:28:49Z">
               <Issue Name="Member">
                <Item>SMTO</Item>
-               <Item>'EnvVarManager.SMTO_BLOCK'</Item>
+               <Item>'EnvVarManager.SMTOBlock'</Item>
                <Item>Smto</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.SMTO_BLOCK'</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
-           <Member Name="#SMTO_NORMAL">
+           <Member Name="#SMTONormal">
             <Messages>
-             <Message Id="NORMAL" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>NORMAL</Item>
-               <Item>'EnvVarManager.SMTO_NORMAL'</Item>
-               <Item>Normal</Item>
-              </Issue>
-             </Message>
-             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
+             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-24 02:28:49Z">
               <Issue Name="Member">
                <Item>SMTO</Item>
-               <Item>'EnvVarManager.SMTO_NORMAL'</Item>
+               <Item>'EnvVarManager.SMTONormal'</Item>
                <Item>Smto</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.SMTO_NORMAL'</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
-           <Member Name="#SMTO_NOTIMEOUTIFNOTHUNG">
+           <Member Name="#SMTONoTimeoutIfNothing">
             <Messages>
-             <Message Id="NOTIMEOUTIFNOTHUNG" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>NOTIMEOUTIFNOTHUNG</Item>
-               <Item>'EnvVarManager.SMTO_NOTIMEOUTIFNOTHUNG'</Item>
-               <Item>Notimeoutifnothung</Item>
-              </Issue>
-             </Message>
-             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
+             <Message Id="SMTO" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-24 02:28:49Z">
               <Issue Name="Member">
                <Item>SMTO</Item>
-               <Item>'EnvVarManager.SMTO_NOTIMEOUTIFNOTHUNG'</Item>
+               <Item>'EnvVarManager.SMTONoTimeoutIfNothing'</Item>
                <Item>Smto</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.SMTO_NOTIMEOUTIFNOTHUNG'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -916,33 +758,9 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#WM_SETTINGCHANGE">
-            <Messages>
-             <Message Id="SETTINGCHANGE" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>SETTINGCHANGE</Item>
-               <Item>'EnvVarManager.WM_SETTINGCHANGE'</Item>
-               <Item>Settingchange</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>'EnvVarManager.WM_SETTINGCHANGE'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
           </Members>
          </Type>
          <Type Name="EnvVarValueValidator">
-          <Messages>
-           <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Env</Item>
-             <Item>'EnvVarValueValidator'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#IsNumber(System.String)">
             <Messages>
@@ -956,20 +774,6 @@
           </Members>
          </Type>
          <Type Name="FrmEditEnvVar">
-          <Messages>
-           <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Env</Item>
-             <Item>'FrmEditEnvVar'</Item>
-            </Issue>
-           </Message>
-           <Message Id="Frm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Type">
-             <Item>Frm</Item>
-             <Item>'FrmEditEnvVar'</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name="#DgView">
             <Messages>
@@ -982,22 +786,27 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="#dgvValuesList_CellValidating(System.Object,System.Windows.Forms.DataGridViewCellValidatingEventArgs)">
+           <Member Name="#DgvValuesList_CellValidating(System.Object,System.Windows.Forms.DataGridViewCellValidatingEventArgs)">
             <Messages>
-             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Created="2011-01-24 02:28:49Z">
               <Issue Name="IsNullOrEmpty">
                <Item>'string.operator ==(string, string)'</Item>
-               <Item>'FrmEditEnvVar.dgvValuesList_CellValidating(object, DataGridViewCellValidatingEventArgs)'</Item>
+               <Item>'FrmEditEnvVar.DgvValuesList_CellValidating(object, DataGridViewCellValidatingEventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
            </Member>
-           <Member Name="#dgvValuesList_UserDeletingRow(System.Object,System.Windows.Forms.DataGridViewRowCancelEventArgs)">
+           <Member Name="#DgvValuesList_UserDeletingRow(System.Object,System.Windows.Forms.DataGridViewRowCancelEventArgs)">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-24 02:28:49Z">
               <Issue>
-               <Item>'FrmEditEnvVar.dgvValuesList_UserDeletingRow(object, DataGridViewRowCancelEventArgs)'</Item>
+               <Item>'FrmEditEnvVar.DgvValuesList_UserDeletingRow(object, DataGridViewRowCancelEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1009,22 +818,32 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmEditEnvVar.ExportEnvironmentVariable()'</Item>
               </Issue>
               <Issue>
                <Item>'FrmEditEnvVar.ExportEnvironmentVariable()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="#FrmEditEnvVar_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmEditEnvVar.FrmEditEnvVar_FormClosing(object, FormClosingEventArgs)'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1036,19 +855,29 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmEditEnvVar.ImportEnvironmentVariable()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="#LocateInWindowsExplorer()">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmEditEnvVar.LocateInWindowsExplorer()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1069,10 +898,15 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'FrmEditEnvVar.SaveEnvironmentVariable()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1133,63 +967,15 @@
              <Item>'DgvCommand'</Item>
             </Issue>
            </Message>
-           <Message TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Member">
-             <Item>'CommandName'</Item>
-             <Item>commandName</Item>
-            </Issue>
-           </Message>
           </Messages>
           <Members>
-           <Member Name="#.ctor(EnvManager.Handlers.DgvHandler)">
+           <Member Name="#.ctor(EnvManager.Handlers.DgvHandler,System.String)">
             <Messages>
-             <Message Id="dgv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
+             <Message Id="dgv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-24 02:28:49Z">
               <Issue Name="MemberParameter">
-               <Item>'DgvCommand.DgvCommand(DgvHandler)'</Item>
+               <Item>'DgvCommand.DgvCommand(DgvHandler, string)'</Item>
                <Item>dgv</Item>
                <Item>'dgvHandler'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#commandName">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvCommand.commandName'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#currentRowIndex">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvCommand.currentRowIndex'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#dgvHandler">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvCommand.dgvHandler'</Item>
-              </Issue>
-             </Message>
-             <Message Id="dgv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>dgv</Item>
-               <Item>'DgvCommand.dgvHandler'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#newRowIndex">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvCommand.newRowIndex'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -1298,21 +1084,15 @@
                <Item>'Exception'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'DgvHandler.DeleteRow(int)'</Item>
               </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#SEPARATOR">
-            <Messages>
-             <Message Id="SEPARATOR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>SEPARATOR</Item>
-               <Item>'DgvHandler.SEPARATOR'</Item>
-               <Item>Separator</Item>
-              </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1326,23 +1106,13 @@
              <Item>'DgvModifyValueCommand'</Item>
             </Issue>
            </Message>
-           <Message TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708" Created="2011-01-18 11:20:57Z">
-            <Issue Name="Member">
-             <Item>'CurrentRow'</Item>
-             <Item>currentRow</Item>
-            </Issue>
-            <Issue Name="Member">
-             <Item>'NewRow'</Item>
-             <Item>newRow</Item>
-            </Issue>
-           </Message>
           </Messages>
           <Members>
-           <Member Name="#.ctor(EnvManager.Handlers.DgvHandler)">
+           <Member Name="#.ctor(EnvManager.Handlers.DgvHandler,System.String)">
             <Messages>
-             <Message Id="dgv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
+             <Message Id="dgv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-24 02:28:49Z">
               <Issue Name="MemberParameter">
-               <Item>'DgvModifyValueCommand.DgvModifyValueCommand(DgvHandler)'</Item>
+               <Item>'DgvModifyValueCommand.DgvModifyValueCommand(DgvHandler, string)'</Item>
                <Item>dgv</Item>
                <Item>'dgvHandler'</Item>
               </Issue>
@@ -1354,24 +1124,6 @@
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2011-01-18 11:20:57Z" FixCategory="DependsOnFix">
               <Issue>
                <Item>'DgvModifyValueCommand.CloneRow(DataGridViewRow)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#currentRow">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvModifyValueCommand.currentRow'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#newRow">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'DgvModifyValueCommand.newRow'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -1507,10 +1259,15 @@
            </Member>
            <Member Name="#Execute()">
             <Messages>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'VarImportCommand.Execute()'</Item>
               </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1528,14 +1285,6 @@
                <Item>'string.ToUpper(CultureInfo)'</Item>
               </Issue>
              </Message>
-             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Created="2011-01-18 11:20:57Z">
-              <Issue>
-               <Item>'VarImportCommand.GetValuesToImport()'</Item>
-              </Issue>
-              <Issue>
-               <Item>'VarImportCommand.GetValuesToImport()'</Item>
-              </Issue>
-             </Message>
              <Message Id="System.String.CompareTo(System.String)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2011-01-18 11:20:57Z">
               <Issue>
                <Item>'string.CompareTo(string)'</Item>
@@ -1549,6 +1298,19 @@
                <Item>'VarImportCommand.GetValuesToImport()'</Item>
                <Item>'string.IndexOf(string, StringComparison)'</Item>
               </Issue>
+             </Message>
+             <Message TypeName="SpecifyMessageBoxOptions" Category="Microsoft.Globalization" CheckId="CA1300" Status="Excluded" Created="2011-01-18 11:20:57Z">
+              <Issue>
+               <Item>'VarImportCommand.GetValuesToImport()'</Item>
+              </Issue>
+              <Issue>
+               <Item>'VarImportCommand.GetValuesToImport()'</Item>
+              </Issue>
+              <Notes>
+               <User Name="vsetchin">
+                <Note Id="1" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1588,16 +1350,6 @@
          </Type>
          <Type Name="ImportExportManager">
           <Members>
-           <Member Name="#EnvVariable">
-            <Messages>
-             <Message Id="Env" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2011-01-18 11:20:57Z">
-              <Issue Name="Member">
-               <Item>Env</Item>
-               <Item>'ImportExportManager.EnvVariable'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="#Load(System.String)">
             <Messages>
              <Message Id="filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2011-01-18 11:20:57Z">
@@ -1636,6 +1388,12 @@
     </Modules>
    </Target>
   </Targets>
+  <Notes>
+   <User Name="vsetchin">
+    <Note Id="0" Modified="2011-01-24 02:35:15Z">This program is not designed for right to left environment at the moment</Note>
+    <Note Id="1" Modified="2011-01-24 02:36:09Z">Program is not designed to support right to left environments at the moment</Note>
+   </User>
+  </Notes>
   <Rules>
    <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
     <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
@@ -1659,9 +1417,6 @@
    <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
     <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
    </Rule>
-   <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
-    <Resolution Name="Default">Because field {0} is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Resolution>
-   </Rule>
    <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
     <Resolution Name="Default">Change {0} in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
    </Rule>
@@ -1679,17 +1434,9 @@
     <Resolution Name="MemberAbbreviation">Correct the casing of '{0}' in member name {1} by changing it to '{2}'. '{2}' is an abbreviation and therefore is not subject to acronym casing guidelines.</Resolution>
    </Rule>
    <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
-    <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
     <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
     <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
-    <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
     <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
-   </Rule>
-   <Rule TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708">
-    <Resolution Name="Member">Change member names {0} and '{1}' so that they differ by more than case.</Resolution>
-   </Rule>
-   <Rule TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707">
-    <Resolution Name="Member">Remove the underscores from member name {0}.</Resolution>
    </Rule>
    <Rule TypeName="ImplementIDisposableCorrectly" Category="Microsoft.Design" CheckId="CA1063">
     <Resolution Name="DisposeImplementation">Modify {0} so that it calls Dispose(true), then calls GC.SuppressFinalize on the current object instance ('this' or 'Me' in Visual Basic), and then returns.</Resolution>
