@@ -63,21 +63,6 @@ namespace Envman
                     Application.Run(new FrmMain());
                 }
             }
-
-            ////bool isOneInstance = false;
-
-            ////using (Mutex mutex = new Mutex(true, "EnvMan", out isOneInstance))
-            ////{
-            ////    if (isOneInstance)
-            ////    {
-            ////        Application.Run(new FrmMain());
-            ////        mutex.ReleaseMutex();
-            ////    }
-            ////    else
-            ////    {
-            ////        // TODO: Activate window of the running EnvMan program
-            ////    }
-            ////}
         }
     }
 }

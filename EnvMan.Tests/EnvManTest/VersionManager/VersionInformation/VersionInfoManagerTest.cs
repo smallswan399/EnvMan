@@ -64,7 +64,7 @@ namespace Envman.Tests.VersionManager.VersionInformation
         public void Setup()
         {
             this.versionInfo.AssemblyVersion = new Version(1, 3);
-            this.versionInfo.DownloadWebPageAddress 
+            this.versionInfo.DownloadWebpageAddress 
                 = "http://env-man.blogspot.com/2007/04/envman-user-guide.html";
         }
 

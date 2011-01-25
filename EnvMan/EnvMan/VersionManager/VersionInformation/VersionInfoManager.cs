@@ -61,11 +61,11 @@ namespace Envman.VersionManager.VersionInformation
         /// <summary>
         /// Saves VersionInfo into specified file.
         /// </summary>
-        /// <param name="filename">The filename.</param>
-        public void Save(string filename)
+        /// <param name="fileName">The filename.</param>
+        public void Save(string fileName)
         {
             // Create a file stream object
-            FileStream file = File.Create(filename);
+            FileStream file = File.Create(fileName);
 
             // Start Serialization
             XmlSerializer xmlSerializer 
@@ -77,13 +77,13 @@ namespace Envman.VersionManager.VersionInformation
         /// <summary>
         /// Loads VersionInfo from specified file.
         /// </summary>
-        /// <param name="filename">The filename.</param>
-        public void Load(string filename)
+        /// <param name="fileName">The filename.</param>
+        public void Load(string fileName)
         {
             try
             {
                 // Create a file stream object
-                FileStream file = File.OpenRead(filename);
+                FileStream file = File.OpenRead(fileName);
 
                 // Start Serialization
                 XmlSerializer xmlSerializer

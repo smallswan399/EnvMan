@@ -51,22 +51,22 @@ namespace EnvManager
         /// <summary>
         /// SMTO NORMAL
         /// </summary>
-        public const int SMTONormal = 0x0000;
+        public const int SmtoNormal = 0x0000;
 
         /// <summary>
         /// SMTO BLOCK
         /// </summary>
-        public const int SMTOBlock = 0x0001;
+        public const int SmtoBlock = 0x0001;
 
         /// <summary>
         /// SMTO ABORTIFHUNG
         /// </summary>
-        public const int SMTOAbortIfHung = 0x0002;
+        public const int SmtoAbortIfHung = 0x0002;
 
         /// <summary>
         /// SMTO NOTIMEOUTIFNOTHUNG
         /// </summary>
-        public const int SMTONoTimeoutIfNothing = 0x0008;
+        public const int SmtoNoTimeoutIfNothing = 0x0008;
 
         /// <summary>
         /// Registry Key for User Keys
@@ -205,7 +205,7 @@ namespace EnvManager
                 throw new Exception("Variable Name cannot be blank.");
             }
 
-            if (varValue != null && varValue == string.Empty)
+            if (!string.IsNullOrEmpty(varValue))
             {
                 throw new Exception("Variable should have a value.");
             }
@@ -247,7 +247,7 @@ namespace EnvManager
                 WMSettingChange,
                 0,
                 "Environment",
-                SMTOBlock | SMTOAbortIfHung | SMTONoTimeoutIfNothing,
+                SmtoBlock | SmtoAbortIfHung | SmtoNoTimeoutIfNothing,
                 5000,
                 out result);
         }

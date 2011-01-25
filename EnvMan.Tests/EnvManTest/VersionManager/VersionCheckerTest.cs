@@ -70,7 +70,7 @@ namespace Envman.Tests.VersionManager
         public void Setup()
         {
             this.versionInfo.AssemblyVersion = new Version(1, 3, 0, 0);
-            this.versionInfo.DownloadWebPageAddress = string.Empty;
+            this.versionInfo.DownloadWebpageAddress = string.Empty;
             this.versionChecker.VersionChecked
                 += new EventHandler<NewVersionEventArgs>(
                     this.VersionChecker_VersionChecked);

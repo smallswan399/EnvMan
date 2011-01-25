@@ -61,13 +61,13 @@ namespace EnvManager.ImportExport
         }
 
         /// <summary>
-        /// Saves the specified filename.
+        /// Saves the specified file name.
         /// </summary>
-        /// <param name="filename">The filename.</param>
-        public void Save(string filename)
+        /// <param name="fileName">Name of the file.</param>
+        public void Save(string fileName)
         {
             // Create a file stream object
-            FileStream file = File.Create(filename);
+            FileStream file = File.Create(fileName);
 
             // Start Serialization
             XmlSerializer xmlSerializer
@@ -77,15 +77,15 @@ namespace EnvManager.ImportExport
         }
 
         /// <summary>
-        /// Loads the specified filename.
+        /// Loads the specified file name.
         /// </summary>
-        /// <param name="filename">The filename.</param>
-        public void Load(string filename)
+        /// <param name="fileName">Name of the file.</param>
+        public void Load(string fileName)
         {
             try
             {
                 // Create a file stream object
-                FileStream file = File.OpenRead(filename);
+                FileStream file = File.OpenRead(fileName);
 
                 // Start Serialization
                 XmlSerializer xmlSerializer
