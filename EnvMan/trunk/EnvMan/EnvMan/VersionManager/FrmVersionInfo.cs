@@ -59,7 +59,7 @@ namespace Envman.VersionManager
         /// Gets the OK Button.
         /// </summary>
         /// <value>The OK Button.</value>
-        public Button BtnOK
+        public Button BtnOk
         {
             get
             {

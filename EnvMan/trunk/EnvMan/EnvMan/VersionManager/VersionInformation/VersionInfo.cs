@@ -40,7 +40,7 @@ namespace Envman.VersionManager.VersionInformation
         /// <summary>
         /// Web Page Address for program download
         /// </summary>
-        private string downloadWebPageAddress = string.Empty;
+        private string downloadWebpageAddress = string.Empty;
 
         /// <summary>
         /// Major Version Number
@@ -68,10 +68,10 @@ namespace Envman.VersionManager.VersionInformation
         /// Gets or sets the download web page address.
         /// </summary>
         /// <value>The download web page address.</value>
-        public string DownloadWebPageAddress
+        public string DownloadWebpageAddress
         {
-            get { return this.downloadWebPageAddress; }
-            set { this.downloadWebPageAddress = value; }
+            get { return this.downloadWebpageAddress; }
+            set { this.downloadWebpageAddress = value; }
         }
 
         /// <summary>
