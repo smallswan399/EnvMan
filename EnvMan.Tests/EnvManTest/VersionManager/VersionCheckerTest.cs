@@ -57,8 +57,7 @@ namespace Envman.Tests.VersionManager
         /// </summary>
         public VersionCheckerTest()
         {
-            this.versionChecker = new VersionChecker(
-                Properties.Resources.ProgramICO);
+            this.versionChecker = new VersionChecker();
         }
         #endregion Constructor
 

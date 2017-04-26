@@ -1,17 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6CD9460-EE2F-43EA-A3BD-441E0B2EB68E}"
-	ProjectSection(SolutionItems) = preProject
-		BuildAll.cmd = BuildAll.cmd
-		CleanAll.cmd = CleanAll.cmd
-		EnvMan.Debug = EnvMan.Debug
-		EnvMan.FxCop = EnvMan.FxCop
-		EnvMan.Release = EnvMan.Release
-		license.txt = license.txt
-		Readme.txt = Readme.txt
-	EndProjectSection
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnvMan", "EnvMan", "{D8F2F0DC-7C02-46C1-8C0C-61D6AFF640B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5874BA29-9164-4848-934A-2B993BC1E2E0}"
