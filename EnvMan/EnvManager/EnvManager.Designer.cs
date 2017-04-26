@@ -172,9 +172,9 @@ namespace EnvManager
             this.dgvUserVariables.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
             this.dgvUserVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvUserVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvUserVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUserVariables.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvUserVariables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserVariables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -190,8 +190,8 @@ namespace EnvManager
             this.dgvUserVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUserVariables.Size = new System.Drawing.Size(346, 142);
             this.dgvUserVariables.TabIndex = 4;
-            this.dgvUserVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             this.dgvUserVariables.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvCellMouseDoubleClick);
+            this.dgvUserVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             // 
             // Variable
             // 
@@ -273,9 +273,9 @@ namespace EnvManager
             this.dgvSystemVariables.AllowUserToResizeRows = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
             this.dgvSystemVariables.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvSystemVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSystemVariables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSystemVariables.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSystemVariables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSystemVariables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -291,8 +291,8 @@ namespace EnvManager
             this.dgvSystemVariables.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSystemVariables.Size = new System.Drawing.Size(346, 158);
             this.dgvSystemVariables.TabIndex = 4;
-            this.dgvSystemVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             this.dgvSystemVariables.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvCellMouseDoubleClick);
+            this.dgvSystemVariables.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvUserDeletingRow);
             // 
             // dataGridViewTextBoxColumn1
             // 

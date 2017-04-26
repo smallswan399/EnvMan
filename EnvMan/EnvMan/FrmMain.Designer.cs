@@ -240,7 +240,7 @@ namespace Envman
             // 
             this.TsmiNewVersionInfo.Image = global::Envman.Properties.Resources.Updates;
             this.TsmiNewVersionInfo.Name = "TsmiNewVersionInfo";
-            this.TsmiNewVersionInfo.Size = new System.Drawing.Size(101, 20);
+            this.TsmiNewVersionInfo.Size = new System.Drawing.Size(100, 20);
             this.TsmiNewVersionInfo.Text = " Version Info";
             this.TsmiNewVersionInfo.Visible = false;
             this.TsmiNewVersionInfo.Click += new System.EventHandler(this.TsmiClick);
@@ -262,9 +262,9 @@ namespace Envman
             // 
             // envManager
             // 
-            this.envManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.envManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.envManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.envManager.Location = new System.Drawing.Point(2, 27);
             this.envManager.Name = "envManager";
@@ -285,8 +285,8 @@ namespace Envman
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Environment Variables";
-            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.tsMain.ResumeLayout(false);

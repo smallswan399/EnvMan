@@ -93,16 +93,16 @@ namespace EnvManager
             this.txtVariableName.Name = "txtVariableName";
             this.txtVariableName.Size = new System.Drawing.Size(177, 20);
             this.txtVariableName.TabIndex = 3;
-            this.txtVariableName.Validated += new System.EventHandler(this.TxtVariableName_Validated);
             this.txtVariableName.TextChanged += new System.EventHandler(this.TxtVariableName_TextChanged);
+            this.txtVariableName.Validated += new System.EventHandler(this.TxtVariableName_Validated);
             // 
             // dgvValuesList
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
             this.dgvValuesList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvValuesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvValuesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -122,13 +122,13 @@ namespace EnvManager
             this.dgvValuesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvValuesList.Size = new System.Drawing.Size(267, 337);
             this.dgvValuesList.TabIndex = 0;
-            this.dgvValuesList.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DgvValuesList_UserAddedRow);
-            this.dgvValuesList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvValuesList_UserDeletingRow);
             this.dgvValuesList.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DgvValuesList_CellBeginEdit);
+            this.dgvValuesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvValuesList_CellEndEdit);
             this.dgvValuesList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvValuesList_CellMouseDown);
             this.dgvValuesList.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgvValuesList_CellValidating);
-            this.dgvValuesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvValuesList_CellEndEdit);
             this.dgvValuesList.SelectionChanged += new System.EventHandler(this.DgvValuesList_SelectionChanged);
+            this.dgvValuesList.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DgvValuesList_UserAddedRow);
+            this.dgvValuesList.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DgvValuesList_UserDeletingRow);
             // 
             // ValueType
             // 
@@ -349,8 +349,8 @@ namespace EnvManager
             this.Name = "FrmEditEnvVar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Edit System Variable";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEditEnvVar_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEditEnvVar_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEditEnvVar_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvValuesList)).EndInit();
             this.cmsValuesDGV.ResumeLayout(false);
             this.ResumeLayout(false);
