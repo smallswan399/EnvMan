@@ -201,7 +201,7 @@ namespace EnvManager
                 throw new Exception("Variable Name cannot be blank.");
             }
 
-            if (!string.IsNullOrEmpty(varValue))
+            if (string.IsNullOrEmpty(varValue))
             {
                 throw new Exception("Variable should have a value.");
             }
